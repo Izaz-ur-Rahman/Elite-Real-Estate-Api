@@ -269,14 +269,14 @@ namespace Elite_Webservices.Controllers
                         db.SaveChanges();
 
                         // 🔔 Notification (Update)
-                        NotificationHelper.Create(
-                            title: "Email Template Updated",
-                            message: $"Email template '{checkcms_temp.Name}' was updated",
-                            type: "info",
-                            action: "updated",
-                            entityId: checkcms_temp.Id,
-                            createdBy: User?.Identity?.Name ?? "system"
-                        );
+                        //NotificationHelper.Create(
+                        //    title: "Email Template Updated",
+                        //    message: $"Email template '{checkcms_temp.Name}' was updated",
+                        //    type: "info",
+                        //    action: "updated",
+                        //    entityId: checkcms_temp.Id,
+                        //    createdBy: User?.Identity?.Name ?? "system"
+                        //);
 
                         return Request.CreateResponse(HttpStatusCode.OK, "Updated");
                     }
@@ -297,14 +297,14 @@ namespace Elite_Webservices.Controllers
                     db.SaveChanges();
 
                     // 🔔 Notification (Add)
-                    NotificationHelper.Create(
-                        title: "New Email Template Added",
-                        message: $"Email template '{cms_tempAdd.Name}' was created",
-                        type: "success",
-                        action: "created",
-                        entityId: cms_tempAdd.Id,
-                        createdBy: User?.Identity?.Name ?? "system"
-                    );
+                    //NotificationHelper.Create(
+                    //    title: "New Email Template Added",
+                    //    message: $"Email template '{cms_tempAdd.Name}' was created",
+                    //    type: "success",
+                    //    action: "created",
+                    //    entityId: cms_tempAdd.Id,
+                    //    createdBy: User?.Identity?.Name ?? "system"
+                    //);
 
                     return Request.CreateResponse(HttpStatusCode.OK, "Added");
                 }
@@ -370,14 +370,14 @@ namespace Elite_Webservices.Controllers
                 db.SaveChanges();
 
                 // 🔔 Notification (Delete)
-                NotificationHelper.Create(
-                    title: "Email Template Deleted",
-                    message: $"Email template '{template.Name}' was deleted",
-                    type: "warning",
-                    action: "deleted",
-                    entityId: template.Id,
-                    createdBy: User?.Identity?.Name ?? "system"
-                );
+                //NotificationHelper.Create(
+                //    title: "Email Template Deleted",
+                //    message: $"Email template '{template.Name}' was deleted",
+                //    type: "warning",
+                //    action: "deleted",
+                //    entityId: template.Id,
+                //    createdBy: User?.Identity?.Name ?? "system"
+                //);
 
                 return Request.CreateResponse(HttpStatusCode.OK, "Deleted");
             }
