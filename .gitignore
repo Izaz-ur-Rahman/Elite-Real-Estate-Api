@@ -1,0 +1,3 @@
+# Ignore Web.config files
+Elite_Admin/Web.config
+Elite_Webservices/Web.config
