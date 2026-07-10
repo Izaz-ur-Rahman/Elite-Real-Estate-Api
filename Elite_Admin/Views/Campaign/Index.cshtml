@@ -1,0 +1,256 @@
+﻿@model List<Elite_Admin.Models.GetCms_Campaign>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ 
+<link rel="stylesheet" href="~/Content/assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Content/assets/vendor/jquery-datatable/fixedeader/dataTables.fixedcolumns.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Content/assets/vendor/jquery-datatable/fixedeader/dataTables.fixedheader.bootstrap4.min.css">
+<div class="container-fluid">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="header">
+                <h2>Campaign List<small>List of All Campaign</small> </h2>
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover dataTable js-exportable" id="tbldetails">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>PopName</th>
+                                <th style="display:none">templete</th>
+                                <th>Email Template</th>
+                                <th>Submitted Date</th>
+                                <th>Choose_recipient</th>
+
+                                <th>IsActive</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@item.PopName</td>
+                                    <td style="display:none">@Html.Raw(item.EmailtempletsDesign)</td>
+
+                                    <td>@item.EmailTemplateName</td>
+                                    <td>@(item.EntryDate?.ToString("MM/dd/yyyy"))</td>
+                                    <td>@item.Choose_recipient</td>
+                                    <td>@(item.IsActive.HasValue && item.IsActive.Value ? "Yes" : "No")</td>
+
+                                    <td>
+                                        <!-- Dropdown for actions -->
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="ftndetails(this)"><i class="fa fa-eye"></i> Templete Design</a>
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="ftnRecipientdetails('@item.Id')"><i class="fa fa-users"></i> Recipient</a>
+                                                <a  class="dropdown-item" href="~/Campaign/updateCampaign?id=@item.Id" onclick=""><i class="fa fa-edit"></i> Edit</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+}
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailsModalLabel">Template Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe id="detailsIframe" src="" width="100%" height="400px" frameborder="0" scrolling="yes"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="RecipientModal" tabindex="-1" role="dialog" aria-labelledby="RecipientModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailsModalLabel">Recipient Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                     <div class="row">
+                         <table class="table table-bordered table-condensed">
+                             <thead>
+                                 <tr>
+                                     <th>Name</th>
+                                     <th>Email</th>
+                                     <th> Status</th>
+                                 </tr>
+                             </thead>
+                             <tbody id="tblrecepitentdetails">
+
+                             </tbody>
+                         </table>
+                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Content/assets/bundles/datatablescripts.bundle.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/dataTables.buttons.min.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/buttons.bootstrap4.min.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/buttons.colVis.min.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/buttons.html5.min.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/buttons.print.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#tbldetails").dataTable();
+        });
+    </script>
+    <script>
+    function ftndetails(element) {
+        // Get the hidden details from the same row
+        var details = $(element).closest('tr').find('td:eq(2)').html();
+
+        // Access the iframe and write the HTML content into it
+        var iframe = document.getElementById('detailsIframe');
+        var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+        // Write the HTML content into the iframe
+        iframeDoc.open();
+        iframeDoc.write(details);
+        iframeDoc.close();
+
+        // Show the modal
+        $('#detailsModal').modal('show');
+        }
+
+        function ftnRecipientdetails(id) {
+            $("#RecipientModal").modal('show');
+            $("#overlay").fadeIn();
+
+            $.ajax({
+                url: "@Url.Action("Recipientlist", "Campaign")",  // Your API endpoint
+                type: 'POST',
+                data: {id:id},  // Data to send, if any
+                success: function (response) {
+
+                    $('#tblrecepitentdetails').empty();
+                    $.each(response, function (index, recipient) {
+                        var row = '<tr>' +
+                            '<td>' + recipient.Name + '</td>' +
+                            '<td>' + recipient.Email + '</td>' +
+                            '<td>' + recipient.EmailStatus + '</td>' +
+                            
+                            //'<td><button type="button" class="btn btn-primary" onclick="sendEmail(' + recipient.Id + ')">Send Email</button></td>' +
+                            '</tr>';
+                        $('#tblrecepitentdetails').append(row);
+                    });
+                    $("#overlay").fadeOut();
+                }
+            });
+        }
+
+    </script>
+
+
+    <script>
+        var msg = '@TempData["msg"]';
+        if (msg != null) {
+            if (msg == "published") {
+
+                $(document).ready(function () {
+                    funtionalert('Success!', 'EmailTempate published Successfully', 'success');
+
+                });
+
+
+            }
+            if (msg == "Updated") {
+                $(document).ready(function () {
+                    funtionalert('Success!', 'EmailTempate Updated Successfully', 'success');
+
+                });
+            }
+            if (msg == "Added") {
+                $(document).ready(function () {
+                    funtionalert('Success!', 'EmailTempate Added Successfully', 'success');
+
+                });
+            }
+            if (msg == "Deleted") {
+                $(document).ready(function () {
+                    funtionalert('Success!', 'EmailTempate Deleted Successfully', 'error');
+
+                });
+            }
+        }
+    </script>
+    <script>
+
+            function ftnDelete(id) {
+                swal({
+                    title: "Are you sure?",
+                    text: "to Delete it",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#dc3545",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        window.location = "@Url.Action("DeleteBlog", "BlogList")?id=" + id;
+                    } else {
+                        swal.close();  // Close the popup when "No" is clicked
+                    }
+                });
+        }
+
+        function publish(id, type) {
+                swal({
+                    title: "Are you sure?",
+                    text: "to "+type+" it",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#dc3545",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        window.location = "@Url.Action("Publishblog", "BlogList")?id=" + id + "&&type=" + type;
+                    } else {
+                        swal.close();  // Close the popup when "No" is clicked
+                    }
+                });
+            }
+
+    </script>
+}
+
+
+

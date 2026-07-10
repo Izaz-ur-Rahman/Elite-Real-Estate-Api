@@ -1,0 +1,601 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EliteCMSModelStoreContainer" CdmEntityContainer="EliteCMSEntities">
+    <EntitySetMapping Name="Cms_blogDetail">
+      <EntityTypeMapping TypeName="EliteCMSModel.Cms_blogDetail">
+        <MappingFragment StoreEntitySet="Cms_blogDetail">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="Slug" ColumnName="Slug" />
+          <ScalarProperty Name="CoverImage" ColumnName="CoverImage" />
+          <ScalarProperty Name="BlogDetails" ColumnName="BlogDetails" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Tags" ColumnName="Tags" />
+          <ScalarProperty Name="PublishingDate" ColumnName="PublishingDate" />
+          <ScalarProperty Name="Blog_readTime" ColumnName="Blog_readTime" />
+          <ScalarProperty Name="Blog_openCount" ColumnName="Blog_openCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cms_blogPopupWidget">
+      <EntityTypeMapping TypeName="EliteCMSModel.Cms_blogPopupWidget">
+        <MappingFragment StoreEntitySet="Cms_blogPopupWidget">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Headlines" ColumnName="Headlines" />
+          <ScalarProperty Name="Sentence" ColumnName="Sentence" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Form_Name" ColumnName="Form_Name" />
+          <ScalarProperty Name="Form_Email" ColumnName="Form_Email" />
+          <ScalarProperty Name="TriggerType" ColumnName="TriggerType" />
+          <ScalarProperty Name="DisplayRule" ColumnName="DisplayRule" />
+          <ScalarProperty Name="PagelinkToShow" ColumnName="PagelinkToShow" />
+          <ScalarProperty Name="DisplayFrequency" ColumnName="DisplayFrequency" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+          <ScalarProperty Name="Receivableemail" ColumnName="Receivableemail" />
+          <ScalarProperty Name="showlinkbutton" ColumnName="showlinkbutton" />
+          <ScalarProperty Name="ButtonLink" ColumnName="ButtonLink" />
+          <ScalarProperty Name="ButtonText" ColumnName="ButtonText" />
+          <ScalarProperty Name="EmailTemplateId" ColumnName="EmailTemplateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cms_BlogPopUserApply">
+      <EntityTypeMapping TypeName="EliteCMSModel.Cms_BlogPopUserApply">
+        <MappingFragment StoreEntitySet="Cms_BlogPopUserApply">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PopwidgetId" ColumnName="PopwidgetId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cms_Campaign">
+      <EntityTypeMapping TypeName="EliteCMSModel.Cms_Campaign">
+        <MappingFragment StoreEntitySet="Cms_Campaign">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
+          <ScalarProperty Name="Choose_recipient" ColumnName="Choose_recipient" />
+          <ScalarProperty Name="PoplistId" ColumnName="PoplistId" />
+          <ScalarProperty Name="EmailTemplateId" ColumnName="EmailTemplateId" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EmailSubject" ColumnName="EmailSubject" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cms_CampaignDetail">
+      <EntityTypeMapping TypeName="EliteCMSModel.Cms_CampaignDetail">
+        <MappingFragment StoreEntitySet="Cms_CampaignDetail">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+          <ScalarProperty Name="Recipient_tblId" ColumnName="Recipient_tblId" />
+          <ScalarProperty Name="Recipient_Email" ColumnName="Recipient_Email" />
+          <ScalarProperty Name="Recipient_Name" ColumnName="Recipient_Name" />
+          <ScalarProperty Name="EmailStatus" ColumnName="EmailStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cms_EmailCampaignLogs">
+      <EntityTypeMapping TypeName="EliteCMSModel.Cms_EmailCampaignLogs">
+        <MappingFragment StoreEntitySet="Cms_EmailCampaignLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DetailLogs" ColumnName="DetailLogs" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CampaignDetailId" ColumnName="CampaignDetailId" />
+          <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cms_EmailTemplete">
+      <EntityTypeMapping TypeName="EliteCMSModel.Cms_EmailTemplete">
+        <MappingFragment StoreEntitySet="Cms_EmailTemplete">
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cms_Manualuser">
+      <EntityTypeMapping TypeName="EliteCMSModel.Cms_Manualuser">
+        <MappingFragment StoreEntitySet="Cms_Manualuser">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cms_NewsLetter">
+      <EntityTypeMapping TypeName="EliteCMSModel.Cms_NewsLetter">
+        <MappingFragment StoreEntitySet="Cms_NewsLetter">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="blogId" ColumnName="blogId" />
+          <ScalarProperty Name="Blogtitle" ColumnName="Blogtitle" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cms_User">
+      <EntityTypeMapping TypeName="EliteCMSModel.Cms_User">
+        <MappingFragment StoreEntitySet="Cms_User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cms_WebsiteAction">
+      <EntityTypeMapping TypeName="EliteCMSModel.Cms_WebsiteAction">
+        <MappingFragment StoreEntitySet="Cms_WebsiteAction">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="NoofEmployees" ColumnName="NoofEmployees" />
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="ApplyFor" ColumnName="ApplyFor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cms_WebsiteContactus">
+      <EntityTypeMapping TypeName="EliteCMSModel.Cms_WebsiteContactus">
+        <MappingFragment StoreEntitySet="Cms_WebsiteContactus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="EliteCMSModel.Country">
+        <MappingFragment StoreEntitySet="Countries">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="EnName" ColumnName="EnName" />
+          <ScalarProperty Name="ArName" ColumnName="ArName" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="AppID" ColumnName="AppID" />
+          <ScalarProperty Name="GCC" ColumnName="GCC" />
+          <ScalarProperty Name="StateRequired" ColumnName="StateRequired" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="createStatus" ColumnName="createStatus" />
+          <ScalarProperty Name="updateStatus" ColumnName="updateStatus" />
+          <ScalarProperty Name="IsSyncWithBMS" ColumnName="IsSyncWithBMS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PasswordPolicies">
+      <EntityTypeMapping TypeName="EliteCMSModel.PasswordPolicy">
+        <MappingFragment StoreEntitySet="PasswordPolicy">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MinCharacter" ColumnName="MinCharacter" />
+          <ScalarProperty Name="MaxCharacter" ColumnName="MaxCharacter" />
+          <ScalarProperty Name="MinNumCharacter" ColumnName="MinNumCharacter" />
+          <ScalarProperty Name="MaxSpecialCharacter" ColumnName="MaxSpecialCharacter" />
+          <ScalarProperty Name="IsPasswordExpired" ColumnName="IsPasswordExpired" />
+          <ScalarProperty Name="PasswordExpiredDuration" ColumnName="PasswordExpiredDuration" />
+          <ScalarProperty Name="LowerCase" ColumnName="LowerCase" />
+          <ScalarProperty Name="UpperCase" ColumnName="UpperCase" />
+          <ScalarProperty Name="SpecialCharAllowed" ColumnName="SpecialCharAllowed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="EliteCMSModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="AppID" ColumnName="AppID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblApplications">
+      <EntityTypeMapping TypeName="EliteCMSModel.TblApplication">
+        <MappingFragment StoreEntitySet="TblApplication">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AppName" ColumnName="AppName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblEmployees">
+      <EntityTypeMapping TypeName="EliteCMSModel.TblEmployee">
+        <MappingFragment StoreEntitySet="TblEmployee">
+          <ScalarProperty Name="WhatsappNo" ColumnName="WhatsappNo" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PERSON_TYPE_ID" ColumnName="PERSON_TYPE_ID" />
+          <ScalarProperty Name="EMPLOYEE_NUMBER" ColumnName="EMPLOYEE_NUMBER" />
+          <ScalarProperty Name="OLD_EMPLOYEE_NUMBER" ColumnName="OLD_EMPLOYEE_NUMBER" />
+          <ScalarProperty Name="PAYROLL_ID" ColumnName="PAYROLL_ID" />
+          <ScalarProperty Name="PERSON_ID" ColumnName="PERSON_ID" />
+          <ScalarProperty Name="BADGE" ColumnName="BADGE" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="SECOND_NAME" ColumnName="SECOND_NAME" />
+          <ScalarProperty Name="THIRD_NAME" ColumnName="THIRD_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="FIRST_NAME_AR" ColumnName="FIRST_NAME_AR" />
+          <ScalarProperty Name="SECOND_NAME_AR" ColumnName="SECOND_NAME_AR" />
+          <ScalarProperty Name="THIRD_NAME_AR" ColumnName="THIRD_NAME_AR" />
+          <ScalarProperty Name="LAST_NAME_AR" ColumnName="LAST_NAME_AR" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="FULL_NAME_AR" ColumnName="FULL_NAME_AR" />
+          <ScalarProperty Name="NATIONAL_IDENTIFIER" ColumnName="NATIONAL_IDENTIFIER" />
+          <ScalarProperty Name="MANAGER_FLAG" ColumnName="MANAGER_FLAG" />
+          <ScalarProperty Name="SUPERVISOR_NUMBER" ColumnName="SUPERVISOR_NUMBER" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+          <ScalarProperty Name="POSITION_ID" ColumnName="POSITION_ID" />
+          <ScalarProperty Name="GRADE_ID" ColumnName="GRADE_ID" />
+          <ScalarProperty Name="NATIONALITY_CODE" ColumnName="NATIONALITY_CODE" />
+          <ScalarProperty Name="SEX" ColumnName="SEX" />
+          <ScalarProperty Name="MARITAL_STATUS_CODE" ColumnName="MARITAL_STATUS_CODE" />
+          <ScalarProperty Name="RELIGION_CODE" ColumnName="RELIGION_CODE" />
+          <ScalarProperty Name="SECT" ColumnName="SECT" />
+          <ScalarProperty Name="DATE_OF_BIRTH" ColumnName="DATE_OF_BIRTH" />
+          <ScalarProperty Name="ORIGINAL_DATE_OF_HIRE" ColumnName="ORIGINAL_DATE_OF_HIRE" />
+          <ScalarProperty Name="HIRE_DATE" ColumnName="HIRE_DATE" />
+          <ScalarProperty Name="ACTUAL_TERMINATION_DATE" ColumnName="ACTUAL_TERMINATION_DATE" />
+          <ScalarProperty Name="EMAIL_ADDRESS" ColumnName="EMAIL_ADDRESS" />
+          <ScalarProperty Name="MOBILE_SMS" ColumnName="MOBILE_SMS" />
+          <ScalarProperty Name="MOBILE_M" ColumnName="MOBILE_M" />
+          <ScalarProperty Name="LOCATION_ID" ColumnName="LOCATION_ID" />
+          <ScalarProperty Name="OFFICE_NUMBER" ColumnName="OFFICE_NUMBER" />
+          <ScalarProperty Name="INTERNAL_LOCATION" ColumnName="INTERNAL_LOCATION" />
+          <ScalarProperty Name="CURRENT_FLAG" ColumnName="CURRENT_FLAG" />
+          <ScalarProperty Name="PRIMARY_FLAG" ColumnName="PRIMARY_FLAG" />
+          <ScalarProperty Name="ASSIGNMENT_TYPE" ColumnName="ASSIGNMENT_TYPE" />
+          <ScalarProperty Name="ASSIGNMENT_CATEGORY" ColumnName="ASSIGNMENT_CATEGORY" />
+          <ScalarProperty Name="EMPLOYMENT_CATEGORY" ColumnName="EMPLOYMENT_CATEGORY" />
+          <ScalarProperty Name="ASSIGNMENT_ID" ColumnName="ASSIGNMENT_ID" />
+          <ScalarProperty Name="ASSIGNMENT_NUMBER" ColumnName="ASSIGNMENT_NUMBER" />
+          <ScalarProperty Name="PAY_BASIS_ID" ColumnName="PAY_BASIS_ID" />
+          <ScalarProperty Name="ASSIGNMENT_STATUS_TYPE_ID" ColumnName="ASSIGNMENT_STATUS_TYPE_ID" />
+          <ScalarProperty Name="PEOPLE_GROUP_ID" ColumnName="PEOPLE_GROUP_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+          <ScalarProperty Name="PHONE_NOS" ColumnName="PHONE_NOS" />
+          <ScalarProperty Name="CONTRACT_END_DATE" ColumnName="CONTRACT_END_DATE" />
+          <ScalarProperty Name="LAST_UPDATE_DATE_PEOPLE" ColumnName="LAST_UPDATE_DATE_PEOPLE" />
+          <ScalarProperty Name="LAST_UPDATE_DATE_ASSIGNMENTS" ColumnName="LAST_UPDATE_DATE_ASSIGNMENTS" />
+          <ScalarProperty Name="BUSINESS_GROUP_ID" ColumnName="BUSINESS_GROUP_ID" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="HOD" ColumnName="HOD" />
+          <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
+          <ScalarProperty Name="Shift" ColumnName="Shift" />
+          <ScalarProperty Name="EducationId" ColumnName="EducationId" />
+          <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
+          <ScalarProperty Name="EmergencyContactName" ColumnName="EmergencyContactName" />
+          <ScalarProperty Name="EmergencyContactPhoneNo" ColumnName="EmergencyContactPhoneNo" />
+          <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+          <ScalarProperty Name="Idenitification" ColumnName="Idenitification" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+          <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+          <ScalarProperty Name="SpouseName" ColumnName="SpouseName" />
+          <ScalarProperty Name="NoOfChild" ColumnName="NoOfChild" />
+          <ScalarProperty Name="ProfilePicName" ColumnName="ProfilePicName" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="WorkFromHome" ColumnName="WorkFromHome" />
+          <ScalarProperty Name="ProfilePic" ColumnName="ProfilePic" />
+          <ScalarProperty Name="ExcludefromTimesheet" ColumnName="ExcludefromTimesheet" />
+          <ScalarProperty Name="WPS" ColumnName="WPS" />
+          <ScalarProperty Name="GlobalId" ColumnName="GlobalId" />
+          <ScalarProperty Name="WorkSite" ColumnName="WorkSite" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="SectID" ColumnName="SectID" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="EmpDate" ColumnName="EmpDate" />
+          <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+          <ScalarProperty Name="JobType" ColumnName="JobType" />
+          <ScalarProperty Name="ChildCount" ColumnName="ChildCount" />
+          <ScalarProperty Name="WFamily" ColumnName="WFamily" />
+          <ScalarProperty Name="DegreeHolder" ColumnName="DegreeHolder" />
+          <ScalarProperty Name="EmpRankID" ColumnName="EmpRankID" />
+          <ScalarProperty Name="Religion" ColumnName="Religion" />
+          <ScalarProperty Name="HouseRented" ColumnName="HouseRented" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="AppID" ColumnName="AppID" />
+          <ScalarProperty Name="BankAccountID" ColumnName="BankAccountID" />
+          <ScalarProperty Name="OrgChartID" ColumnName="OrgChartID" />
+          <ScalarProperty Name="IsSaleman" ColumnName="IsSaleman" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+          <ScalarProperty Name="AccountTitle" ColumnName="AccountTitle" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="Target" ColumnName="Target" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Session_time" ColumnName="Session_time" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="createStatus" ColumnName="createStatus" />
+          <ScalarProperty Name="updateStatus" ColumnName="updateStatus" />
+          <ScalarProperty Name="IsSyncWithBMS" ColumnName="IsSyncWithBMS" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="PersonalEmail" ColumnName="PersonalEmail" />
+          <ScalarProperty Name="WorkFromHomeDayWise" ColumnName="WorkFromHomeDayWise" />
+          <ScalarProperty Name="IncludedInSupervisorEmail" ColumnName="IncludedInSupervisorEmail" />
+          <ScalarProperty Name="IncludedInAbsentEmail" ColumnName="IncludedInAbsentEmail" />
+          <ScalarProperty Name="Bio" ColumnName="Bio" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="LinkedIn" ColumnName="LinkedIn" />
+          <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+          <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="EliteCMSModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="Domain" ColumnName="Domain" />
+          <ScalarProperty Name="DomainUser" ColumnName="DomainUser" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="InspectRole" ColumnName="InspectRole" />
+          <ScalarProperty Name="AppId" ColumnName="AppId" />
+          <ScalarProperty Name="AppInspection" ColumnName="AppInspection" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="AppWiseRoles" ColumnName="AppWiseRoles" />
+          <ScalarProperty Name="AppIDs" ColumnName="AppIDs" />
+          <ScalarProperty Name="RoleNames" ColumnName="RoleNames" />
+          <ScalarProperty Name="DepartmentList" ColumnName="DepartmentList" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quotations">
+      <EntityTypeMapping TypeName="EliteCMSModel.Quotation">
+        <MappingFragment StoreEntitySet="Quotation">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PageSource" ColumnName="PageSource" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+          <ScalarProperty Name="BudgetMax" ColumnName="BudgetMax" />
+          <ScalarProperty Name="BudgetMin" ColumnName="BudgetMin" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Amenities">
+      <EntityTypeMapping TypeName="EliteCMSModel.Amenity">
+        <MappingFragment StoreEntitySet="Amenities">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="AmenityName" ColumnName="AmenityName" />
+          <ScalarProperty Name="AmenityId" ColumnName="AmenityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AmenityCategories">
+      <EntityTypeMapping TypeName="EliteCMSModel.AmenityCategory">
+        <MappingFragment StoreEntitySet="AmenityCategories">
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PropertyAmenities">
+      <EntityTypeMapping TypeName="EliteCMSModel.PropertyAmenity">
+        <MappingFragment StoreEntitySet="PropertyAmenities">
+          <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+          <ScalarProperty Name="AmenityId" ColumnName="AmenityId" />
+          <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PropertyListings">
+      <EntityTypeMapping TypeName="EliteCMSModel.PropertyListing">
+        <MappingFragment StoreEntitySet="PropertyListing">
+          <ScalarProperty Name="Listing_Agent_Email" ColumnName="Listing_Agent_Email" />
+          <ScalarProperty Name="Listing_Agent_Phone" ColumnName="Listing_Agent_Phone" />
+          <ScalarProperty Name="Listing_Agent" ColumnName="Listing_Agent" />
+          <ScalarProperty Name="Tower_Name" ColumnName="Tower_Name" />
+          <ScalarProperty Name="Sub_Locality" ColumnName="Sub_Locality" />
+          <ScalarProperty Name="Locality" ColumnName="Locality" />
+          <ScalarProperty Name="Videos" ColumnName="Videos" />
+          <ScalarProperty Name="offplanDetails_amountPaid" ColumnName="offplanDetails_amountPaid" />
+          <ScalarProperty Name="offplanDetails_originalPrice" ColumnName="offplanDetails_originalPrice" />
+          <ScalarProperty Name="offplanDetails_dldWaiver" ColumnName="offplanDetails_dldWaiver" />
+          <ScalarProperty Name="offplanDetails_saleType" ColumnName="offplanDetails_saleType" />
+          <ScalarProperty Name="Rent_Frequency" ColumnName="Rent_Frequency" />
+          <ScalarProperty Name="Property_Description_AR" ColumnName="Property_Description_AR" />
+          <ScalarProperty Name="Portals" ColumnName="Portals" />
+          <ScalarProperty Name="Off_plan" ColumnName="Off_plan" />
+          <ScalarProperty Name="Features" ColumnName="Features" />
+          <ScalarProperty Name="plotArea" ColumnName="plotArea" />
+          <ScalarProperty Name="Property_Size_Unit" ColumnName="Property_Size_Unit" />
+          <ScalarProperty Name="Property_Size" ColumnName="Property_Size" />
+          <ScalarProperty Name="Property_purpose" ColumnName="Property_purpose" />
+          <ScalarProperty Name="Property_Title_AR" ColumnName="Property_Title_AR" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ChequesAcceptedRental" ColumnName="ChequesAcceptedRental" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CommercialFurnished" ColumnName="CommercialFurnished" />
+          <ScalarProperty Name="CommercialDeveloperName" ColumnName="CommercialDeveloperName" />
+          <ScalarProperty Name="CommercialFloorLevel" ColumnName="CommercialFloorLevel" />
+          <ScalarProperty Name="CommercialParkingSpaces" ColumnName="CommercialParkingSpaces" />
+          <ScalarProperty Name="CommercialBuiltUpArea" ColumnName="CommercialBuiltUpArea" />
+          <ScalarProperty Name="VillaFurnished" ColumnName="VillaFurnished" />
+          <ScalarProperty Name="VillaDeveloperName" ColumnName="VillaDeveloperName" />
+          <ScalarProperty Name="VillaMaidsRoom" ColumnName="VillaMaidsRoom" />
+          <ScalarProperty Name="VillaBuiltUpArea" ColumnName="VillaBuiltUpArea" />
+          <ScalarProperty Name="VillaFloorLevel" ColumnName="VillaFloorLevel" />
+          <ScalarProperty Name="VillaParkingSpaces" ColumnName="VillaParkingSpaces" />
+          <ScalarProperty Name="VillaBathrooms" ColumnName="VillaBathrooms" />
+          <ScalarProperty Name="VillaBedrooms" ColumnName="VillaBedrooms" />
+          <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+          <ScalarProperty Name="OffPrice" ColumnName="OffPrice" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="PriorityPlacement" ColumnName="PriorityPlacement" />
+          <ScalarProperty Name="BoostListing" ColumnName="BoostListing" />
+          <ScalarProperty Name="LeaseExpiryDate" ColumnName="LeaseExpiryDate" />
+          <ScalarProperty Name="TenancyContractStatus" ColumnName="TenancyContractStatus" />
+          <ScalarProperty Name="PetPolicy" ColumnName="PetPolicy" />
+          <ScalarProperty Name="CoolingSystem" ColumnName="CoolingSystem" />
+          <ScalarProperty Name="DLDTransferFee" ColumnName="DLDTransferFee" />
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+          <ScalarProperty Name="RERAPermitNumber" ColumnName="RERAPermitNumber" />
+          <ScalarProperty Name="RealEstateAgencyName" ColumnName="RealEstateAgencyName" />
+          <ScalarProperty Name="ListingId" ColumnName="ListingId" />
+          <ScalarProperty Name="RentalPaymentOptions" ColumnName="RentalPaymentOptions" />
+          <ScalarProperty Name="MortgageCalculator" ColumnName="MortgageCalculator" />
+          <ScalarProperty Name="AnnualServiceCharges" ColumnName="AnnualServiceCharges" />
+          <ScalarProperty Name="RentalYield" ColumnName="RentalYield" />
+          <ScalarProperty Name="ROI" ColumnName="ROI" />
+          <ScalarProperty Name="SchoolHospitalProximity" ColumnName="SchoolHospitalProximity" />
+          <ScalarProperty Name="NearbyLandmarks" ColumnName="NearbyLandmarks" />
+          <ScalarProperty Name="ProximityToMetro" ColumnName="ProximityToMetro" />
+          <ScalarProperty Name="Neighborhood" ColumnName="Neighborhood" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="CommunityName" ColumnName="CommunityName" />
+          <ScalarProperty Name="SwimmingPool" ColumnName="SwimmingPool" />
+          <ScalarProperty Name="LicenseTypeSupport" ColumnName="LicenseTypeSupport" />
+          <ScalarProperty Name="Washroom" ColumnName="Washroom" />
+          <ScalarProperty Name="PantryKitchen" ColumnName="PantryKitchen" />
+          <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+          <ScalarProperty Name="Furnished" ColumnName="Furnished" />
+          <ScalarProperty Name="PrivatePool" ColumnName="PrivatePool" />
+          <ScalarProperty Name="PrivateGarden" ColumnName="PrivateGarden" />
+          <ScalarProperty Name="PlotSize" ColumnName="PlotSize" />
+          <ScalarProperty Name="StorageRoom" ColumnName="StorageRoom" />
+          <ScalarProperty Name="SmartHomeFeatures" ColumnName="SmartHomeFeatures" />
+          <ScalarProperty Name="MaidsRoom" ColumnName="MaidsRoom" />
+          <ScalarProperty Name="KitchenType" ColumnName="KitchenType" />
+          <ScalarProperty Name="ParkingSpaces" ColumnName="ParkingSpaces" />
+          <ScalarProperty Name="BuiltUpArea" ColumnName="BuiltUpArea" />
+          <ScalarProperty Name="PropertyView" ColumnName="PropertyView" />
+          <ScalarProperty Name="BalconyTerrace" ColumnName="BalconyTerrace" />
+          <ScalarProperty Name="FloorLevel" ColumnName="FloorLevel" />
+          <ScalarProperty Name="Bathrooms" ColumnName="Bathrooms" />
+          <ScalarProperty Name="Bedrooms" ColumnName="Bedrooms" />
+          <ScalarProperty Name="Deposit" ColumnName="Deposit" />
+          <ScalarProperty Name="VacatingNoticePeriod" ColumnName="VacatingNoticePeriod" />
+          <ScalarProperty Name="TenancyContractLength" ColumnName="TenancyContractLength" />
+          <ScalarProperty Name="CommissionFee" ColumnName="CommissionFee" />
+          <ScalarProperty Name="ChequesAccepted" ColumnName="ChequesAccepted" />
+          <ScalarProperty Name="PaymentTerms" ColumnName="PaymentTerms" />
+          <ScalarProperty Name="RentalPrice" ColumnName="RentalPrice" />
+          <ScalarProperty Name="TitleDeedAvailable" ColumnName="TitleDeedAvailable" />
+          <ScalarProperty Name="PreviousOwnership" ColumnName="PreviousOwnership" />
+          <ScalarProperty Name="MortgageStatus" ColumnName="MortgageStatus" />
+          <ScalarProperty Name="TenancyStatus" ColumnName="TenancyStatus" />
+          <ScalarProperty Name="PropertyAge" ColumnName="PropertyAge" />
+          <ScalarProperty Name="ShowroomAvailable" ColumnName="ShowroomAvailable" />
+          <ScalarProperty Name="ServiceCharges" ColumnName="ServiceCharges" />
+          <ScalarProperty Name="ModelUnitImages" ColumnName="ModelUnitImages" />
+          <ScalarProperty Name="ConstructionStatus" ColumnName="ConstructionStatus" />
+          <ScalarProperty Name="PostHandoverPayment" ColumnName="PostHandoverPayment" />
+          <ScalarProperty Name="PaymentPlanStructure" ColumnName="PaymentPlanStructure" />
+          <ScalarProperty Name="HandoverDate" ColumnName="HandoverDate" />
+          <ScalarProperty Name="DeveloperName" ColumnName="DeveloperName" />
+          <ScalarProperty Name="PropertyCategory" ColumnName="PropertyCategory" />
+          <ScalarProperty Name="PropertySlug" ColumnName="PropertySlug" />
+          <ScalarProperty Name="PaymentPlanAvailableDescription" ColumnName="PaymentPlanAvailableDescription" />
+          <ScalarProperty Name="PaymentPlanAvailable" ColumnName="PaymentPlanAvailable" />
+          <ScalarProperty Name="SubImage" ColumnName="SubImage" />
+          <ScalarProperty Name="MainImage" ColumnName="MainImage" />
+          <ScalarProperty Name="PriceCurrency" ColumnName="PriceCurrency" />
+          <ScalarProperty Name="ListingType" ColumnName="ListingType" />
+          <ScalarProperty Name="PropertyType" ColumnName="PropertyType" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactUs">
+      <EntityTypeMapping TypeName="EliteCMSModel.ContactU">
+        <MappingFragment StoreEntitySet="ContactUs">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="AgentName" ColumnName="AgentName" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+          <ScalarProperty Name="PageSource" ColumnName="PageSource" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

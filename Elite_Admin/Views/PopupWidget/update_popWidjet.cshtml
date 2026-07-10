@@ -1,0 +1,230 @@
+﻿@model Elite_Admin.Models.PopupDataModal
+@{
+    ViewBag.Title = "update_popWidjet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if(Model.showlinkbutton==false || Model.showlinkbutton == null)
+            {
+                <style>
+                    .linkbtn {
+                        display: none
+                    }
+                </style>
+            }
+
+
+<link rel="stylesheet" href="~/Content/assets/vendor/summernote/dist/summernote.css" />
+<link rel="stylesheet" href="~/Content/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css">
+
+<div class="container-fluid">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-8 col-sm-12">
+                <h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a> Blog Post</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="~/Home/index"><i class="icon-home"></i></a></li>
+                    <li class="breadcrumb-item">Popup Widget</li>
+                    <li class="breadcrumb-item active">Popup Widget Update</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="body">
+                    <form action="~/PopupWidget/PostpopWidjet" id="form1" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="hidden" name="Id" value="@Model.Id" />
+
+                                    <label>Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" value="@Model.Name" name="Name" id="name" placeholder="Enter Name" required />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Headlines <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" value="@Model.Headlines" id="headlines" name="Headlines" placeholder="Enter Headlines" required />
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Sentence <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="sentence" name="Sentence" placeholder="Enter Sentence.." required> @Model.Sentence</textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Image</label>
+                                    <input type="file" class="form-control" id="image" name="ImagePopup" aria-describedby="fileHelp">
+                                </div>
+                            </div>
+                            @*<div class="col-sm-6">
+            <div class="form-group">
+                <label>Form Name</label>
+                <input type="text" class="form-control" id="form_name" name="Form_Name" placeholder="Enter Form Name" required />
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label>Form Email</label>
+                <input type="email" class="form-control" id="form_email" name="Form_Email" placeholder="Enter Form Email" required />
+            </div>
+        </div>*@
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Trigger Event <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="triggertype" name="TriggerType" required>
+                                        <option value="On Page Load">On Page Load</option>
+                                        <option value="On Scroll">On Scroll</option>
+                                        <option value="On Exit Intent">On Exit Intent</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Display Rules <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="displayrule" name="DisplayRule" required>
+                                        <option value="Entire Site">Entire Site</option>
+
+                                        <option value="Specific Pages">Specific Pages</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" id="pageLinkGroup" style="display: none;">
+                                <div class="form-group">
+                                    <label>Page Link To Show</label>
+                                    <div class="input-group demo-tagsinput-area">
+                                        <input type="text" id="pagelinktoshop" value="@Model.PagelinkToShow" name="PagelinkToShow" class="form-control" data-role="tagsinput" placeholder="Enter Page Link To Show (Controller/method)">
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Display Frequency <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="displayfrequency" name="DisplayFrequency" required>
+                                        <option value="Once Per Session">Once Per Session</option>
+
+                                        <option value="Always">Always</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Email Template <span class="text-danger">*</span></label>
+                                    @Html.DropDownList("EmailTemplateId", null, "Select Template", new { @class = "form-control", @required = true })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+
+
+                                    <label>Receivable Email <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control  " value="@Model.Receivableemail" required name="receivableemail" id="receivableemail" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Showlink button <span class="text-danger"> </span></label>
+                                    <input type="checkbox" id="showlinkbutton" @(Model.showlinkbutton==true?"checked":"") name="showlinkbutton"  value="true"/>
+                                    <label class="linkbtn"> link</label>
+                                    <input type="url" class="form-control fieldClass linkbtn" value="@Model.ButtonLink" name="ButtonLink" id="ButtonLink" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+
+
+                                    <label class="linkbtn">Button Text</label>
+                                    <input type="text" class="form-control fieldClass linkbtn" value="@Model.ButtonText" name="ButtonText" id="ButtonText" />
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-block btn-primary m-t-20">Submit</button>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts{
+
+    <script src="~/Content/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#pagelinktoshop').select2();
+
+        });
+        $(document).ready(function () {
+            $("#EmailTemplateId").val('@Model.EmailTemplateId');
+
+        });
+        $("#showlinkbutton").change(function () {
+            if ($(this).is(":checked")) {
+                $(".linkbtn").show();
+                $(".fieldClass").attr("required", "required");
+            } else {
+                $(".linkbtn").hide();
+                $(".fieldClass").removeAttr("required", "required");
+
+            }
+        });
+
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#triggertype').val('@Model.TriggerType');
+            $('#displayfrequency').val('@Model.DisplayFrequency');
+            $('#displayrule').val('@Model.DisplayRule').trigger('change');
+            ftndisplayrule();
+
+
+
+            $('#displayrule').change(function () {
+                var selectedOptions = $(this).val();
+
+                if (selectedOptions.includes('Specific Pages')) {
+                    $('#pageLinkGroup').show();
+                } else {
+                    $('#pageLinkGroup').hide();
+                }
+            });
+        });
+    </script>
+    <script>
+        function ftndisplayrule() {
+            var selectedOptions = $("#displayrule").val();
+
+            if (selectedOptions.includes('Specific Pages')) {
+                $('#pageLinkGroup').show();
+            } else {
+                $('#pageLinkGroup').hide();
+            }
+        }
+    </script>
+    <script>
+        document.getElementById('form1').addEventListener('submit', function (event) {
+            event.preventDefault();
+            $("#overlay").fadeIn();
+            $('#form1').submit();
+
+        });
+    </script>
+}
+
+
+

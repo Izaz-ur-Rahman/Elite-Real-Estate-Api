@@ -1,0 +1,655 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EliteCMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cms_blogDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Slug" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CoverImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="BlogDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="Createdby" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Tags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PublishingDate" Type="DateTime" Precision="3" />
+    <Property Name="Blog_readTime" Type="Int32" />
+    <Property Name="Blog_openCount" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Cms_blogPopupWidget">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Headlines" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sentence" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Form_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Form_Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TriggerType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayRule" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PagelinkToShow" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayFrequency" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="Createdby" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Receivableemail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="showlinkbutton" Type="Boolean" />
+    <Property Name="ButtonLink" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ButtonText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmailTemplateId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Cms_BlogPopUserApply">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PopwidgetId" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Cms_Campaign">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="ScheduleDate" Type="DateTime" Precision="3" />
+    <Property Name="Choose_recipient" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PoplistId" Type="Int32" />
+    <Property Name="EmailTemplateId" Type="Int32" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="Createdby" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="EmailSubject" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Cms_CampaignDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CampaignId" Type="Int32" />
+    <Property Name="Recipient_tblId" Type="Int32" />
+    <Property Name="Recipient_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Recipient_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="EmailStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Cms_EmailCampaignLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DetailLogs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CampaignDetailId" Type="Int32" />
+    <Property Name="CampaignId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Cms_EmailTemplete">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="Createdby" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Subject" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Cms_Manualuser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OrganizationName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Cms_NewsLetter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="blogId" Type="Int32" />
+    <Property Name="Blogtitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="isActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Cms_User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Username" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ProfileImage" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="Createdby" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Cms_WebsiteAction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OrganizationName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CountryId" Type="Int32" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NoofEmployees" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ApplyFor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Cms_WebsiteContactus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OrganizationName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EnName" Type="String" MaxLength="164" FixedLength="false" Unicode="true" />
+    <Property Name="ArName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="LocationID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AppID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="GCC" Type="Boolean" />
+    <Property Name="StateRequired" Type="Boolean" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="createStatus" Type="Boolean" />
+    <Property Name="updateStatus" Type="Boolean" />
+    <Property Name="IsSyncWithBMS" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="PasswordPolicy">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MinCharacter" Type="Int32" />
+    <Property Name="MaxCharacter" Type="Int32" />
+    <Property Name="MinNumCharacter" Type="Int32" />
+    <Property Name="MaxSpecialCharacter" Type="Int32" />
+    <Property Name="IsPasswordExpired" Type="Boolean" />
+    <Property Name="PasswordExpiredDuration" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LowerCase" Type="Boolean" />
+    <Property Name="UpperCase" Type="Boolean" />
+    <Property Name="SpecialCharAllowed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="AppID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TblApplication">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AppName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TblEmployee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PERSON_TYPE_ID" Type="Int32" />
+    <Property Name="EMPLOYEE_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OLD_EMPLOYEE_NUMBER" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="PAYROLL_ID" Type="Int32" />
+    <Property Name="PERSON_ID" Type="Int32" />
+    <Property Name="BADGE" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FIRST_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="SECOND_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="THIRD_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="LAST_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="FIRST_NAME_AR" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="SECOND_NAME_AR" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="THIRD_NAME_AR" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LAST_NAME_AR" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FULL_NAME" Type="String" MaxLength="603" FixedLength="false" Unicode="true" />
+    <Property Name="FULL_NAME_AR" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NATIONAL_IDENTIFIER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MANAGER_FLAG" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="SUPERVISOR_NUMBER" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="ORGANIZATION_ID" Type="Int32" />
+    <Property Name="JOB_ID" Type="Int32" />
+    <Property Name="POSITION_ID" Type="Int32" />
+    <Property Name="GRADE_ID" Type="Int32" />
+    <Property Name="NATIONALITY_CODE" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="SEX" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MARITAL_STATUS_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RELIGION_CODE" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="SECT" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DATE_OF_BIRTH" Type="DateTime" Precision="0" />
+    <Property Name="ORIGINAL_DATE_OF_HIRE" Type="DateTime" Precision="0" />
+    <Property Name="HIRE_DATE" Type="DateTime" Precision="0" />
+    <Property Name="ACTUAL_TERMINATION_DATE" Type="DateTime" Precision="0" />
+    <Property Name="EMAIL_ADDRESS" Type="String" MaxLength="240" FixedLength="false" Unicode="true" />
+    <Property Name="MOBILE_SMS" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="MOBILE_M" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="LOCATION_ID" Type="Int32" />
+    <Property Name="OFFICE_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="INTERNAL_LOCATION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CURRENT_FLAG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRIMARY_FLAG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ASSIGNMENT_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ASSIGNMENT_CATEGORY" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="EMPLOYMENT_CATEGORY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ASSIGNMENT_ID" Type="Int32" />
+    <Property Name="ASSIGNMENT_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PAY_BASIS_ID" Type="Int32" />
+    <Property Name="ASSIGNMENT_STATUS_TYPE_ID" Type="Int32" />
+    <Property Name="PEOPLE_GROUP_ID" Type="Int32" />
+    <Property Name="USER_ID" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="USER_NAME" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="PHONE_NOS" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="CONTRACT_END_DATE" Type="DateTime" Precision="0" />
+    <Property Name="LAST_UPDATE_DATE_PEOPLE" Type="DateTime" Precision="0" />
+    <Property Name="LAST_UPDATE_DATE_ASSIGNMENTS" Type="DateTime" Precision="0" />
+    <Property Name="BUSINESS_GROUP_ID" Type="Int32" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <Property Name="HOD" Type="Int32" />
+    <Property Name="EmployeeType" Type="Int32" />
+    <Property Name="Shift" Type="Int32" />
+    <Property Name="EducationId" Type="Int32" />
+    <Property Name="JoiningDate" Type="DateTime" Precision="3" />
+    <Property Name="EmergencyContactName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EmergencyContactPhoneNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BloodGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Idenitification" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FatherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MotherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SpouseName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NoOfChild" Type="Int32" />
+    <Property Name="ProfilePicName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="WorkFromHome" Type="Boolean" />
+    <Property Name="ProfilePic" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ExcludefromTimesheet" Type="Boolean" />
+    <Property Name="WPS" Type="Boolean" />
+    <Property Name="GlobalId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WorkSite" Type="Int32" />
+    <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SectID" Type="Int64" />
+    <Property Name="BranchID" Type="Int32" />
+    <Property Name="CountryID" Type="Int64" />
+    <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="EmpDate" Type="DateTime" Precision="3" />
+    <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JobType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChildCount" Type="Int32" />
+    <Property Name="WFamily" Type="Boolean" />
+    <Property Name="DegreeHolder" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmpRankID" Type="Int64" />
+    <Property Name="Religion" Type="Int32" />
+    <Property Name="HouseRented" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LocationID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AppID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="BankAccountID" Type="Int32" />
+    <Property Name="OrgChartID" Type="Int32" />
+    <Property Name="IsSaleman" Type="Boolean" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="AccountNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AccountTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IBAN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StateId" Type="Int32" />
+    <Property Name="CityId" Type="Int32" />
+    <Property Name="Target" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="Salary" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="Session_time" Type="Int32" />
+    <Property Name="Photo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="createStatus" Type="Boolean" />
+    <Property Name="updateStatus" Type="Boolean" />
+    <Property Name="IsSyncWithBMS" Type="Boolean" />
+    <Property Name="City" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PersonalEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WorkFromHomeDayWise" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IncludedInSupervisorEmail" Type="Boolean" />
+    <Property Name="IncludedInAbsentEmail" Type="Boolean" />
+    <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LinkedIn" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Facebook" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Twitter" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="WhatsappNo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="EmpId" Type="Int32" />
+    <Property Name="Domain" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DomainUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Role" Type="Int32" />
+    <Property Name="InspectRole" Type="Int32" />
+    <Property Name="AppId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="AppInspection" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Language" Type="Int32" />
+    <Property Name="AppWiseRoles" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AppIDs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleNames" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmentList" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="EliteCMSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cms_blogDetail" EntityType="Self.Cms_blogDetail" />
+    <EntitySet Name="Cms_blogPopupWidget" EntityType="Self.Cms_blogPopupWidget" />
+    <EntitySet Name="Cms_BlogPopUserApply" EntityType="Self.Cms_BlogPopUserApply" />
+    <EntitySet Name="Cms_Campaign" EntityType="Self.Cms_Campaign" />
+    <EntitySet Name="Cms_CampaignDetail" EntityType="Self.Cms_CampaignDetail" />
+    <EntitySet Name="Cms_EmailCampaignLogs" EntityType="Self.Cms_EmailCampaignLogs" />
+    <EntitySet Name="Cms_EmailTemplete" EntityType="Self.Cms_EmailTemplete" />
+    <EntitySet Name="Cms_Manualuser" EntityType="Self.Cms_Manualuser" />
+    <EntitySet Name="Cms_NewsLetter" EntityType="Self.Cms_NewsLetter" />
+    <EntitySet Name="Cms_User" EntityType="Self.Cms_User" />
+    <EntitySet Name="Cms_WebsiteAction" EntityType="Self.Cms_WebsiteAction" />
+    <EntitySet Name="Cms_WebsiteContactus" EntityType="Self.Cms_WebsiteContactus" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="PasswordPolicies" EntityType="Self.PasswordPolicy" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="TblApplications" EntityType="Self.TblApplication" />
+    <EntitySet Name="TblEmployees" EntityType="Self.TblEmployee" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Quotations" EntityType="EliteCMSModel.Quotation" />
+    <EntitySet Name="Amenities" EntityType="EliteCMSModel.Amenity" />
+    <EntitySet Name="AmenityCategories" EntityType="EliteCMSModel.AmenityCategory" />
+    <AssociationSet Name="FK__Amenities__Categ__0A688BB1" Association="EliteCMSModel.FK__Amenities__Categ__0A688BB1">
+      <End Role="AmenityCategory" EntitySet="AmenityCategories" />
+      <End Role="Amenity" EntitySet="Amenities" />
+    </AssociationSet>
+    <EntitySet Name="PropertyAmenities" EntityType="EliteCMSModel.PropertyAmenity" />
+    <AssociationSet Name="FK__PropertyA__Ameni__1C873BEC" Association="EliteCMSModel.FK__PropertyA__Ameni__1C873BEC">
+      <End Role="Amenity" EntitySet="Amenities" />
+      <End Role="PropertyAmenity" EntitySet="PropertyAmenities" />
+    </AssociationSet>
+    <EntitySet Name="PropertyListings" EntityType="EliteCMSModel.PropertyListing" />
+    <AssociationSet Name="FK__PropertyA__Prope__1B9317B3" Association="EliteCMSModel.FK__PropertyA__Prope__1B9317B3">
+      <End Role="PropertyListing" EntitySet="PropertyListings" />
+      <End Role="PropertyAmenity" EntitySet="PropertyAmenities" />
+    </AssociationSet>
+    <EntitySet Name="ContactUs" EntityType="EliteCMSModel.ContactU" />
+  </EntityContainer>
+  <EntityType Name="Quotation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BudgetMin" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="BudgetMax" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Currency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PageSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Amenity">
+    <Key>
+      <PropertyRef Name="AmenityId" />
+    </Key>
+    <Property Name="AmenityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AmenityName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Icon" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AmenityCategory" Relationship="EliteCMSModel.FK__Amenities__Categ__0A688BB1" FromRole="Amenity" ToRole="AmenityCategory" />
+    <NavigationProperty Name="PropertyAmenities" Relationship="EliteCMSModel.FK__PropertyA__Ameni__1C873BEC" FromRole="Amenity" ToRole="PropertyAmenity" />
+  </EntityType>
+  <EntityType Name="AmenityCategory">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Amenities" Relationship="EliteCMSModel.FK__Amenities__Categ__0A688BB1" FromRole="AmenityCategory" ToRole="Amenity" />
+  </EntityType>
+  <Association Name="FK__Amenities__Categ__0A688BB1">
+    <End Type="EliteCMSModel.AmenityCategory" Role="AmenityCategory" Multiplicity="1" />
+    <End Type="EliteCMSModel.Amenity" Role="Amenity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AmenityCategory">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Amenity">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PropertyAmenity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PropertyId" Type="Int32" />
+    <Property Name="AmenityId" Type="Int32" />
+    <Property Name="IsAvailable" Type="Boolean" />
+    <NavigationProperty Name="Amenity" Relationship="EliteCMSModel.FK__PropertyA__Ameni__1C873BEC" FromRole="PropertyAmenity" ToRole="Amenity" />
+    <NavigationProperty Name="PropertyListing" Relationship="EliteCMSModel.FK__PropertyA__Prope__1B9317B3" FromRole="PropertyAmenity" ToRole="PropertyListing" />
+  </EntityType>
+  <Association Name="FK__PropertyA__Ameni__1C873BEC">
+    <End Type="EliteCMSModel.Amenity" Role="Amenity" Multiplicity="0..1" />
+    <End Type="EliteCMSModel.PropertyAmenity" Role="PropertyAmenity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Amenity">
+        <PropertyRef Name="AmenityId" />
+      </Principal>
+      <Dependent Role="PropertyAmenity">
+        <PropertyRef Name="AmenityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PropertyListing">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PropertyType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ListingType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PriceCurrency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="MainImage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SubImage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentPlanAvailable" Type="Boolean" />
+    <Property Name="PaymentPlanAvailableDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PropertySlug" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PropertyCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeveloperName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="HandoverDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentPlanStructure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PostHandoverPayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ConstructionStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModelUnitImages" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ServiceCharges" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ShowroomAvailable" Type="Boolean" />
+    <Property Name="PropertyAge" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenancyStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MortgageStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PreviousOwnership" Type="Boolean" />
+    <Property Name="TitleDeedAvailable" Type="Boolean" />
+    <Property Name="RentalPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PaymentTerms" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChequesAccepted" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CommissionFee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TenancyContractLength" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="VacatingNoticePeriod" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Deposit" Type="Boolean" />
+    <Property Name="Bedrooms" Type="Int32" />
+    <Property Name="Bathrooms" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FloorLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BalconyTerrace" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PropertyView" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BuiltUpArea" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ParkingSpaces" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KitchenType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MaidsRoom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SmartHomeFeatures" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="StorageRoom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PlotSize" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PrivateGarden" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PrivatePool" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Furnished" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UnitType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PantryKitchen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Washroom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LicenseTypeSupport" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SwimmingPool" Type="Boolean" />
+    <Property Name="CommunityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Neighborhood" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ProximityToMetro" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NearbyLandmarks" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SchoolHospitalProximity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ROI" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="RentalYield" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="AnnualServiceCharges" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="MortgageCalculator" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="RentalPaymentOptions" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ListingId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="RealEstateAgencyName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="RERAPermitNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DLDTransferFee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CoolingSystem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PetPolicy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TenancyContractStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LeaseExpiryDate" Type="DateTime" Precision="0" />
+    <Property Name="BoostListing" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PriorityPlacement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OffPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="SalePrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="VillaBedrooms" Type="Int32" />
+    <Property Name="VillaBathrooms" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VillaParkingSpaces" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VillaFloorLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VillaBuiltUpArea" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="VillaMaidsRoom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="VillaDeveloperName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="VillaFurnished" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CommercialBuiltUpArea" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CommercialParkingSpaces" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CommercialFloorLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CommercialDeveloperName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CommercialFurnished" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ChequesAcceptedRental" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Property_Title_AR" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Property_purpose" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Property_Size" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Property_Size_Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="plotArea" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Features" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Off_plan" Type="Boolean" />
+    <Property Name="Portals" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Property_Description_AR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Rent_Frequency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="offplanDetails_saleType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="offplanDetails_dldWaiver" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="offplanDetails_originalPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="offplanDetails_amountPaid" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Videos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Locality" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Sub_Locality" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Tower_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Listing_Agent" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Listing_Agent_Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Listing_Agent_Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PropertyAmenities" Relationship="EliteCMSModel.FK__PropertyA__Prope__1B9317B3" FromRole="PropertyListing" ToRole="PropertyAmenity" />
+  </EntityType>
+  <Association Name="FK__PropertyA__Prope__1B9317B3">
+    <End Type="EliteCMSModel.PropertyListing" Role="PropertyListing" Multiplicity="0..1" />
+    <End Type="EliteCMSModel.PropertyAmenity" Role="PropertyAmenity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PropertyListing">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PropertyAmenity">
+        <PropertyRef Name="PropertyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ContactU">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Message" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PageSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PropertyName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AgentName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

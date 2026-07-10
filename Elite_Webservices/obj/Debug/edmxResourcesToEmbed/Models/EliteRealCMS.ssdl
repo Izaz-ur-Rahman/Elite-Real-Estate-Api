@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EliteCMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Amenities">
+    <Key>
+      <PropertyRef Name="AmenityId" />
+    </Key>
+    <Property Name="AmenityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AmenityName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Icon" Type="nvarchar" MaxLength="200" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AmenityCategories">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cms_blogDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="Category" Type="nvarchar" MaxLength="500" />
+    <Property Name="MetaDescription" Type="nvarchar(max)" />
+    <Property Name="Slug" Type="nvarchar" MaxLength="100" />
+    <Property Name="CoverImage" Type="nvarchar" MaxLength="250" />
+    <Property Name="BlogDetails" Type="nvarchar(max)" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="Createdby" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Tags" Type="nvarchar(max)" />
+    <Property Name="PublishingDate" Type="datetime" />
+    <Property Name="Blog_readTime" Type="int" />
+    <Property Name="Blog_openCount" Type="int" />
+  </EntityType>
+  <EntityType Name="Cms_blogPopupWidget">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Headlines" Type="nvarchar(max)" />
+    <Property Name="Sentence" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Form_Name" Type="nvarchar(max)" />
+    <Property Name="Form_Email" Type="nvarchar(max)" />
+    <Property Name="TriggerType" Type="nvarchar(max)" />
+    <Property Name="DisplayRule" Type="nvarchar(max)" />
+    <Property Name="PagelinkToShow" Type="nvarchar(max)" />
+    <Property Name="DisplayFrequency" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="Createdby" Type="nvarchar" MaxLength="50" />
+    <Property Name="Receivableemail" Type="nvarchar" MaxLength="50" />
+    <Property Name="showlinkbutton" Type="bit" />
+    <Property Name="ButtonLink" Type="nvarchar" MaxLength="50" />
+    <Property Name="ButtonText" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailTemplateId" Type="int" />
+  </EntityType>
+  <EntityType Name="Cms_BlogPopUserApply">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PopwidgetId" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Cms_Campaign">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="350" />
+    <Property Name="ScheduleDate" Type="datetime" />
+    <Property Name="Choose_recipient" Type="nvarchar" MaxLength="250" />
+    <Property Name="PoplistId" Type="int" />
+    <Property Name="EmailTemplateId" Type="int" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="Createdby" Type="nvarchar" MaxLength="50" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="EmailSubject" Type="nvarchar" MaxLength="350" />
+  </EntityType>
+  <EntityType Name="Cms_CampaignDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CampaignId" Type="int" />
+    <Property Name="Recipient_tblId" Type="int" />
+    <Property Name="Recipient_Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Recipient_Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="EmailStatus" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Cms_EmailCampaignLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="DetailLogs" Type="nvarchar(max)" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="CampaignDetailId" Type="int" />
+    <Property Name="CampaignId" Type="int" />
+  </EntityType>
+  <EntityType Name="Cms_EmailTemplete">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="Createdby" Type="nvarchar" MaxLength="50" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="Details" Type="nvarchar(max)" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Cms_Manualuser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="OrganizationName" Type="nvarchar" MaxLength="250" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Cms_NewsLetter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="blogId" Type="int" />
+    <Property Name="Blogtitle" Type="nvarchar(max)" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Cms_User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="150" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="150" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="Username" Type="nvarchar" MaxLength="150" />
+    <Property Name="Password" Type="nvarchar" MaxLength="150" />
+    <Property Name="ProfileImage" Type="nvarchar" MaxLength="150" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="Createdby" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Cms_WebsiteAction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="OrganizationName" Type="nvarchar" MaxLength="250" />
+    <Property Name="CountryId" Type="int" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" />
+    <Property Name="NoofEmployees" Type="nvarchar" MaxLength="50" />
+    <Property Name="PageName" Type="nvarchar" MaxLength="50" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="ApplyFor" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Cms_WebsiteContactus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="OrganizationName" Type="nvarchar" MaxLength="250" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="ContactUs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Message" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="250" />
+    <Property Name="PageSource" Type="nvarchar" MaxLength="50" />
+    <Property Name="PropertyName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Source" Type="nvarchar" MaxLength="50" />
+    <Property Name="AgentName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Countries">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EnName" Type="nvarchar" MaxLength="164" />
+    <Property Name="ArName" Type="nvarchar(max)" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="LocationID" Type="nvarchar" MaxLength="50" />
+    <Property Name="AppID" Type="nvarchar" MaxLength="10" />
+    <Property Name="GCC" Type="bit" />
+    <Property Name="StateRequired" Type="bit" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="createStatus" Type="bit" />
+    <Property Name="updateStatus" Type="bit" />
+    <Property Name="IsSyncWithBMS" Type="bit" />
+  </EntityType>
+  <EntityType Name="PasswordPolicy">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MinCharacter" Type="int" />
+    <Property Name="MaxCharacter" Type="int" />
+    <Property Name="MinNumCharacter" Type="int" />
+    <Property Name="MaxSpecialCharacter" Type="int" />
+    <Property Name="IsPasswordExpired" Type="bit" />
+    <Property Name="PasswordExpiredDuration" Type="varchar" MaxLength="50" />
+    <Property Name="LowerCase" Type="bit" />
+    <Property Name="UpperCase" Type="bit" />
+    <Property Name="SpecialCharAllowed" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PropertyAmenities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PropertyId" Type="int" />
+    <Property Name="AmenityId" Type="int" />
+    <Property Name="IsAvailable" Type="bit" />
+  </EntityType>
+  <EntityType Name="PropertyListing">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="PropertyType" Type="nvarchar" MaxLength="50" />
+    <Property Name="ListingType" Type="nvarchar" MaxLength="50" />
+    <Property Name="PriceCurrency" Type="nvarchar" MaxLength="10" />
+    <Property Name="MainImage" Type="nvarchar" MaxLength="255" />
+    <Property Name="SubImage" Type="nvarchar" MaxLength="255" />
+    <Property Name="PaymentPlanAvailable" Type="bit" />
+    <Property Name="PaymentPlanAvailableDescription" Type="nvarchar" MaxLength="255" />
+    <Property Name="PropertySlug" Type="nvarchar" MaxLength="255" />
+    <Property Name="PropertyCategory" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeveloperName" Type="nvarchar" MaxLength="255" />
+    <Property Name="HandoverDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="PaymentPlanStructure" Type="nvarchar" MaxLength="50" />
+    <Property Name="PostHandoverPayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="ConstructionStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModelUnitImages" Type="nvarchar" MaxLength="255" />
+    <Property Name="ServiceCharges" Type="nvarchar" MaxLength="100" />
+    <Property Name="ShowroomAvailable" Type="bit" />
+    <Property Name="PropertyAge" Type="nvarchar" MaxLength="50" />
+    <Property Name="TenancyStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="MortgageStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="PreviousOwnership" Type="bit" />
+    <Property Name="TitleDeedAvailable" Type="bit" />
+    <Property Name="RentalPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PaymentTerms" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChequesAccepted" Type="nvarchar" MaxLength="50" />
+    <Property Name="CommissionFee" Type="nvarchar" MaxLength="100" />
+    <Property Name="TenancyContractLength" Type="nvarchar" MaxLength="100" />
+    <Property Name="VacatingNoticePeriod" Type="nvarchar" MaxLength="100" />
+    <Property Name="Deposit" Type="bit" />
+    <Property Name="Bedrooms" Type="int" />
+    <Property Name="Bathrooms" Type="nvarchar" MaxLength="50" />
+    <Property Name="FloorLevel" Type="nvarchar" MaxLength="50" />
+    <Property Name="BalconyTerrace" Type="nvarchar" MaxLength="100" />
+    <Property Name="PropertyView" Type="nvarchar" MaxLength="100" />
+    <Property Name="BuiltUpArea" Type="nvarchar" MaxLength="100" />
+    <Property Name="ParkingSpaces" Type="nvarchar" MaxLength="50" />
+    <Property Name="KitchenType" Type="nvarchar" MaxLength="100" />
+    <Property Name="MaidsRoom" Type="nvarchar" MaxLength="100" />
+    <Property Name="SmartHomeFeatures" Type="nvarchar" MaxLength="100" />
+    <Property Name="StorageRoom" Type="nvarchar" MaxLength="100" />
+    <Property Name="PlotSize" Type="nvarchar" MaxLength="100" />
+    <Property Name="PrivateGarden" Type="nvarchar" MaxLength="100" />
+    <Property Name="PrivatePool" Type="nvarchar" MaxLength="100" />
+    <Property Name="Furnished" Type="nvarchar" MaxLength="100" />
+    <Property Name="UnitType" Type="nvarchar" MaxLength="100" />
+    <Property Name="PantryKitchen" Type="nvarchar" MaxLength="100" />
+    <Property Name="Washroom" Type="nvarchar" MaxLength="100" />
+    <Property Name="LicenseTypeSupport" Type="nvarchar" MaxLength="100" />
+    <Property Name="SwimmingPool" Type="bit" />
+    <Property Name="CommunityName" Type="nvarchar" MaxLength="255" />
+    <Property Name="City" Type="nvarchar" MaxLength="100" />
+    <Property Name="Neighborhood" Type="nvarchar" MaxLength="255" />
+    <Property Name="ProximityToMetro" Type="nvarchar" MaxLength="100" />
+    <Property Name="NearbyLandmarks" Type="nvarchar" MaxLength="255" />
+    <Property Name="SchoolHospitalProximity" Type="nvarchar" MaxLength="255" />
+    <Property Name="ROI" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="RentalYield" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="AnnualServiceCharges" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="MortgageCalculator" Type="nvarchar" MaxLength="255" />
+    <Property Name="RentalPaymentOptions" Type="nvarchar" MaxLength="50" />
+    <Property Name="ListingId" Type="nvarchar" MaxLength="100" />
+    <Property Name="RealEstateAgencyName" Type="nvarchar" MaxLength="255" />
+    <Property Name="RERAPermitNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="PaymentMethod" Type="nvarchar" MaxLength="50" />
+    <Property Name="DLDTransferFee" Type="nvarchar" MaxLength="100" />
+    <Property Name="CoolingSystem" Type="nvarchar" MaxLength="50" />
+    <Property Name="PetPolicy" Type="nvarchar" MaxLength="255" />
+    <Property Name="TenancyContractStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="LeaseExpiryDate" Type="date" />
+    <Property Name="BoostListing" Type="nvarchar" MaxLength="50" />
+    <Property Name="PriorityPlacement" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="OffPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="SalePrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="VillaBedrooms" Type="int" />
+    <Property Name="VillaBathrooms" Type="nvarchar" MaxLength="50" />
+    <Property Name="VillaParkingSpaces" Type="nvarchar" MaxLength="50" />
+    <Property Name="VillaFloorLevel" Type="nvarchar" MaxLength="50" />
+    <Property Name="VillaBuiltUpArea" Type="nvarchar" MaxLength="100" />
+    <Property Name="VillaMaidsRoom" Type="nvarchar" MaxLength="100" />
+    <Property Name="VillaDeveloperName" Type="nvarchar" MaxLength="100" />
+    <Property Name="VillaFurnished" Type="nvarchar" MaxLength="100" />
+    <Property Name="CommercialBuiltUpArea" Type="nvarchar" MaxLength="100" />
+    <Property Name="CommercialParkingSpaces" Type="nvarchar" MaxLength="100" />
+    <Property Name="CommercialFloorLevel" Type="nvarchar" MaxLength="100" />
+    <Property Name="CommercialDeveloperName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CommercialFurnished" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ChequesAcceptedRental" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+    <Property Name="Property_Title_AR" Type="nvarchar" MaxLength="300" />
+    <Property Name="Property_purpose" Type="varchar" MaxLength="50" />
+    <Property Name="Property_Size" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Property_Size_Unit" Type="varchar" MaxLength="20" />
+    <Property Name="plotArea" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Features" Type="nvarchar(max)" />
+    <Property Name="Off_plan" Type="bit" />
+    <Property Name="Portals" Type="nvarchar(max)" />
+    <Property Name="Property_Description_AR" Type="nvarchar(max)" />
+    <Property Name="Rent_Frequency" Type="varchar" MaxLength="50" />
+    <Property Name="offplanDetails_saleType" Type="varchar" MaxLength="50" />
+    <Property Name="offplanDetails_dldWaiver" Type="varchar" MaxLength="100" />
+    <Property Name="offplanDetails_originalPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="offplanDetails_amountPaid" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Videos" Type="nvarchar(max)" />
+    <Property Name="Locality" Type="nvarchar" MaxLength="200" />
+    <Property Name="Sub_Locality" Type="nvarchar" MaxLength="200" />
+    <Property Name="Tower_Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Listing_Agent" Type="nvarchar" MaxLength="150" />
+    <Property Name="Listing_Agent_Phone" Type="varchar" MaxLength="20" />
+    <Property Name="Listing_Agent_Email" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Quotation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="255" />
+    <Property Name="Email" Type="nvarchar" MaxLength="255" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Category" Type="nvarchar" MaxLength="255" />
+    <Property Name="BudgetMin" Type="nvarchar" MaxLength="250" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="BudgetMax" Type="nvarchar" MaxLength="100" />
+    <Property Name="Currency" Type="nvarchar" MaxLength="50" />
+    <Property Name="PageSource" Type="nvarchar" MaxLength="50" />
+    <Property Name="Country" Type="nvarchar" MaxLength="100" />
+    <Property Name="Source" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="100" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="AppID" Type="int" />
+  </EntityType>
+  <EntityType Name="TblApplication">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AppName" Type="varchar" MaxLength="200" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="TblEmployee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PERSON_TYPE_ID" Type="int" />
+    <Property Name="EMPLOYEE_NUMBER" Type="nvarchar" MaxLength="50" />
+    <Property Name="OLD_EMPLOYEE_NUMBER" Type="nvarchar" MaxLength="150" />
+    <Property Name="PAYROLL_ID" Type="int" />
+    <Property Name="PERSON_ID" Type="int" />
+    <Property Name="BADGE" Type="nvarchar" MaxLength="150" />
+    <Property Name="TITLE" Type="nvarchar" MaxLength="50" />
+    <Property Name="FIRST_NAME" Type="nvarchar" MaxLength="150" />
+    <Property Name="SECOND_NAME" Type="nvarchar" MaxLength="150" />
+    <Property Name="THIRD_NAME" Type="nvarchar" MaxLength="150" />
+    <Property Name="LAST_NAME" Type="nvarchar" MaxLength="150" />
+    <Property Name="FIRST_NAME_AR" Type="nvarchar" MaxLength="200" />
+    <Property Name="SECOND_NAME_AR" Type="nvarchar" MaxLength="200" />
+    <Property Name="THIRD_NAME_AR" Type="nvarchar" MaxLength="200" />
+    <Property Name="LAST_NAME_AR" Type="nvarchar" MaxLength="200" />
+    <Property Name="FULL_NAME" Type="nvarchar" MaxLength="603" />
+    <Property Name="FULL_NAME_AR" Type="nvarchar" MaxLength="200" />
+    <Property Name="NATIONAL_IDENTIFIER" Type="nvarchar" MaxLength="50" />
+    <Property Name="MANAGER_FLAG" Type="nvarchar" MaxLength="4000" />
+    <Property Name="SUPERVISOR_NUMBER" Type="nvarchar" MaxLength="4000" />
+    <Property Name="ORGANIZATION_ID" Type="int" />
+    <Property Name="JOB_ID" Type="int" />
+    <Property Name="POSITION_ID" Type="int" />
+    <Property Name="GRADE_ID" Type="int" />
+    <Property Name="NATIONALITY_CODE" Type="nvarchar" MaxLength="150" />
+    <Property Name="SEX" Type="nvarchar" MaxLength="50" />
+    <Property Name="MARITAL_STATUS_CODE" Type="nvarchar" MaxLength="50" />
+    <Property Name="RELIGION_CODE" Type="nvarchar" MaxLength="150" />
+    <Property Name="SECT" Type="nvarchar" MaxLength="150" />
+    <Property Name="DATE_OF_BIRTH" Type="date" />
+    <Property Name="ORIGINAL_DATE_OF_HIRE" Type="date" />
+    <Property Name="HIRE_DATE" Type="date" />
+    <Property Name="ACTUAL_TERMINATION_DATE" Type="date" />
+    <Property Name="EMAIL_ADDRESS" Type="nvarchar" MaxLength="240" />
+    <Property Name="MOBILE_SMS" Type="nvarchar" MaxLength="4000" />
+    <Property Name="MOBILE_M" Type="nvarchar" MaxLength="4000" />
+    <Property Name="LOCATION_ID" Type="int" />
+    <Property Name="OFFICE_NUMBER" Type="nvarchar" MaxLength="50" />
+    <Property Name="INTERNAL_LOCATION" Type="nvarchar" MaxLength="50" />
+    <Property Name="CURRENT_FLAG" Type="nvarchar" MaxLength="50" />
+    <Property Name="PRIMARY_FLAG" Type="nvarchar" MaxLength="50" />
+    <Property Name="ASSIGNMENT_TYPE" Type="nvarchar" MaxLength="50" />
+    <Property Name="ASSIGNMENT_CATEGORY" Type="nvarchar" MaxLength="4000" />
+    <Property Name="EMPLOYMENT_CATEGORY" Type="nvarchar" MaxLength="50" />
+    <Property Name="ASSIGNMENT_ID" Type="int" />
+    <Property Name="ASSIGNMENT_NUMBER" Type="nvarchar" MaxLength="50" />
+    <Property Name="PAY_BASIS_ID" Type="int" />
+    <Property Name="ASSIGNMENT_STATUS_TYPE_ID" Type="int" />
+    <Property Name="PEOPLE_GROUP_ID" Type="int" />
+    <Property Name="USER_ID" Type="nvarchar" MaxLength="4000" />
+    <Property Name="USER_NAME" Type="nvarchar" MaxLength="4000" />
+    <Property Name="PHONE_NOS" Type="nvarchar" MaxLength="4000" />
+    <Property Name="CONTRACT_END_DATE" Type="date" />
+    <Property Name="LAST_UPDATE_DATE_PEOPLE" Type="date" />
+    <Property Name="LAST_UPDATE_DATE_ASSIGNMENTS" Type="date" />
+    <Property Name="BUSINESS_GROUP_ID" Type="int" />
+    <Property Name="DepartmentId" Type="int" />
+    <Property Name="HOD" Type="int" />
+    <Property Name="EmployeeType" Type="int" />
+    <Property Name="Shift" Type="int" />
+    <Property Name="EducationId" Type="int" />
+    <Property Name="JoiningDate" Type="datetime" />
+    <Property Name="EmergencyContactName" Type="nvarchar" MaxLength="100" />
+    <Property Name="EmergencyContactPhoneNo" Type="nvarchar" MaxLength="100" />
+    <Property Name="BloodGroup" Type="nvarchar" MaxLength="50" />
+    <Property Name="Idenitification" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="FatherName" Type="nvarchar" MaxLength="100" />
+    <Property Name="MotherName" Type="nvarchar" MaxLength="100" />
+    <Property Name="SpouseName" Type="nvarchar" MaxLength="100" />
+    <Property Name="NoOfChild" Type="int" />
+    <Property Name="ProfilePicName" Type="nvarchar" MaxLength="200" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="WorkFromHome" Type="bit" />
+    <Property Name="ProfilePic" Type="varbinary(max)" />
+    <Property Name="ExcludefromTimesheet" Type="bit" />
+    <Property Name="WPS" Type="bit" />
+    <Property Name="GlobalId" Type="nvarchar" MaxLength="50" />
+    <Property Name="WorkSite" Type="int" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" />
+    <Property Name="SectID" Type="bigint" />
+    <Property Name="BranchID" Type="int" />
+    <Property Name="CountryID" Type="bigint" />
+    <Property Name="Picture" Type="image" />
+    <Property Name="EmpDate" Type="datetime" />
+    <Property Name="MaritalStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="JobType" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChildCount" Type="int" />
+    <Property Name="WFamily" Type="bit" />
+    <Property Name="DegreeHolder" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmpRankID" Type="bigint" />
+    <Property Name="Religion" Type="int" />
+    <Property Name="HouseRented" Type="nvarchar" MaxLength="50" />
+    <Property Name="LocationID" Type="nvarchar" MaxLength="50" />
+    <Property Name="AppID" Type="nvarchar" MaxLength="10" />
+    <Property Name="BankAccountID" Type="int" />
+    <Property Name="OrgChartID" Type="int" />
+    <Property Name="IsSaleman" Type="bit" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="AccountNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="AccountTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="IBAN" Type="nvarchar" MaxLength="50" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="Target" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="Salary" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="Session_time" Type="int" />
+    <Property Name="Photo" Type="nvarchar" MaxLength="500" />
+    <Property Name="createStatus" Type="bit" />
+    <Property Name="updateStatus" Type="bit" />
+    <Property Name="IsSyncWithBMS" Type="bit" />
+    <Property Name="City" Type="nvarchar" MaxLength="250" />
+    <Property Name="PersonalEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="WorkFromHomeDayWise" Type="nvarchar" MaxLength="500" />
+    <Property Name="IncludedInSupervisorEmail" Type="bit" />
+    <Property Name="IncludedInAbsentEmail" Type="bit" />
+    <Property Name="Bio" Type="nvarchar(max)" />
+    <Property Name="Position" Type="nvarchar" MaxLength="250" />
+    <Property Name="LinkedIn" Type="nvarchar" MaxLength="250" />
+    <Property Name="Facebook" Type="nvarchar" MaxLength="250" />
+    <Property Name="Twitter" Type="nvarchar" MaxLength="250" />
+    <Property Name="WhatsappNo" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="100" />
+    <Property Name="Password" Type="varchar" MaxLength="500" />
+    <Property Name="EmpId" Type="int" />
+    <Property Name="Domain" Type="varchar" MaxLength="100" />
+    <Property Name="DomainUser" Type="varchar" MaxLength="100" />
+    <Property Name="UserType" Type="varchar" MaxLength="100" />
+    <Property Name="Role" Type="int" />
+    <Property Name="InspectRole" Type="int" />
+    <Property Name="AppId" Type="varchar" MaxLength="100" />
+    <Property Name="AppInspection" Type="varchar" MaxLength="100" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Language" Type="int" />
+    <Property Name="AppWiseRoles" Type="nvarchar" MaxLength="50" />
+    <Property Name="AppIDs" Type="nvarchar" MaxLength="50" />
+    <Property Name="RoleNames" Type="nvarchar" MaxLength="500" />
+    <Property Name="DepartmentList" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__Amenities__Categ__656C112C">
+    <End Role="AmenityCategories" Type="Self.AmenityCategories" Multiplicity="1" />
+    <End Role="Amenities" Type="Self.Amenities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AmenityCategories">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Amenities">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PropertyA__Ameni__66603565">
+    <End Role="Amenities" Type="Self.Amenities" Multiplicity="0..1" />
+    <End Role="PropertyAmenities" Type="Self.PropertyAmenities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Amenities">
+        <PropertyRef Name="AmenityId" />
+      </Principal>
+      <Dependent Role="PropertyAmenities">
+        <PropertyRef Name="AmenityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PropertyA__Prope__1B9317B3">
+    <End Role="PropertyListing" Type="Self.PropertyListing" Multiplicity="0..1" />
+    <End Role="PropertyAmenities" Type="Self.PropertyAmenities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PropertyListing">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PropertyAmenities">
+        <PropertyRef Name="PropertyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EliteCMSModelStoreContainer">
+    <EntitySet Name="Amenities" EntityType="Self.Amenities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AmenityCategories" EntityType="Self.AmenityCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cms_blogDetail" EntityType="Self.Cms_blogDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cms_blogPopupWidget" EntityType="Self.Cms_blogPopupWidget" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cms_BlogPopUserApply" EntityType="Self.Cms_BlogPopUserApply" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cms_Campaign" EntityType="Self.Cms_Campaign" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cms_CampaignDetail" EntityType="Self.Cms_CampaignDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cms_EmailCampaignLogs" EntityType="Self.Cms_EmailCampaignLogs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cms_EmailTemplete" EntityType="Self.Cms_EmailTemplete" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cms_Manualuser" EntityType="Self.Cms_Manualuser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cms_NewsLetter" EntityType="Self.Cms_NewsLetter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cms_User" EntityType="Self.Cms_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cms_WebsiteAction" EntityType="Self.Cms_WebsiteAction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cms_WebsiteContactus" EntityType="Self.Cms_WebsiteContactus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContactUs" EntityType="Self.ContactUs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PasswordPolicy" EntityType="Self.PasswordPolicy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PropertyAmenities" EntityType="Self.PropertyAmenities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PropertyListing" EntityType="Self.PropertyListing" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quotation" EntityType="Self.Quotation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblApplication" EntityType="Self.TblApplication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblEmployee" EntityType="Self.TblEmployee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Amenities__Categ__656C112C" Association="Self.FK__Amenities__Categ__656C112C">
+      <End Role="AmenityCategories" EntitySet="AmenityCategories" />
+      <End Role="Amenities" EntitySet="Amenities" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PropertyA__Ameni__66603565" Association="Self.FK__PropertyA__Ameni__66603565">
+      <End Role="Amenities" EntitySet="Amenities" />
+      <End Role="PropertyAmenities" EntitySet="PropertyAmenities" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PropertyA__Prope__1B9317B3" Association="Self.FK__PropertyA__Prope__1B9317B3">
+      <End Role="PropertyListing" EntitySet="PropertyListing" />
+      <End Role="PropertyAmenities" EntitySet="PropertyAmenities" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,178 @@
+﻿
+@{
+    ViewBag.Title = "post_blog";
+    Layout = null;
+}
+<!-- VENDOR CSS -->
+<link rel="stylesheet" href="~/Content/assets/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/Content/assets/vendor/font-awesome/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="~/Content/assets/vendor/chartist/css/chartist.min.css">
+<link rel="stylesheet" href="~/Content/assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
+<link rel="stylesheet" href="~/Content/assets/vendor/toastr/toastr.min.css">
+<link rel="stylesheet" href="~/Content/assets/vendor/sweetalert/sweetalert.css" />
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="~/Content/assets/css/main.css">
+<link rel="stylesheet" href="~/Content/assets/css/color_skins.css">
+<link rel="stylesheet" href="~/Content/assets/vendor/summernote/dist/summernote.css" />
+<link rel="stylesheet" href="~/Content/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css">
+
+<div class="container-fluid">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-8 col-sm-12">
+                <h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a> Blog Post</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="~/Home/Index"><i class="icon-home"></i></a></li>
+                    <li class="breadcrumb-item">Blog</li>
+                    <li class="breadcrumb-item active">Blog Post</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="body">
+                    <form action="~/blog/addblogdata" id="form1" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Blog title <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" required name="Title" id="blogtitle" placeholder="Enter Blog title" />
+                                </div>
+                            </div>
+                            @*<a href="~/Blog/abc_def-xyz">click</a>*@
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Blog Category <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="blogcategory" required name="Category" placeholder="Enter Blog Category" />
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Meta Description <span class="text-danger">*</span></label>
+                                    <textarea type="text" class="form-control" id="metadescription" required name="MetaDescription" placeholder="Meta Description.."></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6 ">
+                                <label>Tags   <span class="text-danger">*</span></label>
+
+                                <div class="input-group demo-tagsinput-area">
+                                    <input type="text" name="Tags" id="Tags" class="form-control" required data-role="tagsinput" value="IT">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Slug <span class="text-danger">*</span></label>
+
+                                    <input type="text" class="form-control" id="slug" required name="Slug" placeholder="Enter Blog Slug" onkeypress="return isAllowedKeyPress(event);" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+
+                                <div class="form-group ">
+                                    <label>Cover Image <span class="text-danger">*</span></label>
+
+                                    <input type="file" class="form-control" required id="Coverimage" name="Coverimage" aria-describedby="fileHelp">
+
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+
+                                <div class="summernote">
+
+                                </div>
+                            </div>
+                            <input type="hidden" id="summernoteContent" name="BlogDetails" />
+                            <button type="submit" class="btn btn-block btn-primary   m-t-20">Post</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <!-- Javascript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/Content/assets/bundles/libscripts.bundle.js"></script>
+    <script src="~/Content/assets/bundles/vendorscripts.bundle.js"></script>
+
+    <script src="~/Content/assets/vendor/toastr/toastr.js"></script>
+    <script src="~/Content/assets/bundles/chartist.bundle.js"></script>
+    <script src="~/Content/assets/bundles/knob.bundle.js"></script> <!-- Jquery Knob-->
+
+    <script src="~/Content/assets/bundles/mainscripts.bundle.js"></script>
+
+    <script src="~/Content/assets/vendor/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Content/assets/vendor/summernote/dist/summernote.js"></script>
+    <script src="~/Content/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+
+    <script>
+        jQuery(document).ready(function () {
+
+
+
+
+            $('.summernote').summernote({
+                height: 350, // set editor height
+                minHeight: null, // set minimum height of editor
+                maxHeight: null, // set maximum height of editor
+                focus: false, // set focus to editable area after initializing summernote
+                popover: { image: [], link: [], air: [] }
+            });
+
+            $('.inline-editor').summernote({
+                airMode: true
+            });
+            $('form').on('submit', function (e) {
+
+
+                var markup = $('.summernote').summernote('code');
+                $('#summernoteContent').val(markup);
+
+            });
+        });
+
+        window.edit = function () {
+            $(".click2edit").summernote()
+        },
+
+            window.save = function () {
+                $(".click2edit").summernote('destroy');
+            }
+    </script>
+    <script>
+        document.getElementById('form1').addEventListener('submit', function (event) {
+            event.preventDefault();
+            $("#overlay").fadeIn();
+            $('#form1').submit();
+
+        });
+    </script>
+    <script>
+        function isAllowedKeyPress(event) {
+            // Get the character code of the pressed key
+            var charCode = event.charCode || event.which;
+
+            // Allow only numbers, letters, hyphens, and underscores
+            if (
+                (charCode >= 48 && charCode <= 57) || // Numbers 0-9
+                (charCode >= 65 && charCode <= 90) || // Uppercase letters A-Z
+                (charCode >= 97 && charCode <= 122) || // Lowercase letters a-z
+                charCode === 45 || // Hyphen (-)
+                charCode === 95    // Underscore (_)
+            ) {
+                return true;
+            }
+
+            // Prevent other characters
+            return false;
+        }
+    </script>

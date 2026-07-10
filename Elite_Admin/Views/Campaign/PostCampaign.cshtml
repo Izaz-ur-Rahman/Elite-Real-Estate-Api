@@ -1,0 +1,247 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    ViewBag.Title = "post_blog";
+}
+<link rel="stylesheet" href="~/Content/assets/vendor/summernote/dist/summernote.css" />
+<link rel="stylesheet" href="~/Content/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css">
+
+<div class="container-fluid">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-8 col-sm-12">
+                <h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a> Campaign Post</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                    <li class="breadcrumb-item">Campaign</li>
+                    <li class="breadcrumb-item active">Campaign Post</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="body">
+                    <form action="~/Campaign/AddCampaignAsync" id="form1" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Campaign Name  <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" required name="Name" id="Name" placeholder="Enter Name" />
+                                </div>
+                            </div>
+                            @*<a href="~/Blog/abc_def-xyz">click</a>*@
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Schedule Date  <span class="text-danger">*</span></label>
+                                    <input type="datetime-local" class="form-control" id="ScheduleDate" required name="ScheduleDate" placeholder="Schedule Date" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Email Template <span class="text-danger">*</span></label>
+                                    @Html.DropDownList("EmailTemplateId", null, "Select Template", new { @class = "form-control", @required = true })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Email Subject <span class="text-danger">*</span></label>
+                              <input type="text" name="EmailSubject" id="EmailSubject" class="form-control" required/>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Choose recipient <span class="text-danger">*</span></label>
+
+                                    <select name="Choose_recipient" id="Choose_recipient" required class="form-control" onchange="loaddata()">
+                                        <option value="">Select</option>
+                                        <option value="Pop_UP">Pop_UP</option>
+                                        <option value="Contactus">Contact us </option>
+                                        <option value="Demo_Trial">Demo Trial</option>
+                                        <option value="ManualUser">Add Manually</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" id="lstpop" style="display:none">
+                                <div class="form-group">
+                                    <label>PopUpList <span class="text-danger">*</span></label>
+
+                                    <select name="PoplistId" id="Poplist"   class="form-control" onchange="loaddata()">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <table id="recipientTable" class="table table-striped" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>   <input type="checkbox" id="selectAll"> Select All</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Rows will be dynamically inserted here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button type="submit" class="btn btn-block btn-primary   m-t-20">Post</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts{
+
+    <script src="~/Content/assets/bundles/datatablescripts.bundle.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/dataTables.buttons.min.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/buttons.bootstrap4.min.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/buttons.colVis.min.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/buttons.html5.min.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/buttons.print.min.js"></script>
+    <script src="~/Content/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+    
+
+    <script>
+        document.getElementById('form1').addEventListener('submit', function (event) {
+            event.preventDefault();
+            $("#overlay").fadeIn();
+            $('#form1').submit();
+
+        });
+    </script>
+    <script>
+       function poplist() {
+      $("#lstpop").show(); // Show the dropdown container
+
+    $.ajax({
+        url: "@Url.Action("PopUplist", "Campaign")",  // Your API endpoint
+        type: 'POST',
+        data: {},  // Data to send, if any
+        success: function (response) {
+            var selectoption = $("#Poplist");
+            selectoption.empty(); // Clear existing options
+
+            // Add a default option
+            selectoption.append('<option value="">All</option>');
+
+            // Append new options from the response
+            $.each(response, function (index, item) {
+                var option = '<option value="' + item.Id + '">' + item.Name + '</option>';
+                selectoption.append(option);  // Append new option
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error("Error loading data:", error);
+        }
+    });
+}
+
+    </script>
+
+    <script>
+       function loaddata() {
+           $("#overlay").fadeIn();
+           $("#lstpop").hide();
+           var cid = $("#Choose_recipient").val();
+           var popid = $("#Poplist").val();
+           if (cid == "Pop_UP") {
+               $("#lstpop").show()
+               if ($("#Poplist").val() == null) {
+                   poplist();
+                  
+               }
+           } else {
+               $("#Poplist").html('');
+           }
+           var table = $('#recipientTable');
+
+           // Destroy DataTable instance if it exists
+           if ($.fn.DataTable.isDataTable(table)) {
+               table.DataTable().clear().destroy();
+           }
+
+           // Clear the table body HTML
+           table.find('tbody').html('');
+        $.ajax({
+            url: "@Url.Action("LoadList", "Campaign")",  // Your API endpoint
+            type: 'POST',
+            data: { id: cid, popid: popid },  // Data to send
+            success: function (response) {
+                var tableBody = $("#recipientTable tbody");
+                tableBody.empty();  // Clear the previous data
+                $("#overlay").fadeOut();  // Hide overlay
+
+              
+
+                // Destroy the existing DataTable if already initialized
+                if ($.fn.DataTable.isDataTable('#recipientTable')) {
+                   
+                    $('#recipientTable').DataTable().destroy();
+                }
+                $.each(response, function (index, item) {
+                    var row = "<tr>" +
+                        "<td><input type='checkbox' name='recipientCheckbox' class='recipientCheckbox' value='" + item.id + "' /></td>" +
+                        "<td>" + item.Name + "</td>" +
+                        "<td>" + item.Email + "</td>" +
+                        "</tr>";
+                    tableBody.append(row);  // Append the new row to the table
+                });
+                // Initialize DataTable after data is loaded
+                $('#recipientTable').DataTable({
+                    paging: true,           // Enable pagination
+                    searching: true,        // Enable search
+                    ordering: true,         // Enable column sorting
+                    responsive: true,       // Make table responsive
+                    pageLength: 10           // Set default page size
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error("Error loading data:", error);
+                $("#overlay").fadeOut();  // Hide overlay on error
+            }
+        });
+    }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#recipientTable').DataTable();
+            // When "Select All" checkbox is checked or unchecked
+            $('#selectAll').on('click', function () {
+                
+                var table = $('#recipientTable').DataTable();
+                $('.recipientCheckbox', table.rows().nodes()).prop('checked', this.checked);
+                console.log('this is table ' + table);
+            });
+           
+            // If any individual checkbox is unchecked, uncheck the "Select All" checkbox
+            $(document).on('click', '.recipientCheckbox', function () {
+                if (!$(this).is(':checked')) {
+                    $("#selectAll").prop('checked', false);
+                }
+
+                // If all checkboxes are checked, check the "Select All" checkbox
+                if ($('.recipientCheckbox:checked').length == $('.recipientCheckbox').length) {
+                    $("#selectAll").prop('checked', true);
+                }
+            });
+        });
+        
+    </script>
+}
+
+

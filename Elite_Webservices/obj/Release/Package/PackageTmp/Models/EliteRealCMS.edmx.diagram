@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3775b0ba42b94b3ab9b17c161f3dc216" Name="Diagram1">
+        <EntityTypeShape EntityType="EliteCMSModel.Cms_blogDetail" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.Cms_blogPopupWidget" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.Cms_BlogPopUserApply" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.Cms_Campaign" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.Cms_CampaignDetail" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.Cms_EmailCampaignLogs" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.Cms_EmailTemplete" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.Cms_Manualuser" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.Cms_NewsLetter" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.Cms_User" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.Cms_WebsiteAction" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.Cms_WebsiteContactus" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.Country" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.PasswordPolicy" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.Role" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.TblApplication" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.TblEmployee" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.User" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EliteCMSModel.Quotation" Width="1.5" PointX="13.375" PointY="9.75" />
+        <EntityTypeShape EntityType="EliteCMSModel.Amenity" Width="1.5" PointX="13.625" PointY="13.875" />
+        <EntityTypeShape EntityType="EliteCMSModel.AmenityCategory" Width="1.5" PointX="11.375" PointY="14.125" />
+        <AssociationConnector Association="EliteCMSModel.FK__Amenities__Categ__0A688BB1" />
+        <EntityTypeShape EntityType="EliteCMSModel.PropertyAmenity" Width="1.5" PointX="15.875" PointY="20.5" />
+        <AssociationConnector Association="EliteCMSModel.FK__PropertyA__Ameni__1C873BEC" />
+        <EntityTypeShape EntityType="EliteCMSModel.PropertyListing" Width="1.5" PointX="7.375" PointY="15" />
+        <AssociationConnector Association="EliteCMSModel.FK__PropertyA__Prope__1B9317B3" />
+        <EntityTypeShape EntityType="EliteCMSModel.ContactU" Width="1.5" PointX="3.375" PointY="14.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

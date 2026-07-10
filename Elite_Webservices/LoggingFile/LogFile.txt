@@ -1,0 +1,58 @@
+﻿Start =========================================================================== Start
+Error | 26-Nov-25 10:42:35 PM | SaveProperty Exception: Value cannot be null.
+Parameter name: value, Inner: 
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 26-Nov-25 11:38:48 PM | SaveProperty Exception: Unexpected character encountered while parsing value: y. Path 'TitleDeedAvailable', line 1, position 586., Inner: 
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 13-Dec-25 10:34:42 AM | GetRentalPropertyList : Nullable object must have a value.
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 13-Dec-25 10:37:31 AM | GetRentalPropertyList : Nullable object must have a value.
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 13-Dec-25 10:38:33 AM | GetRentalPropertyList : Nullable object must have a value.
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 13-Dec-25 10:39:57 AM | GetRentalPropertyList : Nullable object must have a value.
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 29-Dec-25 3:07:28 PM | loginexception : Input string was not in a correct format.
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 13-Jan-26 11:53:17 PM | loginexception : Connection Timeout Expired.  The timeout period elapsed while attempting to consume the pre-login handshake acknowledgement.  This could be because the pre-login handshake failed or the server was unable to respond back in time.  The duration spent while attempting to connect to this server was - [Pre-Login] initialization=1202; handshake=14492; 
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 13-Jan-26 11:53:42 PM | loginexception : Connection Timeout Expired.  The timeout period elapsed while attempting to consume the pre-login handshake acknowledgement.  This could be because the pre-login handshake failed or the server was unable to respond back in time.  The duration spent while attempting to connect to this server was - [Pre-Login] initialization=1004; handshake=14684; 
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 1/27/2026 5:22:02 PM | GetPropertybySlug : Cannot open database "EliteCMS" requested by the login. The login failed.
+Login failed for user 'Izaz-Ur-Rahman\izazu'.
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 1/27/2026 5:22:04 PM | GetPropertybySlug : Cannot open database "EliteCMS" requested by the login. The login failed.
+Login failed for user 'Izaz-Ur-Rahman\izazu'.
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 1/27/2026 5:22:23 PM | GetPropertybySlug : Cannot open database "EliteCMS" requested by the login. The login failed.
+Login failed for user 'Izaz-Ur-Rahman\izazu'.
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 1/27/2026 5:22:57 PM | CheckPropertySlug: The underlying provider failed on Open.
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 1/27/2026 5:24:25 PM | CheckPropertySlug: The underlying provider failed on Open.
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 1/27/2026 5:25:00 PM | CheckPropertySlug: The underlying provider failed on Open.
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 1/28/2026 9:59:35 AM | CheckPropertySlug: The underlying provider failed on Open.
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 1/28/2026 10:02:17 AM | CheckPropertySlug: The underlying provider failed on Open.
+End   ===========================================================================   End
+Start =========================================================================== Start
+Error | 1/28/2026 10:03:14 AM | CheckPropertySlug: The underlying provider failed on Open.
+End   ===========================================================================   End

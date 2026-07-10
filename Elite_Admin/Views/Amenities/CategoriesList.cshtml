@@ -1,0 +1,47 @@
+﻿@model List<Elite_Admin.Models.CategoryViewModel>
+@{
+    ViewBag.Title = "CategoriesList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Amenity Categories</h4>
+
+<p style="margin-left: 750px; margin-bottom: 20px;">
+    @Html.ActionLink("Add New Category", "CreateCategory", "Amenities", new { }, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Category Name</th>
+            @*<th>Actions</th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            int i = 1;
+            foreach (var category in Model)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@category.CategoryName</td>
+                    @*<td>
+                        @Html.ActionLink("Edit", "Edit", "Category", new { id = category.CategoryId }, new { @class = "btn btn-sm btn-warning" })
+                        @Html.ActionLink("Delete", "Delete", "Category", new { id = category.CategoryId }, new { @class = "btn btn-sm btn-danger" })
+                    </td>*@
+                </tr>
+                i++;
+            }
+        }
+        else
+        {
+            <tr><td colspan="3">No categories found.</td></tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+
+}

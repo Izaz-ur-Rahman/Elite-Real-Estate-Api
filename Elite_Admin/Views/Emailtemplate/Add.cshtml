@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/assets/vendor/summernote/dist/summernote.css" />
+<link rel="stylesheet" href="~/Content/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css">
+
+
+<style>
+    .panel-heading {
+        padding: 10px 0px;
+    }
+</style>
+
+
+<div class="row" style="margin-top: 28px;">
+    <div class="col-sm-12">
+        <div class="panel panel-default card-view">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-8 col-sm-12">
+                        @*<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a>Email Template</h2>*@
+                        <div class="panel-heading">
+                            <div class="pull-left">
+                                <h6 class="panel-title txt-dark">Email Template</h6>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                            <li class="breadcrumb-item">Template</li>
+                            <li class="breadcrumb-item active">Add Template</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="body">
+                            <form action="~/Emailtemplate/AddtemplateAsync" id="form1" method="post" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Template Name <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" required name="Name" id="Name" placeholder="Template Name " />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Subject  <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" required name="Subject" id="Subject" placeholder="Email Subject " />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+
+                                        <div class="summernote">
+
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="summernoteContent" name="Details" />
+                                    <button type="submit" class="btn btn-block btn-primary   m-t-20">Add</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+        @section Scripts{
+
+            <script src="~/Content/assets/vendor/summernote/dist/summernote.js"></script>
+            <script src="~/Content/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+
+
+            <script>
+                jQuery(document).ready(function () {
+
+
+
+
+                    $('.summernote').summernote({
+                        height: 350, // set editor height
+                        minHeight: null, // set minimum height of editor
+                        maxHeight: null, // set maximum height of editor
+                        focus: false, // set focus to editable area after initializing summernote
+                        popover: { image: [], link: [], air: [] }
+                    });
+
+                    $('.inline-editor').summernote({
+                        airMode: true
+                    });
+                    $('form').on('submit', function (e) {
+
+
+                        var markup = $('.summernote').summernote('code');
+                        $('#summernoteContent').val(markup);
+
+                    });
+                });
+
+                window.edit = function () {
+                    $(".click2edit").summernote()
+                },
+
+                    window.save = function () {
+                        $(".click2edit").summernote('destroy');
+                    }
+            </script>
+            <script>
+                document.getElementById('form1').addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    $("#overlay").fadeIn();
+                    $('#form1').submit();
+
+                });
+            </script>
+            <script>
+                function isAllowedKeyPress(event) {
+                    // Get the character code of the pressed key
+                    var charCode = event.charCode || event.which;
+
+                    // Allow only numbers, letters, hyphens, and underscores
+                    if (
+                        (charCode >= 48 && charCode <= 57) || // Numbers 0-9
+                        (charCode >= 65 && charCode <= 90) || // Uppercase letters A-Z
+                        (charCode >= 97 && charCode <= 122) || // Lowercase letters a-z
+                        charCode === 45 || // Hyphen (-)
+                        charCode === 95    // Underscore (_)
+                    ) {
+                        return true;
+                    }
+
+                    // Prevent other characters
+                    return false;
+                }
+            </script>
+        }
+
+
+

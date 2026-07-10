@@ -1,0 +1,53 @@
+﻿@model  List<Elite_Admin.Models.AmenityViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Amenities List</h4>
+
+<p style="margin-left: 750px; margin-bottom: 20px;">
+    @Html.ActionLink("Add New Amenity", "CreateAmenity", "Amenities", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Amenity Name</th>
+            <th>Icon</th>
+            <th>Category</th>
+            @*<th>Actions</th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            int i = 1;
+            foreach (var amenity in Model)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@amenity.AmenityName</td>
+                    <td>
+                        <img src="@amenity.Icon" alt="Amenity Icon" width="32" height="32" />
+                    </td>
+                    <td>@amenity.CategoryName</td>
+                    @*<td>
+                        @Html.ActionLink("Edit", "Edit", "Amenity", new { id = amenity.AmenityId }, new { @class = "btn btn-sm btn-warning" })
+                        @Html.ActionLink("Delete", "Delete", "Amenity", new { id = amenity.AmenityId }, new { @class = "btn btn-sm btn-danger" })
+                    </td>*@
+                </tr>
+                i++;
+            }
+        }
+        else
+        {
+            <tr><td colspan="5">No amenities found.</td></tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+
+}

@@ -1,0 +1,1551 @@
+﻿@model Elite_Admin.Models.PropertyListingVM
+@{
+    ViewBag.Title = "UpdateProperty";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    hr {
+        margin-bottom: 15px !important;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    #apartmentFields {
+        border-top: 1px solid #283e7a;
+        padding-top: 14px;
+    }
+
+    #villaFields {
+        border-top: 1px solid #283e7a;
+        padding-top: 14px;
+    }
+
+    #commercialFields {
+        border-top: 1px solid #283e7a;
+        padding-top: 14px;
+    }
+
+    .fade {
+        opacity: 1;
+    }
+
+    .nav-tabs > li.active > a, .nav-tabs > li.open > a {
+        background: #283E7A;
+        color: #ffffff;
+        border-color: transparent;
+    }
+
+    .nav-tabs > li {
+        margin-bottom: 5px;
+    }
+
+        .nav-tabs > li > a {
+            padding: 10px 7px;
+            font-size: 13px;
+        }
+
+    .nav-tabs {
+        border-bottom: 0px solid #dedede !important;
+    }
+
+    .tab-content > .active {
+        margin-top: 21px;
+    }
+
+    a.btn.btn-primary.btnNext {
+        background: #1FA7EA !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    a.btn.btn-primary.btnPrevious {
+        background: #1FA7EA;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    a.btn.btn-primary.btnsave {
+        background: #009fff;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    .is-invalid {
+        border: 1px solid red !important;
+    }
+
+    .form-group.is-invalid label {
+        color: red;
+    }
+
+    .d-none {
+        display: none !important;
+    }
+</style>
+<!-- Row -->
+<!-- /Row -->
+<div class="row">
+
+
+    <div class="col-md-12">
+        <div class="panel panel-default card-view" style="
+    margin-top: 15px;
+">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">Add Property</h6>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+
+            <div class="panel-wrapper collapse in">
+                <form action="~/Properties/UpdateProperty" method="post" enctype="multipart/form-data">
+                    <div class="panel-body">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1" data-toggle="tab">General Information</a></li>
+                            <li class="d-none"><a href="#tab2">Property Status</a></li>
+                            <li class="d-none"><a href="#tab3">Property Type</a></li>
+                            <li class="d-none"><a href="#tab4">Amenities & Facilities</a></li>
+                            <li class="d-none"><a href="#tab5" data-toggle="tab">Location & Community</a></li>
+                            <li class="d-none"><a href="#tab6" data-toggle="tab">Investment & Payment Plan</a></li>
+                            <li class="d-none"><a href="#tab7" data-toggle="tab">Listing & Contact Details</a></li>
+                            <li class="d-none"><a href="#tab8" data-toggle="tab">Additional Details</a></li>
+                            <li class="d-none"><a href="#tab9" data-toggle="tab">Featured & Sponsored Listings</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab1">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="hidden" name="Property.Id" value="@Model.Property.Id" />
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Property Title</label>
+                                            <input type="text" name="Property.Title" class="form-control" value="@Model.Property.Title" placeholder="Enter Property Title" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Property Title (AR)</label>
+                                            <input type="text" name="Property.Property_Title_AR" value="@Model.Property.Property_Title_AR" class="form-control" placeholder="Enter Property Title Ar">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Property Type</label>
+                                            <select id="propertyTypefirst" name="Property.PropertyType" class="form-control">
+                                                <option value="">Select Property Type</option>
+                                                <option value="Apartment" @(Model.Property.PropertyType == "Apartment" ? "selected" : "")>Apartment</option>
+                                                <option value="Villa" @(Model.Property.PropertyType == "Villa" ? "selected" : "")>Villa</option>
+                                                <option value="Townhouse" @(Model.Property.PropertyType == "Townhouse" ? "selected" : "")>Townhouse</option>
+                                                <option value="Penthouse" @(Model.Property.PropertyType == "Penthouse" ? "selected" : "")>Penthouse</option>
+                                                <option value="Commercial" @(Model.Property.PropertyType == "Commercial" ? "selected" : "")>Commercial</option>
+                                            </select>
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Listing Type</label>
+                                            <select id="propertyCategory" name="Property.ListingType" class="form-control">
+                                                <option value="">Select Listing Type</option>
+                                                <option value="For Rent" @(Model.Property.ListingType == "For Rent" ? "selected" : "")>For Rent</option>
+                                                <option value="Off-Plan" @(Model.Property.ListingType == "Off-Plan" ? "selected" : "")>Off-Plan</option>
+                                                <option value="For Sale" @(Model.Property.ListingType == "For Sale" ? "selected" : "")>For Sale</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Price Currency</label>
+                                            <select name="Property.PriceCurrency" class="form-control">
+                                                <option value="">Select Currency</option>
+                                                <option value="AED" @(Model.Property.PriceCurrency == "AED" ? "selected" : "")>AED</option>
+                                                <option value="$" @(Model.Property.PriceCurrency == "$" ? "selected" : "")>USD</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Property Size</label>
+                                            <input type="number" step="0.01" name="Property.Property_Size" value="@Model.Property.Property_Size" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Size Unit</label>
+                                            <select name="Property.Property_Size_Unit"  class="form-control">
+                                                <option value="sqft">Sqft</option>
+                                                <option value="sqm">Sqm</option>
+                                                <option value="sqyard">Sq Yard</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Plot Area</label>
+                                            <input type="number" step="0.01" name="Property.plotArea" value="@Model.Property.plotArea" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Furnished</label>
+                                            <select name="Property.Furnished" class="form-control">
+                                                <option value="No">No</option>
+                                                <option value="Yes">Yes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Main Image</label>
+                                            <input type="file" name="MainImage" class="form-control">
+                                            <input type="hidden" name="ExistingMainImage" value="@Model.Property.MainImage" />
+                                            @if (!string.IsNullOrEmpty(Model.Property.MainImage))
+                                            {
+                                                <img src="@ViewBag.baseapiurl@Model.Property.MainImage" alt="Main Image" width="100" />
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Sub Images</label>
+                                            <input type="file" name="SubImageFiles" class="form-control" multiple />
+
+                                            <input type="hidden" name="ExistingSubImage" value="@Model.Property.SubImage" />
+
+                                            @if (!string.IsNullOrEmpty(Model.Property.SubImage))
+                                            {
+                                                var images = Model.Property.SubImage.Split(',');
+                                                foreach (var img in images)
+                                                {
+                                                    <img src="@ViewBag.baseapiurl@img" alt="Sub Image" width="100" style="margin:5px;" />
+                                                }
+
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Payment Plan</label>
+                                            <input type="text" name="Property.PaymentPlanAvailableDescription" value="@Model.Property.PaymentPlanAvailableDescription" class="form-control" required placeholder="Enter Property plan">
+                                            @*<div class="radio-list">
+                    <div class="radio-inline pl-0">
+                        <span class="radio radio-info">
+                            <input type="radio" name="Property.PaymentPlanAvailable" id="radio_yes" value="true" @(Model.Property.PaymentPlanAvailable == true ? "checked" : "")>
+                            <label for="radio_yes">Yes</label>
+                        </span>
+                    </div>
+                    <div class="radio-inline">
+                        <span class="radio radio-info">
+                            <input type="radio" name="Property.PaymentPlanAvailable" id="radio_no" value="false" @(Model.Property.PaymentPlanAvailable == false ? "checked" : "")>
+                            <label for="radio_no">No</label>
+                        </span>
+                    </div>
+                </div>*@
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Property Slug</label>
+                                            <input type="text" name="Property.PropertySlug" id="slug" value="@Model.Property.PropertySlug" class="form-control" placeholder="Enter Property Slug" onkeypress="return isAllowedKeyPress(event);" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12" style="text-align:right">
+                                    <button type="submit" class="btn btn-primary btnsave">Update</button>
+                                    <a href="#" class="btn btn-primary btnNext" data-next-tab="#tab2">Next</a>
+                                </div>
+                            </div>
+
+                            <!-- Tab 2 - Property Status -->
+                            <div class="tab-pane" id="tab2">
+
+                                <div id="propertyCategoryContainer" class="hidden">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- Off-Plan Fields -->
+                                            <div id="offPlanFields" class="hidden mt-3">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Developer Name</label>
+                                                        <input type="text" name="Property.DeveloperName" value="@Model.Property.DeveloperName" class="form-control" placeholder="Enter Developer Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Handover Date</label>
+                                                        <input type="date" name="Property.HandoverDate" value="@Model.Property.HandoverDate" class="form-control" placeholder="Enter Handover Date">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Payment Plan Structure</label>
+                                                        <input type="text" name="Property.PaymentPlanStructure" value="@Model.Property.PaymentPlanStructure" class="form-control" placeholder="Enter Payment Plan Structre">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Post-Handover Payment</label>
+                                                        <input type="text" name="Property.PostHandoverPayment" value="@Model.Property.PostHandoverPayment" class="form-control" placeholder="Enter Post-Handover Pay">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Construction Status</label>
+                                                        <select name="Property.ConstructionStatus" class="form-control">
+                                                            <option value="Planned" @(Model.Property.ConstructionStatus == "Planned" ? "selected" : "")>Planned</option>
+                                                            <option value="Under Construction" @(Model.Property.ConstructionStatus == "Under Construction" ? "selected" : "")>Under Construction</option>
+                                                            <option value="Completed" @(Model.Property.ConstructionStatus == "Completed" ? "selected" : "")>Completed</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Price</label>
+                                                        <input type="text" name="Property.OffPrice" value="@Model.Property.OffPrice" class="form-control" placeholder="Enter Price">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Offplan Sale Type</label>
+                                                        <input type="text" name="Property.offplanDetails_saleType" value="@Model.Property.offplanDetails_saleType" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">DLD Waiver</label>
+                                                        <input type="text" name="Property.offplanDetails_dldWaiver" value="@Model.Property.offplanDetails_dldWaiver" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Amount Paid</label>
+                                                        <input type="text" name="Property.offplanDetails_amountPaid" value="@Model.Property.offplanDetails_amountPaid" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Original Price</label>
+                                                        <input type="text" name="Property.offplanDetails_originalPrice" value="@Model.Property.offplanDetails_originalPrice" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                @*<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label mb-10">Service Charges</label>
+                <input type="text" name="Property.ServiceCharges" value="@Model.Property.ServiceCharges" class="form-control" placeholder="Enter Service Charges">
+            </div>
+        </div>*@
+                                                @*<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label mb-10">Showroom Available</label>
+                <div class="radio-list">
+                    <div class="radio-inline pl-0">
+                        <span class="radio radio-info">
+                            <input type="radio" name="Property.ShowroomAvailable" id="showroom_yes" value="true">
+                            <label for="showroom_yes">Yes</label>
+                        </span>
+                    </div>
+                    <div class="radio-inline">
+                        <span class="radio radio-info">
+                            <input type="radio" name="Property.ShowroomAvailable" id="showroom_no" value="false">
+                            <label for="showroom_no">No</label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+                                            </div>
+
+                                            <!-- Secondry Fields -->
+                                            <div id="secondryFields" class="hidden mt-3">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Property Age</label>
+                                                        <select name="Property.PropertyAge" class="form-control">
+                                                            <option value="10" @(Model.Property.PropertyAge == "10" ? "selected" : "")>10</option>
+                                                            <option value="15" @(Model.Property.PropertyAge == "15" ? "selected" : "")>15</option>
+                                                            <option value="25" @(Model.Property.PropertyAge == "25" ? "selected" : "")>25</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Price</label>
+                                                        <input type="text" name="Property.SalePrice" value="@Model.Property.SalePrice" class="form-control" placeholder="Enter Price">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Tenancy Status</label>
+                                                        <select name="Property.TenancyStatus" class="form-control">
+                                                            <option value="Vacant" @(Model.Property.TenancyStatus == "Vacant" ? "selected" : "")>Vacant</option>
+                                                            <option value="Occupied" @(Model.Property.TenancyStatus == "Occupied" ? "selected" : "")>Occupied</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Service Charges</label>
+                                                        <input type="text" name="Property.ServiceCharges" value="@Model.Property.ServiceCharges" class="form-control" placeholder="Enter Service Charges">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Mortgage Status</label>
+                                                        <select name="Property.MortgageStatus" class="form-control">
+                                                            <option value="Mortgaged" @(Model.Property.MortgageStatus == "Mortgaged" ? "selected" : "")>Mortgaged</option>
+                                                            <option value="Clear" @(Model.Property.MortgageStatus == "Clear" ? "selected" : "")>Clear</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Previous Ownership</label>
+                                                        <div class="radio-list">
+
+                                                            <div class="radio-inline pl-0">
+                                                                <span class="radio radio-info">
+                                                                    <input type="radio" name="Property.PreviousOwnership" id="previous_yes" value="true" @(Model.Property.PreviousOwnership == true ? "checked" : "")>
+                                                                    <label for="previous_yes">Yes</label>
+                                                                </span>
+                                                            </div>
+                                                            <div class="radio-inline">
+                                                                <span class="radio radio-info">
+                                                                    <input type="radio" name="Property.PreviousOwnership" id="previous_no" value="false" @(Model.Property.PreviousOwnership == false ? "checked" : "")>
+                                                                    <label for="previous_no">No</label>
+                                                                </span>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Title Deed Available</label>
+                                                        <div class="radio-list">
+                                                            <div class="radio-inline pl-0">
+                                                                <span class="radio radio-info">
+                                                                    <input type="radio" name="Property.TitleDeedAvailable" id="deed_yes" value="true" @(Model.Property.TitleDeedAvailable == true ? "checked" : "")>
+                                                                    <label for="deed_yes">Yes</label>
+                                                                </span>
+                                                            </div>
+                                                            <div class="radio-inline">
+                                                                <span class="radio radio-info">
+                                                                    <input type="radio" name="Property.TitleDeedAvailable" id="deed_no" value="false" @(Model.Property.TitleDeedAvailable == false ? "checked" : "")>
+                                                                    <label for="deed_no">No</label>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Rental Fields -->
+                                            <div id="rentalFields" class="hidden mt-3">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Price</label>
+                                                        <input type="text" name="Property.RentalPrice" value="@Model.Property.RentalPrice" class="form-control" placeholder="Enter Price">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Rent Frequency</label>
+                                                        <select name="Property.Rent_Frequency" class="form-control">
+                                                            <option value="Monthly">Monthly</option>
+                                                            <option value="Yearly">Yearly</option>
+                                                            <option value="Weekly">Weekly</option>
+                                                            <option value="">N/A</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Payment Terms</label>
+                                                        <select name="Property.PaymentTerms" class="form-control">
+                                                            <option value="Yearly" @(Model.Property.PaymentTerms == "Yearly" ? "selected" : "")>Yearly</option>
+                                                            <option value="Quarterly" @(Model.Property.PaymentTerms == "Quarterly" ? "selected" : "")>Quarterly</option>
+                                                            <option value="Monthly" @(Model.Property.PaymentTerms == "Monthly" ? "selected" : "")>Monthly</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Cheques Accepted</label>
+                                                        <select name="Property.ChequesAccepted" class="form-control">
+                                                            <option value="1" @(Model.Property.ChequesAccepted == "1" ? "selected" : "")>1</option>
+                                                            <option value="2" @(Model.Property.ChequesAccepted == "2" ? "selected" : "")>2</option>
+                                                            <option value="3" @(Model.Property.ChequesAccepted == "3" ? "selected" : "")>3</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Commission Fee</label>
+                                                        <input type="text" name="Property.CommissionFee" value="@Model.Property.CommissionFee" class="form-control" placeholder="Enter Commission Fee">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Tenancy Contract Length</label>
+                                                        <input type="text" name="Property.TenancyContractLength" value="@Model.Property.TenancyContractLength" class="form-control" placeholder="Enter Contract Length">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Vacating Notice Period</label>
+                                                        <input type="text" name="Property.VacatingNoticePeriod" value="@Model.Property.VacatingNoticePeriod" class="form-control" placeholder="Enter Notice Period">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Deposit</label>
+                                                        <div class="radio-list">
+                                                            <div class="radio-inline pl-0">
+                                                                <span class="radio radio-info">
+                                                                    <input type="radio" name="Property.Deposit" id="deposit_yes" value="true" @(Model.Property.Deposit == true ? "checked" : "")>
+                                                                    <label for="deposit_yes">Yes</label>
+                                                                </span>
+                                                            </div>
+                                                            <div class="radio-inline">
+                                                                <span class="radio radio-info">
+                                                                    <input type="radio" name="Property.Deposit" id="deposit_no" value="false" @(Model.Property.Deposit == false ? "checked" : "")>
+                                                                    <label for="deposit_no">No</label>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="text-align:right">
+                                    <button type="submit" class="btn btn-primary btnsave">Update</button>
+                                    <a href="#" class="btn btn-primary btnNext" data-next-tab="#tab3">Next</a>
+                                    <a class="btn btn-primary btnPrevious">Previous</a>
+                                </div>
+                            </div>
+
+                            <!-- Tab 3 - Property Type -->
+                            <div class="tab-pane" id="tab3">
+                                <div class="col-md-4" style="display:none;">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10">Property Type</label>
+                                        <select id="propertyType" class="form-control">
+                                            <option value="">Select Property Type</option>
+                                            <option value="Apartment" @(Model.Property.PropertyType == "Apartment" ? "selected" : "")>Apartment Studio</option>
+                                            <option value="Villa" @(Model.Property.PropertyType == "Villa" ? "selected" : "")>Villa/Townhouse</option>
+                                            <option value="Commercial" @(Model.Property.PropertyType == "Commercial" ? "selected" : "")>Commercial</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div id="propertyFieldsContainer" class="hidden">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="apartmentFields" class="hidden mt-3">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Bedrooms</label>
+                                                        <input type="text" name="Property.Bedrooms" value="@Model.Property.Bedrooms" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Bathrooms</label>
+                                                        <input type="text" name="Property.Bathrooms" value="@Model.Property.Bathrooms" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Floor Level</label>
+                                                        <input type="text" name="Property.FloorLevel" value="@Model.Property.FloorLevel" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Balcony / Terrace</label>
+                                                        <input type="text" name="Property.BalconyTerrace" value="@Model.Property.BalconyTerrace" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">View</label>
+                                                        <input type="text" name="Property.PropertyView" value="@Model.Property.PropertyView" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Built-up Area</label>
+                                                        <input type="text" name="Property.BuiltUpArea" value="@Model.Property.BuiltUpArea" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Parking Spaces</label>
+                                                        <input type="text" name="Property.ParkingSpaces" value="@Model.Property.ParkingSpaces" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Kitchen Type</label>
+                                                        <input type="text" name="Property.KitchenType" value="@Model.Property.KitchenType" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Maid's Room</label>
+                                                        <input type="text" name="Property.MaidsRoom" value="@Model.Property.MaidsRoom" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Smart Home Features</label>
+                                                        <input type="text" name="Property.SmartHomeFeatures" value="@Model.Property.SmartHomeFeatures" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Storage Room</label>
+                                                        <input type="text" name="Property.StorageRoom" value="@Model.Property.StorageRoom" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Developer Name</label>
+                                                        <input type="text" name="Property.DeveloperName" value="@Model.Property.DeveloperName" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Villa Fields -->
+                                            <div id="villaFields" class="hidden mt-3">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Bedrooms</label>
+                                                        <input type="text" name="Property.VillaBedrooms" value="@Model.Property.VillaBedrooms" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Bathrooms</label>
+                                                        <input type="text" name="Property.VillaBathrooms" value="@Model.Property.VillaBathrooms" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Plot Size</label>
+                                                        <input type="text" name="Property.PlotSize" value="@Model.Property.PlotSize" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Private Garden</label>
+                                                        <input type="text" name="Property.PrivateGarden" value="@Model.Property.PrivateGarden" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Private Pool</label>
+                                                        <input type="text" name="Property.PrivatePool" value="@Model.Property.PrivatePool" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Parking Spaces</label>
+                                                        <input type="text" name="Property.VillaParkingSpaces" value="@Model.Property.VillaParkingSpaces" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Maid's Room</label>
+                                                        <input type="text" name="Property.VillaMaidsRoom" value="@Model.Property.VillaMaidsRoom" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Furnished</label>
+                                                        <input type="text" name="Property.VillaFurnished" value="@Model.Property.VillaFurnished" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Developer Name</label>
+                                                        <input type="text" name="Property.VillaDeveloperName" value="@Model.Property.VillaDeveloperName" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Commercial Fields -->
+                                            <div id="commercialFields" class="hidden mt-3">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Unit Type (Office / Retail / Warehouse)</label>
+                                                        <input type="text" name="Property.UnitType" value="@Model.Property.UnitType" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Built-up Area</label>
+                                                        <input type="text" name="Property.CommercialBuiltUpArea" value="@Model.Property.CommercialBuiltUpArea" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Parking Spaces</label>
+                                                        <input type="text" name="Property.CommercialParkingSpaces" value="@Model.Property.CommercialParkingSpaces" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Pantry/Kitchen</label>
+                                                        <input type="text" name="Property.PantryKitchen" value="@Model.Property.PantryKitchen" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Washroom</label>
+                                                        <input type="text" name="Property.Washroom" value="@Model.Property.Washroom" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Floor Level</label>
+                                                        <input type="text" name="Property.CommercialFloorLevel" value="@Model.Property.CommercialFloorLevel" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Developer Name</label>
+                                                        <input type="text" name="Property.CommercialDeveloperName" value="@Model.Property.CommercialDeveloperName" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">Furnished</label>
+                                                        <input type="text" name="Property.CommercialFurnished" value="@Model.Property.CommercialFurnished" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label mb-10">License Type Support</label>
+                                                        <input type="text" name="Property.LicenseTypeSupport" value="@Model.Property.LicenseTypeSupport" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="text-align:right">
+                                    <button type="submit" class="btn btn-primary btnsave">Update</button>
+                                    <a href="#" class="btn btn-primary btnNext" data-next-tab="#tab4">Next</a>
+                                    <a class="btn btn-primary btnPrevious">Previous</a>
+                                </div>
+                            </div>
+
+                            <!-- Tab 4 - Amenities & Facilities -->
+                            <div class="tab-pane" id="tab4">
+                                <div class="row">
+                                    @for (int i = 0; i < Model.Amenities.Count; i++)
+                                    {
+                                        var amenity = Model.Amenities[i];
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label mb-10">@amenity.AmenityName</label>
+                                                <div class="radio-list">
+                                                    <div class="radio-inline pl-0">
+                                                        <span class="radio radio-info">
+                                                            <input type="radio" name="Amenities[@i].IsSelected" id="radio_yes_@i" value="true" @(amenity.IsSelected == true ? "checked" : "") />
+                                                            <label for="radio_yes_@i">Yes</label>
+                                                        </span>
+                                                    </div>
+                                                    <div class="radio-inline">
+                                                        <span class="radio radio-info">
+                                                            <input type="radio" name="Amenities[@i].IsSelected" id="radio_no_@i" value="false" @(amenity.IsSelected == false ? "checked" : "") />
+                                                            <label for="radio_no_@i">No</label>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <!-- Hidden field to preserve AmenityId and AmenityName -->
+                                                <input type="hidden" name="Amenities[@i].AmenityId" value="@amenity.AmenityId" />
+                                                <input type="hidden" name="Amenities[@i].AmenityName" value="@amenity.AmenityName" />
+                                            </div>
+                                        </div>
+                                    }
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Showroom Available</label>
+                                            <div class="radio-list">
+                                                <div class="radio-inline pl-0">
+                                                    <span class="radio radio-info">
+                                                        <input type="radio" name="Property.ShowroomAvailable" id="showroom_yes" value="true" @(Model.Property.ShowroomAvailable == true ? "checked" : "")>
+                                                        <label for="showroom_yes">Yes</label>
+                                                    </span>
+                                                </div>
+                                                <div class="radio-inline">
+                                                    <span class="radio radio-info">
+                                                        <input type="radio" name="Property.ShowroomAvailable" id="showroom_no" value="false" @(Model.Property.ShowroomAvailable == false ? "checked" : "")>
+                                                        <label for="showroom_no">No</label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Pet Policy -->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Pet Policy</label>
+                                            <input type="text" name="Property.PetPolicy" class="form-control" value="@Model.Property.PetPolicy" placeholder="Enter pet policy details">
+                                        </div>
+                                    </div>
+
+                                    <!-- Tenancy Contract Status -->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Tenancy Contract Status</label>
+                                            <select name="Property.TenancyContractStatus" class="form-control">
+                                                <option value="">Select Status</option>
+                                                <option value="vacant" @(Model.Property.TenancyContractStatus == "vacant" ? "selected" : "")>Vacant</option>
+                                                <option value="rented" @(Model.Property.TenancyContractStatus == "rented" ? "selected" : "")>Rented</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-md-12" style="text-align:right">
+                                    <button type="submit" class="btn btn-primary btnsave">Update</button>
+                                    <a href="#" class="btn btn-primary btnNext" data-next-tab="#tab5">Next</a>
+                                    <a href="#" class="btn btn-primary btnPrevious" data-previous-tab="#tab3">Previous</a>
+                                </div>
+                            </div>
+
+                            <!-- Tab 5 - Location & Community -->
+                            <div class="tab-pane" id="tab5">
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Community Name </label>
+                                            <input type="text" name="Property.CommunityName" value="@Model.Property.CommunityName" id="firstName" class="form-control" placeholder="John doe">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">City </label>
+                                            <input type="text" name="Property.City" value="@Model.Property.City" id="firstName" class="form-control" placeholder="John doe">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Tower Name </label>
+                                            <input type="text" name="Property.Tower_Name" value="@Model.Property.Tower_Name" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Neighborhood </label>
+                                            <input type="text" name="Property.Neighborhood" value="@Model.Property.Neighborhood" class="form-control" placeholder="John doe">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Proximity to Metro/Tram</label>
+                                            <input type="text" name="Property.ProximityToMetro" value="@Model.Property.ProximityToMetro" class="form-control" placeholder="John doe">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Nearby Landmarks</label>
+                                            <input type="text" name="Property.NearbyLandmarks" value="@Model.Property.NearbyLandmarks" id="firstName" class="form-control" placeholder="John doe">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">School & Hospital Proximity </label>
+                                            <input type="text" name="Property.SchoolHospitalProximity" value="@Model.Property.SchoolHospitalProximity" id="firstName" class="form-control" placeholder="John doe">
+                                        </div>
+                                    </div>
+
+                                    <!--/span-->
+                                </div>
+                                <div class="col-md-12" style="text-align:right">
+                                    <button type="submit" class="btn btn-primary btnsave">Update</button>
+                                    <a href="#" class="btn btn-primary btnNext" data-next-tab="#tab6">Next</a>
+                                    <a class="btn btn-primary btnPrevious">Previous</a>
+
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="tab6">
+
+                                <div id="rentalContainer" class="hidden">
+                                    <div id="rentalInvestement" class="hidden">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10">Return on Investment (ROI) % (for buyers)</label>
+                                                    <input type="number" name="Property.ROI" class="form-control" value="@Model.Property.ROI" placeholder="Enter ROI percentage">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10">Expected Rental Yield %</label>
+                                                    <input type="number" name="Property.RentalYield" class="form-control" value="@Model.Property.RentalYield" placeholder="Enter rental yield percentage">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10">Annual Service Charges</label>
+                                                    <input type="number" name="Property.AnnualServiceCharges" class="form-control" value="@Model.Property.AnnualServiceCharges" placeholder="Enter service charges">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10">Mortgage Calculator (Integration)</label>
+                                                    <input type="text" name="Property.MortgageCalculator" class="form-control" value="@Model.Property.MortgageCalculator" placeholder="Enter mortgage details">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10">Rental Payment Options</label>
+                                                    <select name="Property.RentalPaymentOptions" class="form-control">
+                                                        <option value="">Select Payment Option</option>
+                                                        <option value="yearly" @(Model.Property.RentalPaymentOptions == "yearly" ? "selected" : "")>Yearly</option>
+                                                        <option value="quarterly" @(Model.Property.RentalPaymentOptions == "quarterly" ? "selected" : "")>Quarterly</option>
+                                                        <option value="monthly" @(Model.Property.RentalPaymentOptions == "monthly" ? "selected" : "")>Monthly</option>
+                                                        <option value="post-dated" @(Model.Property.RentalPaymentOptions == "post-dated" ? "selected" : "")>Post-Dated Cheques</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10">Cheques Accepted (for rentals)</label>
+                                                    <select name="Property.ChequesAcceptedRental" class="form-control">
+                                                        <option value="">Select Number of Cheques</option>
+                                                        <option value="1" @(Model.Property.ChequesAcceptedRental == "1" ? "selected" : "")>1</option>
+                                                        <option value="2" @(Model.Property.ChequesAcceptedRental == "2" ? "selected" : "")>2</option>
+                                                        <option value="4" @(Model.Property.ChequesAcceptedRental == "4" ? "selected" : "")>4</option>
+                                                        <option value="6" @(Model.Property.ChequesAcceptedRental == "6" ? "selected" : "")>6</option>
+                                                        <option value="12" @(Model.Property.ChequesAcceptedRental == "12" ? "selected" : "")>12</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="nonRentalInvestement" class="hidden">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10">Return on Investment (ROI) % (for buyers)</label>
+                                                    <input type="number" name="Property.ROI" class="form-control" value="@Model.Property.ROI" placeholder="Enter ROI percentage">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10">Expected Rental Yield %</label>
+                                                    <input type="number" name="Property.RentalYield" class="form-control" value="@Model.Property.RentalYield" placeholder="Enter rental yield percentage">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label mb-10">Annual Service Charges</label>
+                                                    <input type="number" name="Property.AnnualServiceCharges" class="form-control" value="@Model.Property.AnnualServiceCharges" placeholder="Enter service charges">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12" style="text-align:right">
+                                    <button type="submit" class="btn btn-primary btnsave">Update</button>
+                                    <a href="#" class="btn btn-primary btnNext" data-next-tab="#tab7">Next</a>
+                                    <a class="btn btn-primary btnPrevious">Previous</a>
+
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="tab7">
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Listing ID</label>
+                                            <input type="text" name="Property.ListingId" class="form-control" value="@Model.Property.ListingId" placeholder="Enter listing ID">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Real Estate Agency Name</label>
+                                            <input type="text" name="Property.RealEstateAgencyName" class="form-control" value="@Model.Property.RealEstateAgencyName" placeholder="Enter agency name">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">RERA Permit Number (if applicable)</label>
+                                            <input type="text" name="Property.RERAPermitNumber" class="form-control" value="@Model.Property.RERAPermitNumber" placeholder="Enter RERA permit number">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12" style="text-align:right">
+                                    <button type="submit" class="btn btn-primary btnsave">Update</button>
+                                    <a href="#" class="btn btn-primary btnNext" data-next-tab="#tab8">Next</a>
+                                    <a class="btn btn-primary btnPrevious">Previous</a>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab8">
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Payment Method</label>
+                                            <select name="Property.PaymentMethod" class="form-control">
+                                                <option value="">Select Payment Method</option>
+                                                <option value="cash" @(Model.Property.PaymentMethod == "cash" ? "selected" : "")>Cash</option>
+                                                <option value="mortgage" @(Model.Property.PaymentMethod == "mortgage" ? "selected" : "")>Mortgage</option>
+                                                <option value="payment_plan" @(Model.Property.PaymentMethod == "payment_plan" ? "selected" : "")>Payment Plan</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- DLD Transfer Fee -->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">DLD Transfer Fee</label>
+                                            <input type="text" name="Property.DLDTransferFee" class="form-control" value="@Model.Property.DLDTransferFee" placeholder="Enter DLD transfer fee">
+                                        </div>
+                                    </div>
+
+                                    <!-- Cooling System -->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Cooling System</label>
+                                            <select name="Property.CoolingSystem" class="form-control">
+                                                <option value="">Select Cooling System</option>
+                                                <option value="chiller_free" @(Model.Property.CoolingSystem == "chiller_free" ? "selected" : "")>Chiller Free</option>
+                                                <option value="dewa" @(Model.Property.CoolingSystem == "dewa" ? "selected" : "")>DEWA</option>
+                                                <option value="district_cooling" @(Model.Property.CoolingSystem == "district_cooling" ? "selected" : "")>District Cooling</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Pet Policy -->
+                                    @*<div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label mb-10">Pet Policy</label>
+                                                <input type="text" name="Property.PetPolicy" class="form-control" value="@Model.Property.PetPolicy" placeholder="Enter pet policy details">
+                                            </div>
+                                        </div>*@
+
+                                    <!-- Tenancy Contract Status -->
+                                    @*<div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label mb-10">Tenancy Contract Status</label>
+                                                <select name="Property.TenancyContractStatus" class="form-control">
+                                                    <option value="">Select Status</option>
+                                                    <option value="vacant" @(Model.Property.TenancyContractStatus == "vacant" ? "selected" : "")>Vacant</option>
+                                                    <option value="rented" @(Model.Property.TenancyContractStatus == "rented" ? "selected" : "")>Rented</option>
+                                                </select>
+                                            </div>
+                                        </div>*@
+
+                                    <!-- Lease Expiry Date -->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Lease Expiry Date (if rented)</label>
+                                            @*<input type="date" name="Property.LeaseExpiryDate" class="form-control" value="@Model.Property.LeaseExpiryDate?.ToString("yyyy-MM-dd")">*@
+                                            <input type="date" name="Property.LeaseExpiryDate" class="form-control"
+                                                   value="@(Model.Property.LeaseExpiryDate?.ToString("yyyy-MM-dd") ?? "")" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12" style="text-align:right">
+                                    <button type="submit" class="btn btn-primary btnsave">Update</button>
+                                    <a href="#" class="btn btn-primary btnNext" data-next-tab="#tab9">Next</a>
+                                    <a class="btn btn-primary btnPrevious">Previous</a>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab9">
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Boost Listing?</label>
+                                            <select name="Property.BoostListing" class="form-control">
+                                                <option value="">Select Option</option>
+                                                <option value="yes" @(Model.Property.BoostListing == "yes" ? "selected" : "")>Yes</option>
+                                                <option value="no" @(Model.Property.BoostListing == "no" ? "selected" : "")>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Priority Placement -->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Priority Placement</label>
+                                            <select name="Property.PriorityPlacement" class="form-control">
+                                                <option value="">Select Placement</option>
+                                                <option value="top">Top</option>
+                                                <option value="featured" @(Model.Property.PriorityPlacement == "featured" ? "selected" : "")>Featured</option>
+                                                <option value="standard" @(Model.Property.PriorityPlacement == "standard" ? "selected" : "")>Standard</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10">Video URL</label>
+                                        <input type="text" name="Property.Videos"  value="@Model.Property.Videos" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10">Locality</label>
+                                        <input type="text" name="Property.Locality" value="@Model.Property.Locality" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10">Sub Locality</label>
+                                        <input type="text" name="Property.Sub_Locality" value="@Model.Property.Sub_Locality" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10">Listing Agent</label>
+                                        <input type="text" name="Property.Listing_Agent" value="@Model.Property.Listing_Agent" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10">Listing Agent Phone</label>
+                                        <input type="text" name="Property.Listing_Agent_Phone" value="@Model.Property.Listing_Agent_Phone" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10">Listing Agent Email</label>
+                                        <input type="text" name="Property.Listing_Agent_Email" value="@Model.Property.Listing_Agent_Email" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10">Portal</label>
+                                        @*<select name="Property.Portals" class="form-control" multiple size="2">
+                    <option value="Bayut">Bayut</option>
+                    <option value="Dubizzle">Dubizzle</option>
+
+                </select>*@
+                                        <input type="checkbox" name="Property.Portals" value="Bayut" />
+                                        <label>Bayut</label>
+                                        <input type="checkbox" name="Property.Portals" value="Dubizzle" />
+                                        <label>Dubizzle</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10">Detail Description</label>
+                                        <textarea name="Property.Description" rows="4" required class="form-control">@Model.Property.Description </textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10">Detail Description (AR)</label>
+                                        <textarea name="Property.Property_Description_AR" rows="4"  class="form-control"> @Model.Property.Property_Description_AR</textarea>
+                                    </div>
+                                </div>
+                                @*<div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10">Detail Description</label>
+                                        <textarea name="Property.Description" rows="4" required class="form-control"> @Model.Property.Description</textarea>
+                                    </div>
+                                </div>*@
+                                <div class="col-md-12" style="text-align:right">
+                                    <button type="submit" class="btn btn-primary btnsave">Update</button>
+                                    <a class="btn btn-primary btnPrevious">Previous</a>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            //$('.btnNext').click(function (e) {
+            //    e.preventDefault();
+
+            //    const currentTab = $(this).closest('.tab-pane');
+            //    const nextTabId = $(this).data('next-tab');
+
+            //    if (validateRequiredFields()) {
+            //        const $navLink = $('.nav-tabs a[href="' + nextTabId + '"]');
+            //        $navLink.parent().removeClass('d-none');
+
+            //        $('.tab-pane').removeClass('active');
+            //        $(nextTabId).addClass('active');
+
+            //        $('.nav-tabs li').removeClass('active');
+            //        $navLink.parent().addClass('active');
+            //    } else {
+            //        alert("Please fill in all required fields before proceeding.");
+            //    }
+            //});
+
+
+            $('.btnNext').click(function (e) {
+                e.preventDefault();
+
+                const $this = $(this);
+                const currentTab = $this.closest('.tab-pane');
+                const nextTabId = $this.data('next-tab');
+
+                const $requiredFields = currentTab.find('[required]');
+                let isValid = true;
+
+                $requiredFields.each(function () {
+                    if (!this.checkValidity()) {
+                        isValid = false;
+                        $(this).addClass('is-invalid');
+                    } else {
+                        $(this).removeClass('is-invalid');
+                    }
+                });
+
+                currentTab.find('.form-group').each(function () {
+                    const radios = $(this).find('input[type="radio"][required]');
+                    if (radios.length && !radios.is(':checked')) {
+                        isValid = false;
+                        $(this).addClass('is-invalid');
+                    } else {
+                        $(this).removeClass('is-invalid');
+                    }
+                });
+
+                if (isValid) {
+                    // Show the tab in the nav if it's hidden
+                    const $navLink = $('.nav-tabs a[href="' + nextTabId + '"]');
+                    $navLink.parent().removeClass('d-none');
+
+                    // Activate the tab
+                    $('.tab-pane').removeClass('active');
+                    $(nextTabId).addClass('active');
+
+                    $('.nav-tabs li').removeClass('active');
+                    $navLink.parent().addClass('active');
+                } else {
+                    alert("Please fill in all required fields before proceeding.");
+                }
+            });
+
+            // loadPropertyType();
+
+
+        });
+
+
+
+
+
+        $('.btnsave').click(function (e) {
+            if (!validateRequiredFields()) {
+                e.preventDefault();
+                alert("Please fill in all required fields before submitting.");
+            }
+        });
+
+        function validateRequiredFields() {
+            const $requiredFields = $('[required]');
+            let isValid = true;
+
+            $requiredFields.each(function () {
+                if (!this.checkValidity() || $(this).val().trim() === "") {
+                    isValid = false;
+                    $(this).addClass('is-invalid');
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+
+            $('.form-group').each(function () {
+                const radios = $(this).find('input[type="radio"][required]');
+                if (radios.length && !radios.is(':checked')) {
+                    isValid = false;
+                    $(this).addClass('is-invalid');
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+
+            return isValid;
+        }
+
+
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function loadPropertyType() {
+                let selectedValue = document.getElementById("propertyTypefirst").value;
+                let container = document.getElementById("propertyFieldsContainer");
+
+                // Hide all field sections first
+                document.getElementById("apartmentFields").classList.add("hidden");
+                document.getElementById("villaFields").classList.add("hidden");
+                document.getElementById("commercialFields").classList.add("hidden");
+
+                // Show the container only if a valid option is selected
+                if (selectedValue) {
+                    container.classList.remove("hidden");
+
+                    if (selectedValue === "Apartment") {
+                        document.getElementById("apartmentFields").classList.remove("hidden");
+                    } else if (selectedValue === "Villa") {
+                        document.getElementById("villaFields").classList.remove("hidden");
+                    } else if (selectedValue === "Commercial") {
+                        document.getElementById("commercialFields").classList.remove("hidden");
+                    }
+                } else {
+                    container.classList.add("hidden");
+                }
+            }
+
+            // ✅ Trigger when dropdown changes
+            document.getElementById("propertyTypefirst").addEventListener("change", loadPropertyType);
+
+            // ✅ Also run it immediately on page load
+            loadPropertyType();
+        });
+    </script>
+
+    <script>
+        function isAllowedKeyPress(event) {
+            // Get the character code of the pressed key
+            var charCode = event.charCode || event.which;
+
+            // Allow only numbers, letters, hyphens, and underscores
+            if (
+                (charCode >= 48 && charCode <= 57) || // Numbers 0-9
+                (charCode >= 65 && charCode <= 90) || // Uppercase letters A-Z
+                (charCode >= 97 && charCode <= 122) || // Lowercase letters a-z
+                charCode === 45 || // Hyphen (-)
+                charCode === 95    // Underscore (_)
+            ) {
+                return true;
+            }
+
+            // Prevent other characters
+            return false;
+        }
+    </script>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const buttons = document.querySelectorAll('.expand-btn');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent the default action of the button
+
+                    const content = this.previousElementSibling;
+                    content.classList.toggle('expanded');
+                    this.classList.toggle('expanded');
+                    this.textContent = this.classList.contains('expanded') ? 'Collapse' : 'Read more';
+                });
+            });
+        });
+    </script>
+
+    <script>
+        function handlePropertyCategoryChange() {
+            let selectedValue = document.getElementById("propertyCategory").value;
+            let container = document.getElementById("propertyCategoryContainer");
+
+            // Hide all field sections first
+            document.getElementById("offPlanFields").classList.add("hidden");
+            document.getElementById("secondryFields").classList.add("hidden");
+            document.getElementById("rentalFields").classList.add("hidden");
+
+            // Show the container only if a valid option is selected
+            if (selectedValue) {
+                container.classList.remove("hidden");
+
+                if (selectedValue === "Off-Plan") {
+                    document.getElementById("offPlanFields").classList.remove("hidden");
+                } else if (selectedValue === "For Sale") {
+                    document.getElementById("secondryFields").classList.remove("hidden");
+                } else if (selectedValue === "For Rent") {
+                    document.getElementById("rentalFields").classList.remove("hidden");
+                }
+            } else {
+                container.classList.add("hidden"); // Hide container if no option is selected
+            }
+        }
+
+        // Attach change listener
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("propertyCategory").addEventListener("change", handlePropertyCategoryChange);
+
+            // Trigger it on page load
+            handlePropertyCategoryChange();
+        });
+    </script>
+
+    <script>
+        function handleRentalCategoryChange() {
+            let selectedValue = document.getElementById("propertyCategory").value;
+            let container = document.getElementById("rentalContainer");
+
+            // Hide all field sections first
+            document.getElementById("nonRentalInvestement").classList.add("hidden");
+            document.getElementById("rentalInvestement").classList.add("hidden");
+
+            // Show the container only if a valid option is selected
+            if (selectedValue) {
+                container.classList.remove("hidden");
+
+                if (selectedValue === "For Rent") {
+                    document.getElementById("rentalInvestement").classList.remove("hidden");
+                } else {
+                    document.getElementById("nonRentalInvestement").classList.remove("hidden");
+                }
+            } else {
+                container.classList.add("hidden");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("propertyCategory").addEventListener("change", handleRentalCategoryChange);
+
+            // Trigger on page load for Update scenario
+            handleRentalCategoryChange();
+        });
+    </script>
+    <script>
+        document.getElementById("propertyTypefirst").addEventListener("change", function () {
+            let selectedValue = this.value;
+            alert(selectedValue)
+            document.getElementById("propertyType").value = selectedValue;
+            let container = document.getElementById("propertyFieldsContainer");
+
+            // Hide all field sections first
+            document.getElementById("apartmentFields").classList.add("hidden");
+            document.getElementById("villaFields").classList.add("hidden");
+            document.getElementById("commercialFields").classList.add("hidden");
+
+            // Show the container only if a valid option is selected
+            if (selectedValue) {
+                container.classList.remove("hidden");
+
+                if (selectedValue === "Apartment") {
+                    document.getElementById("apartmentFields").classList.remove("hidden");
+                } else if (selectedValue === "Villa") {
+                    document.getElementById("villaFields").classList.remove("hidden");
+                } else if (selectedValue === "Commercial") {
+                    document.getElementById("commercialFields").classList.remove("hidden");
+                }
+            } else {
+                container.classList.add("hidden"); // Hide container if no option is selected
+            }
+        });
+
+
+
+    </script>
+    <script>
+        document.getElementById("propertyType").addEventListener("change", function () {
+            let selectedValue = this.value;
+            alert(selectedValue)
+            let container = document.getElementById("propertyFieldsContainer");
+
+            // Hide all field sections first
+            document.getElementById("apartmentFields").classList.add("hidden");
+            document.getElementById("villaFields").classList.add("hidden");
+            document.getElementById("commercialFields").classList.add("hidden");
+
+            // Show the container only if a valid option is selected
+            if (selectedValue) {
+                container.classList.remove("hidden");
+
+                if (selectedValue === "Apartment") {
+                    document.getElementById("apartmentFields").classList.remove("hidden");
+                } else if (selectedValue === "Villa") {
+                    document.getElementById("villaFields").classList.remove("hidden");
+                } else if (selectedValue === "Commercial") {
+                    document.getElementById("commercialFields").classList.remove("hidden");
+                }
+            } else {
+                container.classList.add("hidden"); // Hide container if no option is selected
+            }
+        });
+    </script>
+
+
+
+    <script>
+        $('.btnNext').click(function () {
+            $('.nav-tabs > .active').next('li').find('a').trigger('click');
+        });
+
+        $('.btnPrevious').click(function (e) {
+            e.preventDefault();
+
+            const $current = $('.nav-tabs > .active');
+            const $prev = $current.prevAll('li').not('.d-none').first();
+
+            if ($prev.length) {
+                const $prevLink = $prev.find('a');
+                $('.tab-pane').removeClass('active');
+                $($prevLink.attr('href')).addClass('active');
+
+                $('.nav-tabs li').removeClass('active');
+                $prev.addClass('active');
+            }
+        });
+    </script>
+}

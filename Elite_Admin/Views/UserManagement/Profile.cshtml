@@ -1,0 +1,290 @@
+﻿@model Elite_Admin.Models.UserProfile
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Required Styles -->
+<link rel="stylesheet" href="~/Content/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css">
+<link rel="stylesheet" href="~/Content/assets/vendor/summernote/dist/summernote.css" />
+
+<style>
+    .card {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+        border-radius: 12px;
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+
+    .profile-image img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin: auto;
+        border: 4px solid #f1f1f1;
+    }
+
+    .profile-header {
+        text-align: center;
+        padding: 30px 0;
+        color: #fff;
+    }
+
+    .breadcrumb {
+        background-color: transparent;
+        padding-left: 0;
+    }
+
+    .btn-aqua {
+        background-color: #283E7A;
+        color: #fff;
+        margin-right: 5px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+        .btn-aqua:hover {
+            background-color: #1f3263; /* slightly darker */
+            color: #fff; /* golden/yellow contrast */
+        }
+
+    .form-group label {
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
+
+    .form-control {
+        border-radius: 6px;
+    }
+
+    .tab-pane {
+        padding: 20px;
+    }
+
+    h6 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        border-left: 4px solid #007bff;
+        padding-left: 10px;
+        font-weight: 600;
+    }
+
+    .block-header h2 {
+        margin-bottom: 0;
+        padding-left: 0;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <h2 class="text-left">
+                    @*<a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>*@
+                    User Management
+                </h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item">User Management</li>
+                    <li class="breadcrumb-item active">User Profile</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <!-- Profile Info -->
+        <div class="col-lg-4 col-md-12">
+            <div class="card profile-header">
+                <div class="profile-image mb-3">
+                    <img src="@ViewBag.baseapiurl/EliteFiles/ProfileImages/@ViewBag.userdata.Profileimage" alt="Profile pic" />
+                </div>
+                <h4 class="mb-0"><strong>@ViewBag.userdata.Name</strong></h4>
+                <span>@Model.Position</span>
+            </div>
+
+            <div class="card">
+                <div class="header px-4 pt-4">
+                    <h6>Info</h6>
+                </div>
+                <div class="body px-4 pb-4">
+                    <p><strong>Address:</strong><br>@Model.Address</p>
+                    <hr />
+                    <p><strong>Email:</strong><br>@Model.Email</p>
+                    <hr />
+                    <p><strong>Mobile No:</strong><br>@Model.MobileNo</p>
+                    <hr />
+                    <p><strong>WhatsApp:</strong><br>@Model.WhatsappNo</p>
+                    <hr />
+                    <p><strong>Birth Date:</strong><br>@((Model.Birthday?.ToString("MMM dd, yyyy")))</p>
+                    <hr />
+                    <strong>Social:</strong><br />
+                    <a href="@Model.LinkedIn" class="btn btn-aqua" target="_blank"><i class="fa fa-linkedin"></i></a>
+                    <a href="@Model.Facebook" class="btn btn-aqua" target="_blank"><i class="fa fa-facebook"></i></a>
+                    <a href="@Model.Twitter" class="btn btn-aqua" target="_blank"><i class="fa fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Tabs -->
+        <div class="col-lg-8 col-md-12">
+            <div class="card">
+                <div class="body px-4">
+                    <ul class="nav nav-tabs nav-tabs-new mb-3">
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Overview">Overview</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Settings">Settings</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <!-- Overview Tab -->
+                        <div class="tab-pane animated fadeIn active" id="Overview">
+                            <div class="card single_post">
+                                <div class="body">
+                                    <h5><strong>Bio</strong></h5>
+                                    <p>@Model.Bio</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Settings Tab -->
+                        <div class="tab-pane animated fadeIn" id="Settings">
+                            <!-- Bio & Personal Info -->
+                            <div class="card">
+                                <div class="body">
+                                    <h6>Basic Information</h6>
+                                    <form action="~/UserManagement/updateEmployeeDetailsProfile" id="form2" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="EmpId" value="@Model.Empid" />
+                                        <div class="form-group">
+                                            <label>Bio</label>
+                                            <textarea class="form-control" name="Bio" required>@Model.Bio</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Position</label>
+                                            <input type="text" class="form-control" name="Position" value="@Model.Position" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Date of Birth</label>
+                                            <input type="date" name="birthday" value="@(Model.Birthday?.ToString("yyyy-MM-dd"))" class="form-control" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Mobile No</label>
+                                            <input type="number" name="MobileNo" value="@Model.MobileNo" class="form-control" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>WhatsApp No</label>
+                                            <input type="number" name="WhatsappNo" value="@Model.WhatsappNo" class="form-control" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="email" name="Email" value="@Model.Email" class="form-control" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>LinkedIn</label>
+                                            <input type="text" name="LinkedIn" value="@Model.LinkedIn" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Facebook</label>
+                                            <input type="text" name="Facebook" value="@Model.Facebook" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Twitter</label>
+                                            <input type="text" name="Twitter" value="@Model.Twitter" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Address</label>
+                                            <textarea class="form-control" name="Address" required>@Model.Address</textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary mt-2">Update Info</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Account & Password -->
+                            <div class="card">
+                                <div class="body">
+                                    <h6>Account Data</h6>
+                                    <form action="~/UserManagement/updateUserDetailsProfile" id="form1" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="id" value="@ViewBag.userdata.id" />
+                                        <input type="hidden" name="Name" value="@ViewBag.userdata.Name" />
+                                        <input type="hidden" name="Role" value="@(ViewBag.userdata.Role.Replace("-",""))" />
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="email" class="form-control" value="@ViewBag.userdata.Email" readonly />
+                                        </div>
+
+                                        <h6>Change Password</h6>
+                                        <div class="form-group">
+                                            <label>New Password</label>
+                                            <input type="password" class="form-control" name="Password" required pattern="(?=.*\W).{8,}" placeholder="Enter Password"
+                                                   title="Password must be at least 8 characters and contain a special character." />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Confirm Password</label>
+                                            <input type="password" class="form-control" name="ConfirmPassword" required oninput="checkPasswordMatch()"
+                                                   pattern="(?=.*\W).{8,}" placeholder="Confirm Password" title="Passwords must match and contain a special character." />
+                                            <small id="passwordHelp" class="form-text text-danger" style="display:none;">
+                                                Passwords do not match.
+                                            </small>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Update Account</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div> <!-- End Settings -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script src="~/Content/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+    <script>
+        document.getElementById('form1').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var password = document.getElementById('Password').value;
+            var confirmPassword = document.getElementById('ConfirmPassword').value;
+            var passwordHelp = document.getElementById('passwordHelp');
+
+            if (password !== confirmPassword) {
+                passwordHelp.style.display = 'block';
+                document.getElementById('ConfirmPassword').setCustomValidity('Passwords do not match');
+                event.preventDefault(); // Prevent form submission
+            } else {
+                passwordHelp.style.display = 'none';
+                document.getElementById('ConfirmPassword').setCustomValidity(''); // Clear custom validation message
+                $("#overlay").fadeIn();
+                $('#form1').submit();
+            }
+
+
+
+        });
+        document.getElementById('form2').addEventListener('submit', function (event) {
+            event.preventDefault();
+            $("#overlay").fadeIn();
+            $('#form2').submit();
+        });
+    </script>
+    <script>
+        function checkPasswordMatch() {
+            var password = document.getElementById('Password').value;
+            var confirmPassword = document.getElementById('ConfirmPassword').value;
+            var passwordHelp = document.getElementById('passwordHelp');
+
+            if (password !== confirmPassword) {
+                passwordHelp.style.display = 'block';
+                confirmPassword.setCustomValidity('Passwords do not match');
+            } else {
+                passwordHelp.style.display = 'none';
+                confirmPassword.setCustomValidity(''); // Clears the custom validation message
+            }
+        }
+    </script>
+}
+

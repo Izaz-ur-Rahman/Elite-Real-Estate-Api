@@ -1,0 +1,27 @@
+﻿@model Elite_Admin.Models.CategoryViewModel
+@{
+    ViewBag.Title = "CreateCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Category</h2>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryName)
+        @Html.TextBoxFor(model => model.CategoryName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-success">Add Category</button>
+}
+
+
+@section Scripts{
+
+}

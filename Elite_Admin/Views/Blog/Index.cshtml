@@ -1,0 +1,181 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" href="~/Content/assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Content/assets/vendor/jquery-datatable/fixedeader/dataTables.fixedcolumns.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Content/assets/vendor/jquery-datatable/fixedeader/dataTables.fixedheader.bootstrap4.min.css">
+
+
+ <style>
+     .dataTables_wrapper .dataTables_filter input, .dataTables_wrapper .dataTables_length select {
+         height: 30px !important;
+     }
+ </style>
+
+
+<div class="row" style="margin-top: 28px;">
+    <div class="col-sm-12">
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">Blog List</h6>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            @*<div class="header">
+                    <h2>Blog List<small>List of All Blogs</small> </h2>
+                </div>*@
+
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <div class="table-wrap">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable dataTables_wrapper" id="tbldetails">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Tags</th>
+                                        <th>Slug</th>
+                                        @*<th>Meta Description</th>*@
+                                        <th>Entry Date</th>
+                                        <th>Status</th>
+                                        <th> </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.Title</td>
+                                            <td>@item.Tags</td>
+                                            <td>@item.Slug</td>
+                                            @*<td>@item.MetaDescription</td>*@
+                                            <td>@(item.EntryDate?.ToString("MMMM d, yyyy"))</td>
+                                            @if (Session["EmpRole"].ToString() == "Admin")
+                                            {
+                                                if (item.Status != "Published")
+                                                {
+                                                    <td><a href="javascript:void(0)" class="btn btn-danger" onclick="publish('@item.Id','Published')"><span class=" ">@item.Status</span></a></td>
+                                                }
+                                                else
+                                                {
+
+                                                    <td>
+                                                        <button class="btn btn-success" onclick="publish('@item.Id','UnPublished')" href="javascript:void(0)"><span class=" ">@item.Status</span></button>
+                                                    </td>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    <span class=" ">@item.Status</span>
+                                                </td>
+                                            }
+                                            <td>
+                                                <a href="~/Blog/Update_blog/@item.Id"><i class="fa fa-edit"></i></a>
+                                                <a href="~/Blog/@item.Slug"><i class="fa fa-eye"></i></a>
+                                                <a href="javascript:void(0)" onclick="ftnDelete('@item.Id')"><i class="fa fa-trash"></i></a>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Content/assets/bundles/datatablescripts.bundle.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/dataTables.buttons.min.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/buttons.bootstrap4.min.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/buttons.colVis.min.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/buttons.html5.min.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/buttons.print.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#tbldetails").dataTable();
+        });
+    </script>
+    <script>
+        var msg = '@TempData["msg"]';
+        if (msg != null) {
+            if (msg == "published") {
+
+                $(document).ready(function () {
+                    funtionalert('Success!', 'Blog published Successfully', 'success');
+
+                });
+
+
+            }
+            if (msg == "Updated") {
+                $(document).ready(function () {
+                    funtionalert('Success!', 'Blog Updated Successfully', 'success');
+
+                });
+            }
+            if (msg == "Added") {
+                $(document).ready(function () {
+                    funtionalert('Success!', 'Blog Added Successfully', 'success');
+
+                });
+            }
+            if (msg == "Deleted") {
+                $(document).ready(function () {
+                    funtionalert('Success!', 'Blog Deleted Successfully', 'error');
+
+                });
+            }
+        }
+    </script>
+    <script>
+
+            function ftnDelete(id) {
+                swal({
+                    title: "Are you sure?",
+                    text: "to Delete it",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#dc3545",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        window.location = "@Url.Action("DeleteBlog", "BlogList")?id=" + id;
+                    } else {
+                        swal.close();  // Close the popup when "No" is clicked
+                    }
+                });
+        }
+
+        function publish(id, type) {
+                swal({
+                    title: "Are you sure?",
+                    text: "to "+type+" it",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#dc3545",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        window.location = "@Url.Action("Publishblog", "BlogList")?id=" + id + "&&type=" + type;
+                    } else {
+                        swal.close();  // Close the popup when "No" is clicked
+                    }
+                });
+            }
+
+    </script>
+}
+

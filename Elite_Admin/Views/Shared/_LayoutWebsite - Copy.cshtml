@@ -1,0 +1,890 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="elemis">
+    <title>Elite_Admin</title>
+    <link rel="shortcut icon" href="~/Content/websiteassets/assets/img/favicon.png">
+    <link rel="stylesheet" href="~/Content/websiteassets/assets/css/plugins.css">
+    <link rel="stylesheet" href="~/Content/websiteassets/assets/css/style.css">
+    <style>
+        .popup-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+          
+        }
+
+        .popup {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            max-width: 50%;
+            width: 100%;
+            height: auto;
+        }
+
+        .popup-header {
+            background-color: #f8f9fa;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .popup-body {
+            padding: 15px;
+        }
+
+        .popup-footer {
+            padding: 10px 15px;
+            text-align: center;
+            border-top: 1px solid #ddd;
+        }
+
+        .close-popup {
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .product-image {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+    <style>
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+        .c-b {
+            color: black;
+            font-size: 14px;
+        }
+        .lead.fs-lg {
+            font-size: 16px !important;
+            line-height: 1.6;
+            /* text-align: left !important; */
+        }
+        @@media(max-width:550px){
+            .display-6 {
+                /* font-size: calc(1.265rem + 0.18vw); */
+                font-weight: 700;
+                line-height: 1.2;
+                font-size: 20px;
+                text-align:left !important;
+            }
+            .lead.fs-lg {
+                font-size: 14px !important;
+                line-height: 1.6;
+                /* text-align: left !important; */
+            }
+            .mt-sm-set{
+                margin-top:12px;
+            }
+            .btn-wid {
+                width: 135px;
+            }
+            .btn-font-size {
+                font-size: 12px;
+            }
+            .popup {
+                background-color: white;
+                border-radius: 8px;
+                overflow: hidden;
+                max-width: 95%;
+                width: 100%;
+                height: auto;
+            }
+        }
+        .text-primary {
+            color: #05a494 !important;
+        }
+        .btn-primary {
+            --bs-btn-bg: #ff7300;
+            --bs-btn-border-color: #ff7300;
+            --bs-btn-hover-bg: #ff7300;
+            --bs-btn-hover-border-color: #ff7300;
+            --bs-btn-active-bg: #ff7300;
+            --bs-btn-active-border-color: #ff7300;
+        }
+        .progress-wrap svg.progress-circle path {
+            stroke: #05a494;
+            stroke-width: 4;
+            box-sizing: border-box;
+            transition: all 0.2s linear;
+        }
+        .progress-wrap:after {
+            position: absolute;
+            font-family: Unicons;
+            content: "\e951";
+            text-align: center;
+            line-height: 2.3rem;
+            font-size: 1.2rem;
+            color: #05a494;
+            left: 0;
+            top: 0;
+            height: 2.3rem;
+            width: 2.3rem;
+            cursor: pointer;
+            display: block;
+            z-index: 1;
+            transition: all 0.2s linear;
+        }
+        .btn-circle img {
+            filter: hue-rotate(158deg);
+        }
+        .btn-soft-primary {
+            --bs-btn-color: white;
+            --bs-btn-hover-color: #ff7300;
+            --bs-btn-bg: #ff730042;
+            --bs-btn-border-color: #ffea9182;
+            --bs-btn-hover-bg: #fece0445;
+            --bs-btn-hover-border-color: #ffea915c;
+            --bs-btn-active-color: #ffea91;
+            --bs-btn-active-bg: #ffde55a3;
+            --bs-btn-active-border-color: #ffde559e;
+        }
+        .navbar.navbar-light.fixed .btn:not(.btn-expand):not(.btn-gradient) {
+            background: #05a494;
+            border-color: #05a494;
+            color: var(--bs-white);
+        }
+        .dropdown-item:focus, .dropdown-item:hover {
+            color: #05a494;
+            background-color: var(--bs-dropdown-link-hover-bg);
+        }
+        .nav-link:focus, .nav-link:hover {
+            color: #05a494;
+        }
+        .shape-r-t {
+            position: absolute;
+            left: 75%;
+            filter: hue-rotate(157deg) brightness(1.5);
+            top: 26%;
+        }
+        .bg-dot.logo-color {
+            background-image: radial-gradient(#ff73004a 2px, transparent 2.5px);
+        }
+        .navbar-dark .social.social-muted a:not(.btn-circle):not([class*="link-"]) i, .navbar-dark .social.social-muted a:not(.btn-circle):not([class*="link-"]):hover i, .social.social-white a i, .social.social-white a:hover i {
+            color: #fedc4a !important;
+        }
+        .offcanvas {
+            position: fixed;
+            bottom: 0;
+            z-index: var(--bs-offcanvas-zindex);
+            display: flex;
+            flex-direction: column;
+            max-width: 100%;
+            color: var(--bs-offcanvas-color);
+            visibility: hidden;
+            background-color: #05a494;
+            background-clip: padding-box;
+            outline: 0;
+            box-shadow: var(--bs-offcanvas-box-shadow);
+            transition: var(--bs-offcanvas-transition);
+        }
+        .bg-foter-hero {
+            background-color: #05a49429;
+        }
+        @@media (min-width: 992px) {
+            .navbar-expand-lg.navbar-light .dropdown:not(.dropdown-submenu) > .dropdown-toggle:after {
+                color: #05a494;
+            }
+}
+    </style>
+</head>
+
+<body>
+    <div id="overlay" style="display:none;">
+        <div class="spinner"></div>
+    </div>
+    <div class="content-wrapper">
+        <header class="wrapper bg-white-700">
+            <nav class="navbar navbar-expand-lg center-nav transparent navbar-light">
+                <div class="container flex-lg-row flex-nowrap align-items-center">
+                    <div class="navbar-brand w-100">
+                        <a href="index.html">
+                            <img src="~/Content/websiteassets/assets/img/raidtime-updatelogo.png" srcset="~/Content/websiteassets/assets/img/raidtime-updatelogo.png" alt="" style="width: 150px;height: auto;" />
+                        </a>
+                    </div>
+                    <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
+                        <div class="offcanvas-header d-lg-none">
+                            <h3 class="text-white fs-30 mb-0">Raidetime</h3>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body ms-lg-auto d-flex flex-column h-100">
+                            <ul class="navbar-nav">
+                                <li class="nav-item  dropdown-mega">
+                                    <a class="nav-link " href="~/home">Home</a>
+
+                                    <!--/.dropdown-menu -->
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Features</a>
+                                    <div class="dropdown-menu dropdown-lg">
+                                        <div class="dropdown-lg-content">
+                                            <div>
+                                                <!-- <h6 class="dropdown-header">Project Pages</h6> -->
+                                                <ul class="list-unstyled">
+                                                    <li><a class="dropdown-item" href="~/feature/attendance-tracking"> <img src="~/Content/websiteassets/assets/img/icons/Attendance-Tracker.png" alt=""><span class="nav-ml">Attendance Tracking</span></a></li>
+                                                    <li><a class="dropdown-item" href="~/feature/digital-timesheet"><img src="~/Content/websiteassets/assets/img/icons/Timesheet.png" alt=""><span class="nav-ml">Timesheet </span> </a></li>
+                                                    <li><a class="dropdown-item" href="~/feature/geo-fence-tracker"><img src="~/Content/websiteassets/assets/img/icons/Geo-Fence.png" alt=""><span class="nav-ml">Geo-Fencing </span> </a></li>
+ 
+                                                    <li><a class="dropdown-item" href="~/feature/employee-management"> <img src="~/Content/websiteassets/assets/img/icons/Self-Service-Portal.png" alt=""> <span class="nav-ml">Employee Management</span> </a></li>
+
+                                                </ul>
+                                            </div>
+                                            <!-- /.column -->
+                                            <div>
+                                                <!-- <h6 class="dropdown-header">Single Projects</h6> -->
+                                                <ul class="list-unstyled">
+                                                    <li><a class="dropdown-item" href="~/feature/employee-shift-scheduling"><img src="~/Content/websiteassets/assets/img/icons/Timesheet.png" alt=""> <span class="nav-ml">Shift Scheduling </span> </a></li>
+                                                    <li><a class="dropdown-item" href="~/feature/leave-management"><img src="~/Content/websiteassets/assets/img/icons/Leave-Management.png" alt=""> <span class="nav-ml">Leave Management</span> </a></li>
+                                                    @*<li><a class="dropdown-item" href="#"><img src="~/Content/websiteassets/assets/img/icons/Policies.png" alt=""> <span class="nav-ml">Policies Management </span> </a></li>*@
+                                                    <li><a class="dropdown-item" href="~/website/requestmanagement"><img src="~/Content/websiteassets/assets/img/icons/Request-management.png" alt=""> <span class="nav-ml">Request Management </span> </a></li>
+                                                    <li><a class="dropdown-item" href="~/feature/attendance-reports"><img src="~/Content/websiteassets/assets/img/icons/Reports.png" alt=""><span class="nav-ml">Reports</span> </a></li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.column -->
+                                        </div>
+                                        <!-- /auto-column -->
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Industries</a>
+                                    <div class="dropdown-menu dropdown-lg">
+                                        <div class="dropdown-lg-content">
+                                            <div>
+                                                <!-- <h6 class="dropdown-header">Project Pages</h6> -->
+                                                <ul class="list-unstyled">
+                                                                                                      <li><a class="dropdown-item" href="~/website/goverment"> <img src="~/Content/websiteassets/assets/img/industry/Governmnt-Icon.png" alt=""><span class="nav-ml">Governments </span></a></li>
+                                                    <li><a class="dropdown-item" href="~/website/education"><img src="~/Content/websiteassets/assets/img/industry/Education-Icon.png" alt=""><span class="nav-ml">Educations </span> </a></li>
+                                                    <li><a class="dropdown-item" href="~/website/hospitality"><img src="~/Content/websiteassets/assets/img/industry/Hospitality-Icon.png" alt=""><span class="nav-ml">Hospitality </span> </a></li>
+                                                    <!-- <li><a class="dropdown-item" href="./projects4.html"> <img src="assets/img/home/FACE-RECOGNITION-ICON.png" alt=""> <span class="nav-ml">Projects IV</span> </a></li> -->
+                                                </ul>
+                                            </div>
+                                            <!-- /.column -->
+                                            <div>
+                                                <!-- <h6 class="dropdown-header">Single Projects</h6> -->
+                                                <ul class="list-unstyled">
+                                                    <li><a class="dropdown-item" href="~/website/healthcare"><img src="~/Content/websiteassets/assets/img/industry/Helathcare-Icon.png" alt=""> <span class="nav-ml">Health Care </span> </a></li>
+                                                    <li><a class="dropdown-item" href="~/website/Banking"><img src="~/Content/websiteassets/assets/img/industry/Banking-Icon.png" alt=""> <span class="nav-ml">Banking</span> </a></li>
+                                                    <!-- <li><a class="dropdown-item" href="./single-project3.html"><img src="assets/img/home/FACE-RECOGNITION-ICON.png" alt=""> <span class="nav-ml">Single Project III</span> </a></li>
+                                                    <li><a class="dropdown-item" href="./single-project4.html"><img src="assets/img/home/FACE-RECOGNITION-ICON.png" alt=""><span class="nav-ml">Single Project IV</span> </a></li> -->
+                                                </ul>
+                                            </div>
+                                            <!-- /.column -->
+                                        </div>
+                                        <!-- /auto-column -->
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Resources</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="dropdown-item" href="~/blogs">Blogs </a></li>
+
+                                        <!-- <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Blog Posts</a>
+                                          <ul class="dropdown-menu">
+                                            <li class="nav-item"><a class="dropdown-item" href="./blog-post.html">Post without Sidebar</a></li>
+                                            <li class="nav-item"><a class="dropdown-item" href="./blog-post2.html">Post with Sidebar</a></li>
+                                            <li class="nav-item"><a class="dropdown-item" href="./blog-post3.html">Post with Left Sidebar</a></li>
+                                          </ul>
+                                        </li> -->
+                                    </ul>
+                                </li>
+                                <li class="nav-item  dropdown-mega">
+                                    <a class="nav-link " href="~/website/about">about us</a>
+                                    <!--/.dropdown-menu -->
+                                </li>
+
+                            </ul>
+                            <!-- /.navbar-nav -->
+                            <div class="offcanvas-footer d-lg-none">
+                                <div>
+                                    <a href="mailto:first.last@email.com" class="link-inverse">info@email.com</a>
+                                    <br /> 00 (123) 456 78 90 <br />
+                                    <nav class="nav social social-white mt-4">
+                                        <a href="#"><i class="uil uil-twitter"></i></a>
+                                        <a href="#"><i class="uil uil-facebook-f"></i></a>
+                                        <a href="#"><i class="uil uil-dribbble"></i></a>
+                                        <a href="#"><i class="uil uil-instagram"></i></a>
+                                        <a href="#"><i class="uil uil-youtube"></i></a>
+                                    </nav>
+                                    <!-- /.social -->
+                                </div>
+                            </div>
+                            <!-- /.offcanvas-footer -->
+                        </div>
+                        <!-- /.offcanvas-body -->
+                    </div>
+                    <!-- /.navbar-collapse -->
+                    <div class="navbar-other w-100 d-flex ms-auto">
+                        <ul class="navbar-nav flex-row align-items-center ms-auto">
+                            <li class="nav-item d-none d-md-block">
+                                <a href="#" class="btn btn-sm btn btn-green  rounded-pill">Sign up</a>
+                            </li>
+                            <li class="nav-item d-none d-md-block">
+                                <a href="~/contact-us" class="btn btn-sm btn btn-green  rounded-pill">Contact</a>
+                            </li>
+                            <li class="nav-item d-lg-none">
+                                <button class="hamburger offcanvas-nav-btn"><span></span></button>
+                            </li>
+                        </ul>
+                        <!-- /.navbar-nav -->
+                    </div>
+                    <!-- /.navbar-other -->
+                </div>
+                <!-- /.container -->
+            </nav>
+            <!-- /.navbar -->
+        </header>
+        @RenderBody()
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="bg-foter-hero text-inverse">
+        <div class="container pt-13 pt-md-7 pb-7">
+            <div class="row gy-6 gy-lg-0" style="justify-content:space-between;">
+                <div class="col-lg-3 col-md-4 col-sm-12" style="display:flex;align-items:center;">
+                    <div class="widget">
+                        <!-- <h3 class="h2 mb-3 ">Join the Community</h3> -->
+
+                        <a href="index.html">
+                            <img src="~/Content/websiteassets/assets/img/raidtime-updatelogo.png" srcset="~/Content/websiteassets/assets/img/raidtime-updatelogo.png" alt="" style="width: 150px;height: auto;" />
+                        </a>
+                        <p class="lead mb-5 mt-3 c-b" style="font-size: 14px;">raidetime elevates hybrid workforce time and attendance, scheduling, and accurate tracking of the duty hours.</p>
+                    </div>
+                    <!-- /.widget -->
+                </div>
+                <!-- /column -->
+                <div class=" col-lg-4 col-md-4 col-sm-12">
+                    <div class="row" style="align-items:self-end;">
+                        <div class="col-md-6">
+                            <div class="widget">
+                                <h4 class="widget-title  mb-3">Features</h4>
+                                <ul class="list-unstyled c-b mb-0">
+                                    <li><a class="c-b" href="#">Attendance Tracking</a></li>
+                                    <li><a class="c-b" href="#">Shift Scheduling</a></li>
+                                    <li><a class="c-b" href="#">Time Sheet</a></li>
+                                    <li><a class="c-b" href="#">Leave Management</a></li>
+
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="widget">
+                                <h4 class="widget-title  mb-3"></h4>
+                                <ul class="list-unstyled c-b mb-0">
+                                    <li><a class="c-b" href="#">Geo-Fencing</a></li>
+                                    <li><a class="c-b" href="#">Request Management</a></li>
+                                    <li><a class="c-b" href="#">Employee Management</a></li>
+                                    <li><a class="c-b" href="#">Reports </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="widget">
+                <h4 class="widget-title  mb-3">Need Help?</h4>
+                <ul class="list-unstyled c-b mb-0">
+                    <li><a class="c-b" href="#">Support</a></li>
+                    <li><a class="c-b" href="#">Get Started</a></li>
+                    <li><a class="c-b" href="#">Terms of Use</a></li>
+                    <li><a class="c-b" href="#">Privacy Policy</a></li>
+                </ul>
+            </div>*@
+                    <!-- /.widget -->
+                </div>
+                <!-- /column -->
+                <div class="col-md-4 col-lg-2 col-sm-12">
+                    <div class="widget">
+                        <h4 class="widget-title  mb-3">Industries</h4>
+                        <ul class="list-unstyled c-b mb-0">
+                            <li><a class="c-b" href="#">Government</a></li>
+                            <li><a class="c-b" href="#">Health Care</a></li>
+                            <li><a class="c-b" href="#">Education</a></li>
+                            <li><a class="c-b" href="#">Banking</a></li>
+                            <li><a class="c-b" href="#">Hospitality</a></li>
+                        </ul>
+                    </div>
+                    <!-- /.widget -->
+                </div>
+                <!-- /column -->
+                <div class="col-md-4 col-lg-2 col-sm-12">
+                    <div class="widget">
+                        <h4 class="widget-title  mb-3">Important Links</h4>
+                        <ul class="list-unstyled c-b mb-0">
+                            <li><a class="c-b" href="#">Blog</a></li>
+                            <li><a class="c-b" href="#">About us</a></li>
+                            <li><a class="c-b" href="#">Privacy Policy</a></li>
+                            <li><a class="c-b" href="#">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                    <!-- /.widget -->
+                </div>
+                <!-- /column -->
+                <!--<div class="col-md-4 col-lg-2 col-sm-12">
+                    <div class="widget c-b">
+                        <h4 class="widget-title  mb-3">Get in Touch</h4>
+                        <address class="c-b">
+                            Office No. 16 - Dubai
+                            United Arab Emirates
+                        </address>
+                        <a href="mailto:first.info@raideit.com" class="c-b" style="color: black !important;">info@raideit.com</a><br /> 00 (000) 000 00 00
+                    </div>-->
+                    <!-- /.widget -->
+                <!--</div>-->
+                <!-- /column -->
+            </div>
+            <!--/.row -->
+            <hr class="mt-5 mt-md-5 mb-7" />
+            <div class="d-md-flex align-items-center justify-content-between">
+                <p class="mb-2 mb-lg-0 c-b">© 2024 raidetime. All rights reserved.</p>
+                <nav class="nav social social-white text-md-end">
+                    @*<a href="#"><i class="uil uil-twitter"></i></a>
+                    <a href="#"><i class="uil uil-facebook-f"></i></a>
+                    <a href="#"><i class="uil uil-dribbble"></i></a>
+                    <a href="#"><i class="uil uil-instagram"></i></a>*@
+                    <a href="#"><i class="uil uil-youtube"></i></a>
+                </nav>
+                <!-- /.social -->
+            </div>
+            <!-- /div -->
+        </div>
+        <!-- /.container -->
+    </footer>
+    <div class="progress-wrap">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+    <!-- <a href="#" class="btn btn-primary rounded-pill mx-1 mb-2 mb-md-0" >Sign Up</a> -->
+
+    <!--<div class="modal fade" id="modal-signup" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content text-center">
+                <div class="modal-body">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h2 class="mb-3 text-center text-primary">Demo Request</h2>-->
+                    <!-- <p class="lead mb-6 text-start">Registration takes less than a minute.</p> -->
+                    <!--<form class="text-start mb-3">
+                        <div class="form-floating mb-4">
+                            <input type="text" class="form-control" placeholder="Name" id="loginName">
+                            <label for="loginName">Name</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="email" class="form-control" placeholder="Email" id="loginEmail">
+                            <label for="loginEmail">Email</label>
+                        </div>
+                        <div class="form-floating password-field mb-4">
+                            <input type="text" class="form-control" placeholder="Ph number" id="loginPassword">-->
+                            <!-- <span class=""><i class="uil uil-eye"></i></span> -->
+                            <!--<label for="loginPassword">Ph number</label>
+                        </div>
+                        <div class="form-floating password-field mb-4">
+                            <input type="text" class="form-control" placeholder="Organization Name" id="loginPasswordConfirm">-->
+                            <!-- <span class=""><i class="uil uil-eye"></i></span> -->
+                            <!--<label for="loginPasswordConfirm">Organization Name</label>
+                        </div>
+                        <div class="form-floating password-field mb-4">
+                            <input type="text" class="form-control" placeholder="Country" id="loginPasswordConfirm">-->
+                            <!-- <span class=""><i class="uil uil-eye"></i></span> -->
+                            <!--<label for="loginPasswordConfirm">Country</label>
+                        </div>
+                        <div class="form-floating password-field mb-4">
+                            <input type="text" class="form-control" placeholder="Country" id="loginPasswordConfirm">-->
+                            <!-- <span class=""><i class="uil uil-eye"></i></span> -->
+                            <!--<label for="loginPasswordConfirm">Number of Employee </label>
+                        </div>
+                        <a class="btn btn-primary rounded-pill btn-login w-100 mb-2">Submit</a>
+                    </form>-->
+                    <!-- /form -->
+                    <!--/.social -->
+                <!--</div>-->
+                <!--/.modal-content -->
+            <!--</div>-->
+            <!--/.modal-body -->
+        <!--</div>-->
+        <!--/.modal-dialog -->
+    <!--</div>-->
+
+    <div class="modal fade" id="modal-trial" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content text-center">
+                <div class="modal-body">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h2 class="mb-3 text-center text-primary" id="textpop">Free Trial</h2>
+                    <!-- <p class="lead mb-6 text-start">Registration takes less than a minute.</p> -->
+                    <form class="text-start mb-3" action="~/home/AddWebsiteAction" method="post">
+                        <div class="form-floating mb-4">
+                            <input type="text" class="form-control" name="Name" placeholder="Name" id="loginName">
+                            <label for="loginName">Name</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="email" name="Email" class="form-control" placeholder="Email" id="loginEmail">
+                            <label for="loginEmail">Email</label>
+                        </div>
+                        <div class="form-floating password-field mb-4">
+                            <input type="text" class="form-control" name="PhoneNo" placeholder="Ph number">
+                            <!-- <span class=""><i class="uil uil-eye"></i></span> -->
+                            <label for="loginPassword">Ph number</label>
+                        </div>
+                        <div class="form-floating password-field mb-4">
+                            <input type="text" class="form-control" name="OrganizationName" placeholder="Organization Name">
+                            <!-- <span class=""><i class="uil uil-eye"></i></span> -->
+                            <label for="loginPasswordConfirm">Organization Name</label>
+                        </div>
+                        <div class="form-floating password-field mb-4">
+                            @*<input type="text" class="form-control" placeholder="Country" id="loginPasswordConfirm">*@
+                            <select name="CountryId" id="countryDropdown" class="form-control"></select>
+                            <!-- <span class=""><i class="uil uil-eye"></i></span> -->
+                            <label for="loginPasswordConfirm">Country</label>
+                        </div>
+                        <div class="form-floating password-field mb-4">
+                            <input type="text" class="form-control" name="NoofEmployees" placeholder="Country" id="loginPasswordConfirm">
+                            <!-- <span class=""><i class="uil uil-eye"></i></span> -->
+                            <label for="loginPasswordConfirm">Number of Employee </label>
+                        </div>
+                        <input type="hidden" name="PageName" id="pagename" />
+                        <input type="hidden" name="pagelink" id="pagelink" />
+                        <input type="hidden" name="ApplyFor" id="ApplyFor" />
+                        
+                        <button type="submit" class="btn btn-primary rounded-pill btn-login w-100 mb-2">Submit</button>
+                    </form>
+                    <!-- /form -->
+                    <!--/.social -->
+                </div>
+                <!--/.modal-content -->
+            </div>
+            <!--/.modal-body -->
+        </div>
+        <!--/.modal-dialog -->
+    </div>
+
+    <div class="popup-container" id="popup-container" style="display: none; justify-content: center; align-items: center;  ">
+        <div class="popup">
+            <div class="popup-body text-center">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="~/Content/websiteassets/assets/img/home/1.png" id="product-image" alt="Product Image" class="product-image mb-3" style="height: 400px;">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="popup-header">
+                            <img class="mb-0" src="~/Content/websiteassets/assets/img/raidtime-updatelogo.png" alt="" style="margin: auto;width: 150px;height: auto;">
+                            <span class="close-popup" onclick="closetrigger()">&times;</span>
+                        </div>
+                        <h5 class="mb-2 mt-3"> </h5>
+                        <p class="mb-4"> </p>
+                        <form id="subscribe-form"  >
+                            <div class="mb-3">
+                                <input type="hidden" id="closepop" name="popId" />
+                                <input type="text" class="form-control" name="Name" id="name" placeholder="Enter your name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" name="Email" id="email" placeholder="Enter your email" required>
+                            </div>
+                            <button type="submit" id="popbtn" class="btn btn-warning w-100">Continue</button>
+                        </form>
+                        <div id="">
+                            <a  href="javacript:void(0)" id="btnpoplink" target="_blank"  class="btn btn-warning w-100" onclick="closetrigger()" style="display:none"></a>
+
+                        </div>
+                        <div class="popup-footer mt-5">
+                            @*<a href="#" class="close-popup" style="font-size: 13px; color: grey;">No, I want to pay full price.</a>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.modal -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/Content/websiteassets/assets/js/plugins.js"></script>
+    <script src="~/Content/websiteassets/assets/js/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(function () {
+            var msg = '@TempData["msgWebAction"]';
+            if (msg != null && msg != undefined) {
+                if (msg == "Added") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Your submission has been received.',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                         
+                    });
+                }
+            }
+        });
+    </script>
+    <script>
+        $('a[data-bs-target="#modal-signup"]').on('click', function () {
+            // Change its data-bs-target to point to the trial modal
+           // $("#modal-signup").modal('hide');
+            $("#modal-trial").modal('show');
+           // $(this).attr('data-bs-target', '#modal-trial');
+            $("#textpop").text("Demo Request");
+            $("#ApplyFor").val("Demo");
+
+        });
+        $('a[data-bs-target="#modal-trial"]').on('click', function () {
+            // Change its data-bs-target to point to the trial modal
+            $(this).attr('data-bs-target', '#modal-trial');
+            $("#textpop").text("Free Trail");
+            $("#ApplyFor").val("Trail");
+            
+        });
+        $(document).ready(function () {
+
+
+            $("#pagelink").val(window.location.href);
+
+        var currentUrl = window.location.pathname;; // Strip query string and hash fragment
+
+            $('.navbar-nav a').each(function () {
+                var linkHref = $(this).attr('href');
+
+                 
+
+                // Make sure the href is not undefined
+                if (linkHref && linkHref.includes(currentUrl)) {
+                    var linkText = $(this).text();
+
+                    
+                    // Set the link text to the element with id 'pagename'
+                    $("#pagename").val(linkText);
+                }
+            });
+        });
+
+    </script>
+    <script>
+        //$("#demobtn").click(function () {
+        //    $("#textpop").text("Demo Request");
+        //});
+        //$("#trailbtn").click(function () {
+        //    $("#textpop").text("Free Trail");
+
+        //});
+        $(function () {
+            $.ajax({
+                    url: '@Url.Action("CountryList", "Home")',
+                    type: 'GET',
+                    data: {  },
+                success: function (data) {
+                    console.log(data)
+                        // Clear the existing options in country dropdown
+                        $('#countryDropdown').empty();
+
+                        // Append a default option
+                        $('#countryDropdown').append('<option value="">Select a Country</option>');
+
+                        // Append the received countries to the country dropdown
+                        $.each(data, function (index, item) {
+                            $('#countryDropdown').append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                        });
+                    } 
+                });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+
+            $('#popup-container').fadeOut();
+            showpopwidjet();
+            //setTimeout(function () {
+            //    $('#popup-container').fadeIn();
+            //}, 5000); // Show after 5 seconds
+
+            $('.close-popup').click(function () {
+                $('#popup-container').fadeOut();
+            });
+
+            $('#subscribe-form').submit(function (e) {
+                e.preventDefault();
+                // Handle form submission here
+            });
+
+        });
+    </script>
+    <script>
+        function showpopwidjet() {
+            $.ajax({
+                url: "@Url.Action("PopNotification", "Home")",  // The URL for the request
+                type: 'POST',                        // Request method (POST, GET, etc.)
+                dataType: 'json',                    // Data type expected from the server
+                contentType: 'application/json; charset=utf-8', // Content type being sent to the server
+                data: JSON.stringify({
+                    links: window.location.href
+                }),
+                success: function (response) {
+
+                    // Update the image
+                    $('#product-image').attr('src', '/raidetimefiles/Popupfiles/' + response.Image); // Change the image source to the new one
+                    $('#product-image').attr('alt', response.Image); // Optionally change the alt text
+
+                    // Update the title
+                    $('h5.mb-2.mt-3').text(response.Headlines); // Update the title text
+
+                    // Update the paragraph
+                    $('p.mb-4').text(response.Sentence);
+                    $("#closepop").val(response.Id)// Update the paragraph text
+                    triggertype(response.TriggerType);
+                    // Handle the success scenario
+                    console.log('Success:', response);
+                    if (response.showlinkbutton == true) {
+                        $("#btnpoplink").show();
+                        $("#btnpoplink").text(response.ButtonText);
+                        $("#btnpoplink").attr("href", response.ButtonLink);
+                        $("#subscribe-form").hide();
+                       
+                    }  
+                    // You can update the UI or handle the response data here
+                },
+                error: function (xhr, status, error) {
+                    // Handle errors
+                    console.log('Error:', error);
+                    // You can display an error message or handle the failure case here
+                }
+            });
+
+        }
+            // else if (type == "On Exit Intent" && (persession == "" || persession == "always") && persession != idpop) {
+        
+        function triggertype(type) {
+            var persession = '@Session["displaysession"]';
+            var idpop = $("#closepop").val();
+
+            if (type == "On Page Load" && persession != idpop) {
+                $('#popup-container').css('display', 'flex');
+                $('#popup-container').fadeIn();
+            } else if (type == "On Scroll"  && persession != idpop) {
+                // Show the modal when user scrolls down 50% of the page
+                $(window).on('scroll', function () {
+                    var scrollPosition = $(window).scrollTop();
+                    var windowHeight = $(window).height();
+                    var documentHeight = $(document).height();
+
+                    if (scrollPosition > (documentHeight - windowHeight) / 2) {
+                        $('#popup-container').css('display', 'flex')
+                        $('#popup-container').fadeIn();
+                        $(window).off('scroll'); // Unbind scroll event after showing modal
+                    }
+                });
+            } else if (type == "On Exit Intent" && (persession == "" || persession == "always") && persession != idpop) {
+                // Show the modal when user moves cursor towards the top of the page
+                $(document).on('mouseleave', function (e) {
+                    if (e.clientY < 10) {
+                        e.preventDefault();
+                        $('#popup-container').css('display', 'flex')
+                        $('#popup-container').fadeIn();
+                        $(document).off('mouseleave'); // Unbind mouseleave event after showing modal
+                    }
+                });
+            }
+        }
+       function closetrigger() {
+    var popid = $("#closepop").val();  // Get the popup ID
+
+    $.ajax({
+        url: "@Url.Action("poppersession", "Home")",  // The URL for the request
+        type: 'POST',                                 // Request method (POST, GET, etc.)
+        dataType: 'json',                             // Data type expected from the server
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8', // Content type being sent to the server
+        data: {
+            id: popid  // Sending the ID to the server
+        },
+        success: function (response) {
+            // Optionally handle success
+            console.log('Session updated successfully');
+        }
+
+    });
+}
+    </script>
+    <script>
+        $("form#subscribe-form").submit(function (event) {
+
+            var formData = new FormData($(this)[0]);
+
+            event.preventDefault();
+            $('#overlay').fadeIn();
+            $.ajax({
+                url: "@Url.Action("AddPopUpUserDataAsync", "Home")",
+                type: 'POST',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+
+                beforeSend: function () {
+                    $("#overlay").fadeIn(300);
+                    $('#popbtn').prop('disabled', true);
+
+                },
+                complete: function () {
+                    $("#overlay").fadeOut(300);
+                    $('#popbtn').prop('disabled', false);
+
+                },
+                success: function (returndata) {
+                    
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Your submission has been received.',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $('#popup-container').fadeOut(); // Hide the modal
+                        }
+                    });
+                    // alert(returndata.SaveFile);
+                    // window.location.href = '/Account/Login';
+                }
+            });
+
+        });
+
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

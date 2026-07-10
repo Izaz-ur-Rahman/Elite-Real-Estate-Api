@@ -1,0 +1,389 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+   
+    .card-box {
+  background: #fff;
+  border-radius: 15px;
+  padding: 25px 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 222px;
+  margin-bottom:20px;
+}
+
+.card-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.icon-wrapper {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.counter {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 5px;
+ 
+}
+
+.label {
+  font-size: 14px;
+  color: #888;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.sub-stats {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.sub-stats div strong {
+  display: block;
+  font-size: 16px;
+  color: #333;
+}
+
+.sub-stats div span {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Responsive fix */
+@@media (max-width: 768px) {
+  .card-box {
+    padding: 20px 15px;
+    margin:20px;
+  }
+  .icon-wrapper {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+  .counter {
+    font-size: 26px;
+  }
+}
+  
+
+footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 1.5rem 2rem;
+        background-color: #000;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+
+
+    .footer-copy {
+        color: #9ca3af;
+        font-size: 0.9rem;
+        text-align: right;
+    }
+
+    @@media (max-width: 600px) {
+        footer {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+            text-align: left;
+        }
+
+        .footer-copy {
+            text-align: left;
+        }
+    }
+
+    @@media (max-width: 1400px) {
+        .page-wrapper {
+            margin-left: 0px !important;
+        }
+    }
+
+</style>
+<!-- Main Content -->
+
+<div class="">
+    @if (Session["EmpRole"].ToString() == "Admin" || Session["EmpRole"].ToString() == "ContentManager")
+    {
+        <div class="container-fluid pt-25">
+            <div class="row g-4">
+                <!-- Card 1 -->
+                <div class="col-lg-3 col-md-6 h-100">
+                    <div class="card-box">
+                        <div class="icon-wrapper bg-primary text-white">
+                            <i class="icon-home"></i>
+                        </div>
+                        <h4 class="counter counter-anim">@ViewBag.Counts.PropertiesCount</h4>
+                        <p class="label">Total Properties</p>
+                        <div class="sub-stats">
+                            <div><strong class="counter-anim">@ViewBag.Counts.OffPlanCount</strong><span>Off-plan</span></div>
+                            <div><strong class="counter-anim">@ViewBag.Counts.SecondryCount</strong><span>Secondary</span></div>
+                            <div><strong class="counter-anim">@ViewBag.Counts.RentalCount</strong><span>Rental</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col-lg-3 col-md-6 h-100">
+                    <div class="card-box">
+                        <div class="icon-wrapper bg-primary text-white">
+                            <i class="icon-graph"></i>
+                        </div>
+                        <h4 class="counter counter-anim">@ViewBag.Counts.QueriesCount</h4>
+                        <p class="label">Total Inquiries</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-lg-3 col-md-6 h-100">
+                    <div class="card-box">
+                        <div class="icon-wrapper bg-primary text-white">
+                            <i class="icon-layers"></i>
+                        </div>
+                        <h4 class="counter counter-anim">@ViewBag.Counts.ContactCount</h4>
+                        <p class="label">Contact Form</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="col-lg-3 col-md-6 h-100">
+                    <div class="card-box">
+                        <div class="icon-wrapper bg-primary text-white">
+                            <i class="icon-flag"></i>
+                        </div>
+                        <h4 class="counter counter-anim">200</h4>
+                        <p class="label">Total Visitors</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+else
+      {
+        <div class="mt-45  ml-45 mb-10">
+            <h4>Welcome @Session["Name"]</h4>
+        </div>
+      }
+
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="footer-copy">
+            Copyright © <span id="current-year"></span> Elite RealEstate, Inc. All rights reserved.
+        </div>
+
+        <script>
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        </script>
+    </footer>
+    <!-- /Footer -->
+
+</div>
+<!-- /Main Content -->
+
+@section Scripts{
+    <script src="~/Content/assets/js/index.js"></script>
+    <script>
+          // AJAX call to fetch ApplyUserModal data
+        $.ajax({
+            url: "@Url.Action("getMonthlyBlogCount", "Home")", // Update with your API endpoint
+            method: 'GET',
+
+            success: function (data) {
+                const monthlyBlogCount = data;
+
+                // Extracting months and blog counts from the data
+                const labels = monthlyBlogCount.map(item => item.Month);
+                const series = [monthlyBlogCount.map(item => item.BlogCount)];
+
+                // Setting up the data for the chart
+                var dataStackedBar = {
+                    labels: labels,  // Months (e.g., ['Jan', 'Feb', 'Mar'])
+                    series: series   // Blog counts (e.g., [10, 20, 15])
+                };
+
+                // Get the max value for y-axis scaling
+                const maxBlogCount = Math.max(...monthlyBlogCount.map(item => item.BlogCount));
+
+                new Chartist.Bar('#Salary_Statistics', dataStackedBar, {
+                    height: "230px",
+                    stackBars: true,
+                    axisX: {
+                        showGrid: false
+                    },
+                    axisY: {
+                        onlyInteger: true,              // Ensure only integer values are shown
+                        low: 0,                         // Start the y-axis at 0
+                        high: maxBlogCount + 5,          // Set the y-axis max value slightly above the highest value
+                        scaleMinSpace: 30,              // Ensures enough space between y-axis labels to avoid overlap
+                        labelInterpolationFnc: function (value) {
+                            return value;               // Show y-axis labels as is, no rounding or manipulation
+                        }
+                    },
+                    plugins: [
+                        Chartist.plugins.tooltip({
+                            appendToBody: true
+                        }),
+                        Chartist.plugins.legend({
+                            legendNames: ['Count']
+                        })
+                    ]
+                }).on('draw', function (data) {
+                    if (data.type === 'bar') {
+                        data.element.attr({
+                            style: 'stroke-width: 30px'
+                        });
+                    }
+                });
+            }
+
+
+        });
+
+    </script>
+    <script>
+
+
+        // multiple chart
+        var dataMultiple = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            series: [{
+                name: 'Sales',
+                data: [825, 380, 350, 621, 410, 450, 570, 400, 555, 225, 750, 900],
+            }, {
+                name: 'Marketing',
+                data: [215, 350, 25, 380, 400, 249, 480, 258, 555, 465, 700, 496],
+            }, {
+                name: 'Design',
+                data: [59, 350, 360, 326, 208, 450, 258, 359, 189, 528, 700, 258],
+            }, {
+                name: 'Support',
+                data: [349, 350, 360, 250, 409, 237, 357, 523, 182, 520, 125, 800],
+            }, {
+                name: 'Develpment',
+                data: [149, 350, 256, 380, 400, 358, 159, 523, 147, 349, 700, 89],
+            }]
+        };
+        options = {
+            lineSmooth: true,
+            height: "305px",
+            low: 0,
+            high: 'auto',
+            series: {
+                'Design': {
+                    showPoint: true,
+                },
+            },
+
+            axisY: {
+                labelInterpolationFnc: function (value) {
+                    return (value / 100) + 'k';
+                }
+            },
+
+            options: {
+                responsive: true,
+                legend: true
+            },
+
+            plugins: [
+                Chartist.plugins.legend({
+                    legendNames: ['Sales', 'Marketing', 'Design', 'Support', 'Develpment']
+                })
+            ]
+        };
+        new Chartist.Line('#total_Salary', dataMultiple, options);
+
+    </script>
+    @*<script>
+    // AJAX call to fetch ApplyUserModal data
+    $.ajax({
+        url: "@Url.Action("GetApplyUserModal", "Home")", // Update with your API endpoint
+        method: 'GET',
+
+        success: function (data) {
+            const applyUserModal = data;
+
+            // Data for the pie chart
+            const pieData = [
+                applyUserModal.ContactusCount,
+                applyUserModal.PopUserCount,
+                applyUserModal.Demo,
+                applyUserModal.Trial,
+               // applyUserModal.Manual
+            ];
+
+            // Labels for each slice
+            const pieLabels = [
+                'Contact Us',
+                'Pop User',
+                'Demo',
+                'Trial',
+               // 'Manual'
+            ];
+
+            // Display the pie chart with a larger size
+            $('#sparkline-pie').sparkline(pieData, {
+                type: 'pie',
+                width: '100%', // Set width to 100%
+                height: '150', // Set height for better visibility
+                sliceColors: ['#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff'],
+                tooltipValueLookups: {
+                    'label': pieLabels // Lookup for labels
+                },
+                tooltipFormat: '{{label}}: {{value}} ({{percent.1}}%)', // Show label, value, and percentage
+
+            });
+
+            // Display the stats
+            $('#contactus-count').text(`${applyUserModal.ContactusCount}`);
+            $('#popuser-count').text(`${applyUserModal.PopUserCount}`);
+            $('#demo-count').text(`${applyUserModal.Demo}`);
+            $('#trial-count').text(`${applyUserModal.Trial}`);
+            //$('#manual-count').text(`${applyUserModal.Manual}`);
+
+            // Creating an example line data (for demonstration)
+            const lineData = [
+                applyUserModal.ContactusCount,
+                applyUserModal.PopUserCount,
+                applyUserModal.Demo,
+                applyUserModal.Trial,
+                applyUserModal.Manual,
+                0, 0, 0, 0, 0 // Fill with zeros or any other logic for additional intervals
+            ].join(',');
+
+            // Display the line chart
+            $('#sparkline-compositeline').sparkline(lineData.split(','), {
+                type: 'line',
+                width: '100%',
+                height: '40',
+                lineColor: '#00c292',
+                fillColor: '#e0f7fa'
+            });
+        },
+        error: function (error) {
+            console.error("Error fetching data:", error);
+        }
+    });
+    </script>*@
+}

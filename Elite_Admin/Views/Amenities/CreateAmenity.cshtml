@@ -1,0 +1,32 @@
+﻿@model Elite_Admin.Models.Amenity
+@{
+    ViewBag.Title = "CreateAmenity";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Amenity</h2>
+
+@using (Html.BeginForm("CreateAmenity", "Amenities", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.CategoryId)
+        @Html.DropDownListFor(m => m.CategoryId, Model.Categories, "Select Category", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.AmenityName)
+        @Html.TextBoxFor(m => m.AmenityName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Upload Icon</label>
+        <input type="file" name="iconFile" class="form-control" accept=".png,.jpg,.jpeg,.svg" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+
+@section Scripts{
+
+}

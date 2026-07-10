@@ -1,0 +1,140 @@
+﻿@model List<Elite_Admin.Models.PropertyListing>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Content/assets/vendor/jquery-datatable/fixedeader/dataTables.fixedcolumns.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Content/assets/vendor/jquery-datatable/fixedeader/dataTables.fixedheader.bootstrap4.min.css">
+
+
+<style>
+    .panel-heading {
+        padding: 10px 0px;
+    }
+
+    .dataTables_wrapper .dataTables_filter input, .dataTables_wrapper .dataTables_length select {
+        height: 32px;
+    }
+</style>
+
+<div class="row" style="margin-top: 28px;">
+    <div class="col-sm-12">
+        <div class="panel panel-default card-view">
+            <div class="">
+                @*<div class="header">
+                        <h2>Ittcom Contact us<small>List of Actions</small> </h2>
+                    </div>*@
+
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h2 class="panel-title txt-dark">Properties List</h2>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+                <div class="row clearfix">
+                    <div class="col-lg-12">
+                        <div class="panel-wrapper collapse in">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped table-hover dataTable js-exportable" id="tbldetails">
+                                        <thead>
+                                            <tr>
+                                                <th>Property Title</th>
+                                                <th>Property Type</th>
+                                                <th>Listing Type</th>
+                                                <th>Currency</th>
+                                                <th style="text-align:center">Action</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @if (Model != null)
+                                            {
+                                            foreach (var property in Model)
+                                            {
+                                                <tr>
+                                                    <td>@property.Title</td>
+                                                    <td>@property.PropertyType</td>
+                                                    <td>@property.ListingType</td>
+                                                    <td>@property.PriceCurrency</td>
+                                                    <td style="text-align:center">
+                                                        <a href="~/Properties/@property.PropertySlug"><i class="fa fa-eye"></i></a>
+                                                        <a href="~/Properties/UpdateProperty/@property.Id" style="padding-left:10px"><i class="fa fa-edit"></i></a>
+                                                        <a href="javascript:void(0)" onclick="ftnDelete('@property.Id')" style="padding-left:10px"><i class="fa fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }}
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Content/assets/bundles/datatablescripts.bundle.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/dataTables.buttons.min.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/buttons.bootstrap4.min.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/buttons.colVis.min.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/buttons.html5.min.js"></script>
+    <script src="~/Content/assets/vendor/jquery-datatable/buttons/buttons.print.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#tbldetails").dataTable();
+        });
+    </script>
+
+    <script>
+
+            function ftnDelete(id) {
+                swal({
+                    title: "Are you sure?",
+                    text: "to Delete it",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#dc3545",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                       window.location = '/Properties/DeleteProperty/' + id;
+                    } else {
+                        swal.close();  // Close the popup when "No" is clicked
+                    }
+                });
+        }
+
+        function publish(id, type) {
+                swal({
+                    title: "Are you sure?",
+                    text: "to "+type+" it",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#dc3545",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        window.location = "@Url.Action("Publishblog", "BlogList")?id=" + id + "&&type=" + type;
+                    } else {
+                        swal.close();  // Close the popup when "No" is clicked
+                    }
+                });
+            }
+
+    </script>
+
+}

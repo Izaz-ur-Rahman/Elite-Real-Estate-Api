@@ -1,0 +1,156 @@
+﻿
+@{
+    ViewBag.Title = "AddUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .panel-heading {
+        padding: 10px 0px;
+    }
+</style>
+
+<div class="row" style="margin-top: 28px;">
+    <div class="col-sm-12">
+        <div class="panel panel-default card-view">
+            <div class="col-lg-5 col-md-8 col-sm-12">
+                @*<h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a> User Management</h2>*@
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h6 class="panel-title txt-dark">User Managment</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                    <li class="breadcrumb-item">User Management</li>
+                    <li class="breadcrumb-item active">Add User</li>
+                </ul>
+            </div>
+
+
+
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="panel-wrapper collapse in">
+                        <div class="panel-body">
+                            <form action="~/UserManagement/AddUserDetailsAsync" id="form1" method="post" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label> Name <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" required name="Name" id="Name" placeholder="Enter Name" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Email <span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control" id="Email" required name="Email" placeholder="Enter Email" />
+                                            <p>The email is also considered a username.</p>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-sm-6">
+
+                                        <div class="form-group ">
+                                            <label>Profile Picture <span class="text-danger">*</span></label>
+
+                                            <input type="file" class="form-control" required id="Profileimage" name="Profileimage" aria-describedby="fileHelp">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+
+                                        <div class="form-group ">
+                                            <label>Role<span class="text-danger">*</span></label>
+
+                                            <select class="form-control" name="Role" id="Role">
+                                                <option value="Admin">Admin</option>
+                                                <option value="Agent">Agent</option>
+                                                <option value="ContentManager">Content Manager</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Password <span class="text-danger">*</span></label>
+                                            <input type="password" class="form-control" id="Password" name="Password" required
+                                                   placeholder="Enter Password" pattern="(?=.*\W).{8,}"
+                                                   title="Password must be at least 8 characters long and include at least 1 special character." />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Confirm Password <span class="text-danger">*</span></label>
+                                            <input type="password" class="form-control" id="ConfirmPassword" name="ConfirmPassword" required
+                                                   placeholder="Confirm Password" pattern="(?=.*\W).{8,}"
+                                                   title="Password must be at least 8 characters long and include at least 1 special character."
+                                                   oninput="checkPasswordMatch()" />
+                                            <small id="passwordHelp" class="form-text text-danger" style="display:none;">
+                                                Passwords do not match.
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-block btn-primary   m-t-20">Post</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+
+
+    <script src="~/Content/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+
+
+
+    <script>
+        document.getElementById('form1').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var password = document.getElementById('Password').value;
+            var confirmPassword = document.getElementById('ConfirmPassword').value;
+            var passwordHelp = document.getElementById('passwordHelp');
+
+            if (password !== confirmPassword) {
+                passwordHelp.style.display = 'block';
+                document.getElementById('ConfirmPassword').setCustomValidity('Passwords do not match');
+                event.preventDefault(); // Prevent form submission
+            } else {
+                passwordHelp.style.display = 'none';
+                document.getElementById('ConfirmPassword').setCustomValidity(''); // Clear custom validation message
+                $("#overlay").fadeIn();
+                $('#form1').submit();
+            }
+
+
+
+        });
+    </script>
+    <script>
+        function checkPasswordMatch() {
+            var password = document.getElementById('Password').value;
+            var confirmPassword = document.getElementById('ConfirmPassword').value;
+            var passwordHelp = document.getElementById('passwordHelp');
+
+            if (password !== confirmPassword) {
+                passwordHelp.style.display = 'block';
+                confirmPassword.setCustomValidity('Passwords do not match');
+            } else {
+                passwordHelp.style.display = 'none';
+                confirmPassword.setCustomValidity(''); // Clears the custom validation message
+            }
+        }
+    </script>
+}

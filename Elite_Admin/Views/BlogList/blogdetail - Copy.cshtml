@@ -1,0 +1,409 @@
+﻿@model List<Elite_Admin.Models.BlogPostModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+@*<link href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css' rel='stylesheet'>*@
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
+<script type='text/javascript' src=''></script>
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+<script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
+
+<style>
+    .blogs-header {
+        background-image: url('../../content/websiteassets/assets/img/blogs-img/blog-header-img.png');
+        background-size: 100% 100%;
+        padding: 60px 0;
+        text-align: center;
+        color: #fff;
+    }
+
+        .blogs-header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .blogs-header p {
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+    .subscribe-input {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .cutoff-text {
+        text-align: -webkit-auto;
+        --line-height: 1.2em; /* Adjust the line height according to your font-size */
+        --max-lines: 3; /* Display only 3 lines */
+        max-height: calc(var(--max-lines) * var(--line-height));
+        overflow: hidden;
+        position: relative;
+        transition: max-height 0.5s ease;
+        height: 320px;
+        line-height: var(--line-height);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+    }
+
+        .cutoff-text.expanded {
+            -webkit-line-clamp: unset;
+            max-height: none;
+        }
+
+
+
+
+    .subscribe-footer {
+        background-color: #007bff;
+        padding: 40px 0;
+        text-align: center;
+        color: #fff;
+        margin-top: 40px;
+    }
+
+        .subscribe-footer h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+    .subscribe-footer {
+        width: 70%;
+        margin: auto auto 50px auto;
+        height: 324px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 30px;
+        background-image: url('../../content/websiteassets/assets/img/blogs-img/footer-img.png');
+        background-size: 100% 100%;
+        background-position: center;
+    }
+
+    .carousel-item img {
+        max-width: 350px;
+        width: 350px;
+        height: 225px;
+        border-radius: 10px;
+    }
+
+    .carousel-item .blog-content {
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+    }
+
+        .carousel-item .blog-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .carousel-item .blog-content p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+    .time-hour {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .cart-hd {
+        font-size: 18px !important;
+        font-weight: 600 !important;
+        color: black !important;
+        height: 100px;
+        text-align: -webkit-auto;
+        --max-lines: 3; /* Display only 3 lines */
+    }
+
+    .cart-main {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .sm-img {
+        width: 40px;
+        height: 40px;
+        background-color: #80D4FF;
+        border-radius: 50%;
+    }
+
+    .cart-wriiten {
+        margin-bottom: 2px;
+        font-size: 12px !important;
+        font-weight: 500;
+        color: #AAAAAA !important;
+    }
+
+    .cart-nadeem {
+        margin-bottom: 0;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        color: black !important;
+    }
+
+    a.btn.btn-primary.mb-3.mr-1 {
+        background-color: transparent !important;
+        border-radius: 50%;
+        border: 1px solid black !important;
+        color: black;
+        width: 50px;
+        height: 50px;
+    }
+
+    a.btn.btn-primary.mb-3 {
+        background-color: transparent !important;
+        border-radius: 50%;
+        border: 1px solid black !important;
+        color: black;
+        width:50px;
+        height:50px;
+    }
+
+    input.form-control {
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    @@media (max-width:6001px) {
+        .subscribe-input {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .subscribe-footer {
+            width: 80%;
+            height: 250px;
+        }
+    }
+
+    .blogs-header p {
+        text-align: center;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    a.btn.btn-primary.mb-3.mr-1 {
+        border: 1px solid #80D4FF !important;
+        color: #80D4FF;
+    }
+
+    a.btn.btn-primary.mb-3 {
+        border: 1px solid #80D4FF !important;
+        color: #80D4FF;
+    }
+
+    .btn-light {
+        color: #212529;
+        background-color: #f8f9fa;
+        border-color: #f8f9fa;
+        font-weight: 400;
+    }
+
+        .btn-light:hover {
+            color: #212529;
+            background-color: #f8f9fa;
+            border-color: #f8f9fa;
+            font-weight: 400;
+        }
+
+    .subscribe-footer h3 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: white;
+    }
+
+    .blogs-header h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: white;
+    }
+    
+</style>
+
+
+
+<!-- Header Section -->
+<div class="blogs-header text-center">
+    <h1>Blogs</h1>
+    <p>Welcome to our journal. Here you can find the latest <br /> company news and business articles.</p>
+    <p>Subscribe to learn about new product features, the latest <br /> in technology, solutions, and updates.</p>
+    <div class="input-group subscribe-input">
+        <input type="email" class="form-control" placeholder="Enter Your Email">
+        <button class="btn btn-light" type="button">Subscribe</button>
+    </div>
+
+
+
+</div>
+
+
+<section class="pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h3 class="mb-3">Latest Blogs </h3>
+            </div>
+            <div class="col-6 text-right">
+                <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                    <i class="fa fa-arrow-left"></i>
+                </a>
+                <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+                    <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="col-12">
+                <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        @for (int i = 0; i < Model.Count(); i += 3)
+                        {
+
+                            <div class="carousel-item @(i == 0 ? "active" : "")">
+                                <div class="row">
+                                    @for (int j = i; j < i + 3 && j < Model.Count(); j++)
+                                    {
+
+                                        <div class="col-md-4">
+                                            <a href="~/Blog/@Model[j].Slug">
+                                                <img src="~/raidetimefiles/blogfiles/@Model[j].CoverImage" alt="Blog Image" style="border: 1px solid lightgrey;">
+                                                <div class="blog-content">
+                                                    <div class="time-hour">
+                                                        <p>@Model[j].Blog_readTime Min Read</p>
+                                                        <p>@(Model[j].PublishingDate?.ToString("yyyy-MMM-dd"))</p>
+                                                    </div>
+                                                    <p class="cart-hd">@Model[j].Title</p>
+                                                    <p class="cutoff-text">@Model[j].MetaDescription</p>
+                                                    @*<button class="expand-btn">Read more</button>*@
+
+                                                    <div class="cart-main">
+                                                        <div class="sm-img">
+                                                            <img src="~/raidetimefiles/ProfileImages/@Model[j].Profileimage" class="rounded-circle user-photo" alt="Profile pic" style="width: 50px; height: 50px;">
+
+                                                        </div>
+                                                        <div class="ms-3">
+                                                            <p class="cart-wriiten">Written By</p>
+                                                            <p class="cart-nadeem">@Model[j].CreatedBy</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    }
+
+
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h3 class="mb-3">Popular Blogs </h3>
+            </div>
+            <div class="col-6 text-right">
+                <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators3" role="button" data-slide="prev">
+                    <i class="fa fa-arrow-left"></i>
+                </a>
+                <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators3" role="button" data-slide="next">
+                    <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="col-12">
+                <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel">
+
+                    <div class="carousel-inner">
+                        @for (int i = 0; i < ViewBag.Papular.Count; i += 3)
+                        {
+
+                            <div class="carousel-item @(i == 0 ? "active" : "")">
+                                <div class="row">
+                                    @for (int j = i; j < i + 3 && j < ViewBag.Papular.Count; j++)
+                                    {
+                                        <div class="col-md-4">
+                                            <a href="~/Blog/@ViewBag.Papular[j].Slug">
+                                                <img src="~/raidetimefiles/blogfiles/@ViewBag.Papular[j].CoverImage" alt="Blog Image" style="border: 1px solid lightgrey;">
+                                                <div class="blog-content">
+                                                    <div class="time-hour">
+                                                        <p>@ViewBag.Papular[j].Blog_readTime Min Read</p>
+                                                        <p>@(ViewBag.Papular[j].PublishingDate?.ToString("yyyy-MMM-dd"))</p>
+                                                    </div>
+                                                    <p class="cart-hd">@ViewBag.Papular[j].Title</p>
+                                                    <p class="cutoff-text">@ViewBag.Papular[j].MetaDescription</p>
+                                                    <div class="cart-main">
+                                                        <div class="sm-img">
+                                                            <img src="~/raidetimefiles/ProfileImages/@ViewBag.Papular[j].Profileimage" class="rounded-circle user-photo" alt="Profile pic" style="width: 50px; height: 50px;">
+
+                                                        </div>
+                                                        <div class="ms-3">
+                                                            <p class="cart-wriiten">Written By</p>
+                                                            <p class="cart-nadeem">@ViewBag.Papular[j].CreatedBy</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+
+
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <a href="~/BlogList/index" class="btn btn-primary">View All Blogs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Subscribe Footer Section -->
+<div class="subscribe-footer">
+    <h3>Ready to Get Our New Stuff?</h3>
+    <div class="input-group subscribe-input">
+        <input type="email" class="form-control" placeholder="Enter Your Email">
+        <button class="btn btn-light" type="button">Subscribe</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        const buttons = document.querySelectorAll('.expand-btn');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent the default action of the button
+
+                const content = this.previousElementSibling;
+                content.classList.toggle('expanded');
+                this.classList.toggle('expanded');
+                this.textContent = this.classList.contains('expanded') ? 'Collapse' : 'Read more';
+            });
+        });
+    });
+</script>
+
+
+<script type='text/javascript'></script>
+
+
+
